@@ -1,0 +1,62 @@
+syntax = "proto2";
+
+message Err{
+	required string err = 1;
+  	required int64 originseqnum = 2;
+  	required int64 seqnum = 3;
+}
+
+message AOrderATruck{
+  required int64 packageid = 1;
+  required int32 warehouselocationx = 2;
+  required int32 warehouselocationy = 3;
+  required int32 warehouseid = 4;
+  required int32 destinationx = 5;
+  required int32 destinationy = 6;
+  optional string upsid = 7;
+  required int64 seqnum = 8;
+}
+
+message AStartDeliver{
+	required int64 packageid  = 1;
+	required int64 seqnum = 2;
+}
+
+message AUCommand{
+	repeated AStartDeliver deliver = 1;
+	repeated AOrderATruck order = 2;
+	repeated int64 acks = 3;
+}
+
+message AUResponse{
+	repeated AStartDeliver deliverreceived = 1;
+	repeated AOrderATruck orderreceived = 2;
+	repeated int64 acks = 3;
+	repeated Err error = 4;
+}
+
+
+message UTruckArrive{
+	required int64 packageid  = 1;
+	required int32 truckid  = 2;
+	repeated int64 seqnum = 3;
+}
+
+message UDelivered{
+	required int64 packageid  = 1;
+	required int64 seqnum = 2;
+}
+
+message UACommand{
+	repeated UTruckArrive arrive = 1;
+	repeated UDelivered delivered = 2;
+	repeated int64 acks = 3;
+}
+
+message UAResponse{
+	repeated UTruckArrive arrivereceived = 1;
+	repeated UDelivered deliveredreceived = 2;
+	repeated int64 acks = 3;
+	repeated Err error = 4;
+}
+
