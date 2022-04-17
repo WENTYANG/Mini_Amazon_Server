@@ -3,8 +3,7 @@
 #include "proto.h"
 #include "socket.h"
 
-/*-----------------------------Server
- * constructor-----------------------------------*/
+/*-----------------------------Server constructor-----------------------------*/
 Server::Server()
     : frontHostName("0.0.0.0"),
       frontPortNum("8888"),
@@ -12,17 +11,27 @@ Server::Server()
       worldPortNum("12345"),
       upsHostName("0.0.0.0"),
       upsPortNum("8888"),
-      num_wh(5),
       wh_distance(100),
       seqNum(0),
-      dbName(""),
-      userName(""),
-      password("") {
+      dbName("MINI_AMAZON"),
+      userName("postgres"),
+      password("passw0rd"),
+      withUPS(false),
+      withFrontEnd(false) {
     cout << "Initializing server configuration...." << endl;
+
     /*
     To do: initialize threadpool
     Uninitialized: worldID
+    get warehouse list
     */
+
+    if (withFrontEnd) {
+        connection* C = connectDB();
+        // Get warehouse amount and list
+    } else {
+        num_wh = 5;
+    }
 }
 
 Server::~Server() {
@@ -65,7 +74,7 @@ void Server::connectUPS() {
   Connect to world server.
   When withUPS=false, init a new world, else connect using the worldID.
 */
-void Server::connectWorld(bool withUPS) {
+void Server::connectWorld() {
     GOOGLE_PROTOBUF_VERIFY_VERSION;  // use macro to check environment
 
     // connect to world
@@ -82,27 +91,13 @@ void Server::connectWorld(bool withUPS) {
     } else {
         acon.set_worldid(1);
     }
-    /*
-    Initialize Warehouses, one on center, others evenly distributed on circle
-      x = r*sin(theta)
-      y = r*cos(theta)
-    */
-    for (int i = 0; i < num_wh; i++) {
-        AInitWarehouse* wh = acon.add_initwh();
-        wh->set_id(i);
-        if (i == 0) {
-            wh->set_x(0);
-            wh->set_y(0);
-            whlist.push_back(Warehouse(i, 0, 0));
-        } else {
-            double theta = (2 * 3.14159 / num_wh) * i;
-            int x = wh_distance * sin(theta);
-            int y = wh_distance * cos(theta);
-            wh->set_x(x);
-            wh->set_y(y);
-            whlist.push_back(Warehouse(i, x, y));
-        }
+
+    // Initialize warehouses
+    if (withFrontEnd) {
+    } else {
+        setWh_circle(AConnect & acon);
     }
+
     acon.set_isamazon(true);
 
     // send AConnect Command
@@ -132,12 +127,11 @@ void Server::connectWorld(bool withUPS) {
     Connect to database
 */
 connection* Server::connectDB() {
-    // acquire lock?
     connection* C =
         new connection("host=db port=5432 dbname=" + dbName +
                        " user=" + userName + " password=" + password);
     if (C->is_open()) {
-        // cout << "Opened database successfully: " << C->dbname() << endl;
+        cout << "Opened database successfully: " << C->dbname() << endl;
     } else {
         throw MyException("Can't open database.");
     }
@@ -161,6 +155,32 @@ void Server::acceptOrder() {
         } catch (const std::exception& e) {
             std::cerr << e.what() << endl;
             continue;
+        }
+    }
+}
+
+/*--------------------------Testing & Developing funcs---------------*/
+
+/*
+    Initialize Warehouses, one on center, others evenly distributed on circle
+      x = r*sin(theta)
+      y = r*cos(theta)
+*/
+void Server::setWh_circle(AConnect& acon) {
+    for (int i = 0; i < num_wh; i++) {
+        AInitWarehouse* wh = acon.add_initwh();
+        wh->set_id(i);
+        if (i == 0) {
+            wh->set_x(0);
+            wh->set_y(0);
+            whlist.push_back(Warehouse(i, 0, 0));
+        } else {
+            double theta = (2 * 3.14159 / num_wh) * i;
+            int x = wh_distance * sin(theta);
+            int y = wh_distance * cos(theta);
+            wh->set_x(x);
+            wh->set_y(y);
+            whlist.push_back(Warehouse(i, x, y));
         }
     }
 }

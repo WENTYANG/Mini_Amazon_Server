@@ -53,6 +53,10 @@ class Server {
     string userName;
     string password;
 
+    // Developing mode
+    bool withUPS;
+    bool withFrontEnd;
+
     /*To do:
         A map of sequence number and timer(and info of package?) to handle ack
        and resend
@@ -61,10 +65,13 @@ class Server {
     Server();
     ~Server();
     void run();
-    void connectWorld(bool withUPS);
+    void connectWorld();
     void connectUPS();
     void acceptOrder();
     connection* connectDB();
+
+    // Developing & testing functions
+    void setWh_circle(AConnect& acon);
 };
 
 #endif
