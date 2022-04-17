@@ -24,7 +24,7 @@ int initializeServer(const string& portNum) {
     status =
         getaddrinfo(hostname, portNum.c_str(), &host_info, &host_info_list);
     if (status != 0) {
-        throw MyException("Error: cannot get address info for host\n");
+        throw MyException("Error: cannot get address info for host.");
     }
     if (portNum.empty()) {  // empty port number makes programe find a random
                             // port number by itself
@@ -75,7 +75,7 @@ int serverAcceptConnection(int serverFd, string& clientIp) {
         accept(serverFd, (struct sockaddr*)&socket_addr,
                &socket_addr_len);  // block until connection build
     if (client_connection_fd == -1) {
-        throw MyException("Error: cannot accept connection on socket\n");
+        throw MyException("Error: cannot accept connection on socket.");
     }
 
     // get client ip from its socket address
@@ -101,20 +101,20 @@ int clientRequestConnection(const string& hostName, const string& portNum) {
     status = getaddrinfo(hostName.c_str(), portNum.c_str(), &host_info,
                          &host_info_list);
     if (status != 0) {
-        throw MyException("Error: cannot get address info for host\n");
+        throw MyException("Error: cannot get address info for host.");
     }
 
     int client_fd =
         socket(host_info_list->ai_family, host_info_list->ai_socktype,
                host_info_list->ai_protocol);
     if (client_fd == -1) {
-        throw MyException("Error: cannot create socket\n");
+        throw MyException("Error: cannot create socket.");
     }
 
-    status = connect(client_fd, host_info_list->ai_addr,
-                     host_info_list->ai_addrlen);  //建立连接
+    status =
+        connect(client_fd, host_info_list->ai_addr, host_info_list->ai_addrlen);
     if (status == -1) {
-        throw MyException("Error: cannot connect to socket\n");
+        throw MyException("Error: cannot connect to socket.");
     }
 
     freeaddrinfo(host_info_list);
@@ -128,7 +128,7 @@ int getPortNum(int socketFd) {
     struct sockaddr_in sin;
     socklen_t len = sizeof(sin);
     if (getsockname(socketFd, (struct sockaddr*)&sin, &len) == -1) {
-        throw MyException("Error: cannot getsockname\n");
+        throw MyException("Error: cannot getsockname.");
     }
     return ntohs(sin.sin_port);
 }

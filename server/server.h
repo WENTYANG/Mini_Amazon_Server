@@ -45,9 +45,14 @@ class Server {
     Threadpool threadPool;
     // global sequence number
     long seqNum;
-    int front_fd;
     int ups_fd;
     int world_fd;
+
+    // db configure
+    string dbName;
+    string userName;
+    string password;
+
     /*To do:
         A map of sequence number and timer(and info of package?) to handle ack
        and resend
@@ -56,11 +61,10 @@ class Server {
     Server();
     ~Server();
     void run();
-    template <bool withUPS>
-    void connectWorld();
+    void connectWorld(bool withUPS);
     void connectUPS();
-    void connectWeb();
-    void connectDB();
+    void acceptOrder();
+    connection* connectDB();
 };
 
 #endif

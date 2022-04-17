@@ -19,17 +19,17 @@
 #error regenerate this file with a newer version of protoc.
 #endif
 
+#include <google/protobuf/port_undef.inc>
+#include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/arena.h>
 #include <google/protobuf/arenastring.h>
-#include <google/protobuf/extension_set.h>  // IWYU pragma: export
-#include <google/protobuf/generated_message_reflection.h>
 #include <google/protobuf/generated_message_util.h>
-#include <google/protobuf/io/coded_stream.h>
-#include <google/protobuf/message.h>
 #include <google/protobuf/metadata_lite.h>
+#include <google/protobuf/generated_message_reflection.h>
+#include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
+#include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/unknown_field_set.h>
-#include <google/protobuf/port_undef.inc>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_world_5famazon_2eproto
@@ -41,10 +41,9 @@ PROTOBUF_NAMESPACE_CLOSE
 
 // Internal implementation detail -- do not use these members.
 struct TableStruct_world_5famazon_2eproto {
-    static const uint32_t offsets[];
+  static const uint32_t offsets[];
 };
-extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable
-    descriptor_table_world_5famazon_2eproto;
+extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_world_5famazon_2eproto;
 class ACommands;
 struct ACommandsDefaultTypeInternal;
 extern ACommandsDefaultTypeInternal _ACommands_default_instance_;
@@ -88,3304 +87,2966 @@ class AResponses;
 struct AResponsesDefaultTypeInternal;
 extern AResponsesDefaultTypeInternal _AResponses_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
-template <>
-::ACommands* Arena::CreateMaybeMessage<::ACommands>(Arena*);
-template <>
-::AConnect* Arena::CreateMaybeMessage<::AConnect>(Arena*);
-template <>
-::AConnected* Arena::CreateMaybeMessage<::AConnected>(Arena*);
-template <>
-::AErr* Arena::CreateMaybeMessage<::AErr>(Arena*);
-template <>
-::AInitWarehouse* Arena::CreateMaybeMessage<::AInitWarehouse>(Arena*);
-template <>
-::ALoaded* Arena::CreateMaybeMessage<::ALoaded>(Arena*);
-template <>
-::APack* Arena::CreateMaybeMessage<::APack>(Arena*);
-template <>
-::APackage* Arena::CreateMaybeMessage<::APackage>(Arena*);
-template <>
-::APacked* Arena::CreateMaybeMessage<::APacked>(Arena*);
-template <>
-::AProduct* Arena::CreateMaybeMessage<::AProduct>(Arena*);
-template <>
-::APurchaseMore* Arena::CreateMaybeMessage<::APurchaseMore>(Arena*);
-template <>
-::APutOnTruck* Arena::CreateMaybeMessage<::APutOnTruck>(Arena*);
-template <>
-::AQuery* Arena::CreateMaybeMessage<::AQuery>(Arena*);
-template <>
-::AResponses* Arena::CreateMaybeMessage<::AResponses>(Arena*);
+template<> ::ACommands* Arena::CreateMaybeMessage<::ACommands>(Arena*);
+template<> ::AConnect* Arena::CreateMaybeMessage<::AConnect>(Arena*);
+template<> ::AConnected* Arena::CreateMaybeMessage<::AConnected>(Arena*);
+template<> ::AErr* Arena::CreateMaybeMessage<::AErr>(Arena*);
+template<> ::AInitWarehouse* Arena::CreateMaybeMessage<::AInitWarehouse>(Arena*);
+template<> ::ALoaded* Arena::CreateMaybeMessage<::ALoaded>(Arena*);
+template<> ::APack* Arena::CreateMaybeMessage<::APack>(Arena*);
+template<> ::APackage* Arena::CreateMaybeMessage<::APackage>(Arena*);
+template<> ::APacked* Arena::CreateMaybeMessage<::APacked>(Arena*);
+template<> ::AProduct* Arena::CreateMaybeMessage<::AProduct>(Arena*);
+template<> ::APurchaseMore* Arena::CreateMaybeMessage<::APurchaseMore>(Arena*);
+template<> ::APutOnTruck* Arena::CreateMaybeMessage<::APutOnTruck>(Arena*);
+template<> ::AQuery* Arena::CreateMaybeMessage<::AQuery>(Arena*);
+template<> ::AResponses* Arena::CreateMaybeMessage<::AResponses>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 
 // ===================================================================
 
-class AProduct final
-    : public ::PROTOBUF_NAMESPACE_ID::
-          Message /* @@protoc_insertion_point(class_definition:AProduct) */ {
-   public:
-    inline AProduct() : AProduct(nullptr) {}
-    ~AProduct() override;
-    explicit PROTOBUF_CONSTEXPR AProduct(
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-    AProduct(const AProduct& from);
-    AProduct(AProduct&& from) noexcept : AProduct() {
-        *this = ::std::move(from);
-    }
-
-    inline AProduct& operator=(const AProduct& from) {
-        CopyFrom(from);
-        return *this;
-    }
-    inline AProduct& operator=(AProduct&& from) noexcept {
-        if (this == &from)
-            return *this;
-        if (GetOwningArena() == from.GetOwningArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-            && GetOwningArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-        ) {
-            InternalSwap(&from);
-        } else {
-            CopyFrom(from);
-        }
-        return *this;
-    }
-
-    inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields()
-        const {
-        return _internal_metadata_
-            .unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(
-                ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
-    }
-    inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
-        return _internal_metadata_
-            .mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-    }
-
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-        return GetDescriptor();
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-        return default_instance().GetMetadata().descriptor;
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-        return default_instance().GetMetadata().reflection;
-    }
-    static const AProduct& default_instance() {
-        return *internal_default_instance();
-    }
-    static inline const AProduct* internal_default_instance() {
-        return reinterpret_cast<const AProduct*>(&_AProduct_default_instance_);
-    }
-    static constexpr int kIndexInFileMessages = 0;
-
-    friend void swap(AProduct& a, AProduct& b) { a.Swap(&b); }
-    inline void Swap(AProduct* other) {
-        if (other == this)
-            return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() != nullptr &&
-            GetOwningArena() == other->GetOwningArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() == other->GetOwningArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-            InternalSwap(other);
-        } else {
-            ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-        }
-    }
-    void UnsafeArenaSwap(AProduct* other) {
-        if (other == this)
-            return;
-        GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-        InternalSwap(other);
-    }
-
-    // implements Message ----------------------------------------------
-
-    AProduct* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-        return CreateMaybeMessage<AProduct>(arena);
-    }
-    using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-    void CopyFrom(const AProduct& from);
-    using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-    void MergeFrom(const AProduct& from);
-
-   private:
-    static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                          const ::PROTOBUF_NAMESPACE_ID::Message& from);
-
-   public:
-    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-    bool IsInitialized() const final;
-
-    size_t ByteSizeLong() const final;
-    const char* _InternalParse(
-        const char* ptr,
-        ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-    uint8_t* _InternalSerialize(
-        uint8_t* target,
-        ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-    int GetCachedSize() const final { return _cached_size_.Get(); }
-
-   private:
-    void SharedCtor();
-    void SharedDtor();
-    void SetCachedSize(int size) const final;
-    void InternalSwap(AProduct* other);
-
-   private:
-    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-        return "AProduct";
-    }
-
-   protected:
-    explicit AProduct(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                      bool is_message_owned = false);
-
-   public:
-    static const ClassData _class_data_;
-    const ::PROTOBUF_NAMESPACE_ID::Message::ClassData* GetClassData()
-        const final;
-
-    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-    // nested types ----------------------------------------------------
-
-    // accessors -------------------------------------------------------
-
-    enum : int {
-        kDescriptionFieldNumber = 2,
-        kIdFieldNumber = 1,
-        kCountFieldNumber = 3,
-    };
-    // required string description = 2;
-    bool has_description() const;
-
-   private:
-    bool _internal_has_description() const;
-
-   public:
-    void clear_description();
-    const std::string& description() const;
-    template <typename ArgT0 = const std::string&, typename... ArgT>
-    void set_description(ArgT0&& arg0, ArgT... args);
-    std::string* mutable_description();
-    PROTOBUF_NODISCARD std::string* release_description();
-    void set_allocated_description(std::string* description);
-
-   private:
-    const std::string& _internal_description() const;
-    inline PROTOBUF_ALWAYS_INLINE void _internal_set_description(
-        const std::string& value);
-    std::string* _internal_mutable_description();
-
-   public:
-    // required int64 id = 1;
-    bool has_id() const;
-
-   private:
-    bool _internal_has_id() const;
-
-   public:
-    void clear_id();
-    int64_t id() const;
-    void set_id(int64_t value);
-
-   private:
-    int64_t _internal_id() const;
-    void _internal_set_id(int64_t value);
-
-   public:
-    // required int32 count = 3;
-    bool has_count() const;
-
-   private:
-    bool _internal_has_count() const;
-
-   public:
-    void clear_count();
-    int32_t count() const;
-    void set_count(int32_t value);
-
-   private:
-    int32_t _internal_count() const;
-    void _internal_set_count(int32_t value);
-
-   public:
-    // @@protoc_insertion_point(class_scope:AProduct)
-   private:
-    class _Internal;
-
-    // helper for ByteSizeLong()
-    size_t RequiredFieldsByteSizeFallback() const;
-
-    template <typename T>
-    friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-    typedef void InternalArenaConstructable_;
-    typedef void DestructorSkippable_;
-    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr description_;
-    int64_t id_;
-    int32_t count_;
-    friend struct ::TableStruct_world_5famazon_2eproto;
-};
-// -------------------------------------------------------------------
-
-class AInitWarehouse final : public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:AInitWarehouse)
-                                                                      */
-{
-   public:
-    inline AInitWarehouse() : AInitWarehouse(nullptr) {}
-    ~AInitWarehouse() override;
-    explicit PROTOBUF_CONSTEXPR AInitWarehouse(
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-    AInitWarehouse(const AInitWarehouse& from);
-    AInitWarehouse(AInitWarehouse&& from) noexcept : AInitWarehouse() {
-        *this = ::std::move(from);
-    }
-
-    inline AInitWarehouse& operator=(const AInitWarehouse& from) {
-        CopyFrom(from);
-        return *this;
-    }
-    inline AInitWarehouse& operator=(AInitWarehouse&& from) noexcept {
-        if (this == &from)
-            return *this;
-        if (GetOwningArena() == from.GetOwningArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-            && GetOwningArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-        ) {
-            InternalSwap(&from);
-        } else {
-            CopyFrom(from);
-        }
-        return *this;
-    }
-
-    inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields()
-        const {
-        return _internal_metadata_
-            .unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(
-                ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
-    }
-    inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
-        return _internal_metadata_
-            .mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-    }
-
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-        return GetDescriptor();
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-        return default_instance().GetMetadata().descriptor;
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-        return default_instance().GetMetadata().reflection;
-    }
-    static const AInitWarehouse& default_instance() {
-        return *internal_default_instance();
-    }
-    static inline const AInitWarehouse* internal_default_instance() {
-        return reinterpret_cast<const AInitWarehouse*>(
-            &_AInitWarehouse_default_instance_);
-    }
-    static constexpr int kIndexInFileMessages = 1;
-
-    friend void swap(AInitWarehouse& a, AInitWarehouse& b) { a.Swap(&b); }
-    inline void Swap(AInitWarehouse* other) {
-        if (other == this)
-            return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() != nullptr &&
-            GetOwningArena() == other->GetOwningArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() == other->GetOwningArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-            InternalSwap(other);
-        } else {
-            ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-        }
-    }
-    void UnsafeArenaSwap(AInitWarehouse* other) {
-        if (other == this)
-            return;
-        GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-        InternalSwap(other);
-    }
-
-    // implements Message ----------------------------------------------
-
-    AInitWarehouse* New(
-        ::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-        return CreateMaybeMessage<AInitWarehouse>(arena);
-    }
-    using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-    void CopyFrom(const AInitWarehouse& from);
-    using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-    void MergeFrom(const AInitWarehouse& from);
-
-   private:
-    static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                          const ::PROTOBUF_NAMESPACE_ID::Message& from);
-
-   public:
-    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-    bool IsInitialized() const final;
-
-    size_t ByteSizeLong() const final;
-    const char* _InternalParse(
-        const char* ptr,
-        ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-    uint8_t* _InternalSerialize(
-        uint8_t* target,
-        ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-    int GetCachedSize() const final { return _cached_size_.Get(); }
-
-   private:
-    void SharedCtor();
-    void SharedDtor();
-    void SetCachedSize(int size) const final;
-    void InternalSwap(AInitWarehouse* other);
-
-   private:
-    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-        return "AInitWarehouse";
-    }
-
-   protected:
-    explicit AInitWarehouse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                            bool is_message_owned = false);
-
-   public:
-    static const ClassData _class_data_;
-    const ::PROTOBUF_NAMESPACE_ID::Message::ClassData* GetClassData()
-        const final;
-
-    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-    // nested types ----------------------------------------------------
-
-    // accessors -------------------------------------------------------
-
-    enum : int {
-        kIdFieldNumber = 1,
-        kXFieldNumber = 2,
-        kYFieldNumber = 3,
-    };
-    // required int32 id = 1;
-    bool has_id() const;
-
-   private:
-    bool _internal_has_id() const;
-
-   public:
-    void clear_id();
-    int32_t id() const;
-    void set_id(int32_t value);
-
-   private:
-    int32_t _internal_id() const;
-    void _internal_set_id(int32_t value);
-
-   public:
-    // required int32 x = 2;
-    bool has_x() const;
-
-   private:
-    bool _internal_has_x() const;
-
-   public:
-    void clear_x();
-    int32_t x() const;
-    void set_x(int32_t value);
-
-   private:
-    int32_t _internal_x() const;
-    void _internal_set_x(int32_t value);
-
-   public:
-    // required int32 y = 3;
-    bool has_y() const;
-
-   private:
-    bool _internal_has_y() const;
-
-   public:
-    void clear_y();
-    int32_t y() const;
-    void set_y(int32_t value);
-
-   private:
-    int32_t _internal_y() const;
-    void _internal_set_y(int32_t value);
-
-   public:
-    // @@protoc_insertion_point(class_scope:AInitWarehouse)
-   private:
-    class _Internal;
-
-    // helper for ByteSizeLong()
-    size_t RequiredFieldsByteSizeFallback() const;
-
-    template <typename T>
-    friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-    typedef void InternalArenaConstructable_;
-    typedef void DestructorSkippable_;
-    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    int32_t id_;
-    int32_t x_;
-    int32_t y_;
-    friend struct ::TableStruct_world_5famazon_2eproto;
-};
-// -------------------------------------------------------------------
-
-class AConnect final
-    : public ::PROTOBUF_NAMESPACE_ID::
-          Message /* @@protoc_insertion_point(class_definition:AConnect) */ {
-   public:
-    inline AConnect() : AConnect(nullptr) {}
-    ~AConnect() override;
-    explicit PROTOBUF_CONSTEXPR AConnect(
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-    AConnect(const AConnect& from);
-    AConnect(AConnect&& from) noexcept : AConnect() {
-        *this = ::std::move(from);
-    }
-
-    inline AConnect& operator=(const AConnect& from) {
-        CopyFrom(from);
-        return *this;
-    }
-    inline AConnect& operator=(AConnect&& from) noexcept {
-        if (this == &from)
-            return *this;
-        if (GetOwningArena() == from.GetOwningArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-            && GetOwningArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-        ) {
-            InternalSwap(&from);
-        } else {
-            CopyFrom(from);
-        }
-        return *this;
-    }
-
-    inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields()
-        const {
-        return _internal_metadata_
-            .unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(
-                ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
-    }
-    inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
-        return _internal_metadata_
-            .mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-    }
-
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-        return GetDescriptor();
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-        return default_instance().GetMetadata().descriptor;
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-        return default_instance().GetMetadata().reflection;
-    }
-    static const AConnect& default_instance() {
-        return *internal_default_instance();
-    }
-    static inline const AConnect* internal_default_instance() {
-        return reinterpret_cast<const AConnect*>(&_AConnect_default_instance_);
-    }
-    static constexpr int kIndexInFileMessages = 2;
-
-    friend void swap(AConnect& a, AConnect& b) { a.Swap(&b); }
-    inline void Swap(AConnect* other) {
-        if (other == this)
-            return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() != nullptr &&
-            GetOwningArena() == other->GetOwningArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() == other->GetOwningArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-            InternalSwap(other);
-        } else {
-            ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-        }
-    }
-    void UnsafeArenaSwap(AConnect* other) {
-        if (other == this)
-            return;
-        GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-        InternalSwap(other);
-    }
-
-    // implements Message ----------------------------------------------
-
-    AConnect* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-        return CreateMaybeMessage<AConnect>(arena);
-    }
-    using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-    void CopyFrom(const AConnect& from);
-    using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-    void MergeFrom(const AConnect& from);
-
-   private:
-    static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                          const ::PROTOBUF_NAMESPACE_ID::Message& from);
-
-   public:
-    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-    bool IsInitialized() const final;
-
-    size_t ByteSizeLong() const final;
-    const char* _InternalParse(
-        const char* ptr,
-        ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-    uint8_t* _InternalSerialize(
-        uint8_t* target,
-        ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-    int GetCachedSize() const final { return _cached_size_.Get(); }
-
-   private:
-    void SharedCtor();
-    void SharedDtor();
-    void SetCachedSize(int size) const final;
-    void InternalSwap(AConnect* other);
-
-   private:
-    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-        return "AConnect";
-    }
-
-   protected:
-    explicit AConnect(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                      bool is_message_owned = false);
-
-   public:
-    static const ClassData _class_data_;
-    const ::PROTOBUF_NAMESPACE_ID::Message::ClassData* GetClassData()
-        const final;
-
-    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-    // nested types ----------------------------------------------------
-
-    // accessors -------------------------------------------------------
-
-    enum : int {
-        kInitwhFieldNumber = 2,
-        kWorldidFieldNumber = 1,
-        kIsAmazonFieldNumber = 3,
-    };
-    // repeated .AInitWarehouse initwh = 2;
-    int initwh_size() const;
-
-   private:
-    int _internal_initwh_size() const;
-
-   public:
-    void clear_initwh();
-    ::AInitWarehouse* mutable_initwh(int index);
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::AInitWarehouse>*
-    mutable_initwh();
-
-   private:
-    const ::AInitWarehouse& _internal_initwh(int index) const;
-    ::AInitWarehouse* _internal_add_initwh();
-
-   public:
-    const ::AInitWarehouse& initwh(int index) const;
-    ::AInitWarehouse* add_initwh();
-    const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::AInitWarehouse>& initwh()
-        const;
-
-    // optional int64 worldid = 1;
-    bool has_worldid() const;
-
-   private:
-    bool _internal_has_worldid() const;
-
-   public:
-    void clear_worldid();
-    int64_t worldid() const;
-    void set_worldid(int64_t value);
-
-   private:
-    int64_t _internal_worldid() const;
-    void _internal_set_worldid(int64_t value);
-
-   public:
-    // required bool isAmazon = 3;
-    bool has_isamazon() const;
-
-   private:
-    bool _internal_has_isamazon() const;
-
-   public:
-    void clear_isamazon();
-    bool isamazon() const;
-    void set_isamazon(bool value);
-
-   private:
-    bool _internal_isamazon() const;
-    void _internal_set_isamazon(bool value);
-
-   public:
-    // @@protoc_insertion_point(class_scope:AConnect)
-   private:
-    class _Internal;
-
-    template <typename T>
-    friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-    typedef void InternalArenaConstructable_;
-    typedef void DestructorSkippable_;
-    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::AInitWarehouse> initwh_;
-    int64_t worldid_;
-    bool isamazon_;
-    friend struct ::TableStruct_world_5famazon_2eproto;
-};
-// -------------------------------------------------------------------
-
-class AConnected final
-    : public ::PROTOBUF_NAMESPACE_ID::
-          Message /* @@protoc_insertion_point(class_definition:AConnected) */ {
-   public:
-    inline AConnected() : AConnected(nullptr) {}
-    ~AConnected() override;
-    explicit PROTOBUF_CONSTEXPR AConnected(
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-    AConnected(const AConnected& from);
-    AConnected(AConnected&& from) noexcept : AConnected() {
-        *this = ::std::move(from);
-    }
-
-    inline AConnected& operator=(const AConnected& from) {
-        CopyFrom(from);
-        return *this;
-    }
-    inline AConnected& operator=(AConnected&& from) noexcept {
-        if (this == &from)
-            return *this;
-        if (GetOwningArena() == from.GetOwningArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-            && GetOwningArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-        ) {
-            InternalSwap(&from);
-        } else {
-            CopyFrom(from);
-        }
-        return *this;
-    }
-
-    inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields()
-        const {
-        return _internal_metadata_
-            .unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(
-                ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
-    }
-    inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
-        return _internal_metadata_
-            .mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-    }
-
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-        return GetDescriptor();
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-        return default_instance().GetMetadata().descriptor;
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-        return default_instance().GetMetadata().reflection;
-    }
-    static const AConnected& default_instance() {
-        return *internal_default_instance();
-    }
-    static inline const AConnected* internal_default_instance() {
-        return reinterpret_cast<const AConnected*>(
-            &_AConnected_default_instance_);
-    }
-    static constexpr int kIndexInFileMessages = 3;
-
-    friend void swap(AConnected& a, AConnected& b) { a.Swap(&b); }
-    inline void Swap(AConnected* other) {
-        if (other == this)
-            return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() != nullptr &&
-            GetOwningArena() == other->GetOwningArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() == other->GetOwningArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-            InternalSwap(other);
-        } else {
-            ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-        }
-    }
-    void UnsafeArenaSwap(AConnected* other) {
-        if (other == this)
-            return;
-        GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-        InternalSwap(other);
-    }
-
-    // implements Message ----------------------------------------------
-
-    AConnected* New(
-        ::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-        return CreateMaybeMessage<AConnected>(arena);
-    }
-    using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-    void CopyFrom(const AConnected& from);
-    using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-    void MergeFrom(const AConnected& from);
-
-   private:
-    static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                          const ::PROTOBUF_NAMESPACE_ID::Message& from);
-
-   public:
-    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-    bool IsInitialized() const final;
-
-    size_t ByteSizeLong() const final;
-    const char* _InternalParse(
-        const char* ptr,
-        ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-    uint8_t* _InternalSerialize(
-        uint8_t* target,
-        ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-    int GetCachedSize() const final { return _cached_size_.Get(); }
-
-   private:
-    void SharedCtor();
-    void SharedDtor();
-    void SetCachedSize(int size) const final;
-    void InternalSwap(AConnected* other);
-
-   private:
-    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-        return "AConnected";
-    }
-
-   protected:
-    explicit AConnected(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                        bool is_message_owned = false);
-
-   public:
-    static const ClassData _class_data_;
-    const ::PROTOBUF_NAMESPACE_ID::Message::ClassData* GetClassData()
-        const final;
-
-    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-    // nested types ----------------------------------------------------
-
-    // accessors -------------------------------------------------------
-
-    enum : int {
-        kResultFieldNumber = 2,
-        kWorldidFieldNumber = 1,
-    };
-    // required string result = 2;
-    bool has_result() const;
-
-   private:
-    bool _internal_has_result() const;
-
-   public:
-    void clear_result();
-    const std::string& result() const;
-    template <typename ArgT0 = const std::string&, typename... ArgT>
-    void set_result(ArgT0&& arg0, ArgT... args);
-    std::string* mutable_result();
-    PROTOBUF_NODISCARD std::string* release_result();
-    void set_allocated_result(std::string* result);
-
-   private:
-    const std::string& _internal_result() const;
-    inline PROTOBUF_ALWAYS_INLINE void _internal_set_result(
-        const std::string& value);
-    std::string* _internal_mutable_result();
-
-   public:
-    // required int64 worldid = 1;
-    bool has_worldid() const;
-
-   private:
-    bool _internal_has_worldid() const;
-
-   public:
-    void clear_worldid();
-    int64_t worldid() const;
-    void set_worldid(int64_t value);
-
-   private:
-    int64_t _internal_worldid() const;
-    void _internal_set_worldid(int64_t value);
-
-   public:
-    // @@protoc_insertion_point(class_scope:AConnected)
-   private:
-    class _Internal;
-
-    // helper for ByteSizeLong()
-    size_t RequiredFieldsByteSizeFallback() const;
-
-    template <typename T>
-    friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-    typedef void InternalArenaConstructable_;
-    typedef void DestructorSkippable_;
-    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr result_;
-    int64_t worldid_;
-    friend struct ::TableStruct_world_5famazon_2eproto;
-};
-// -------------------------------------------------------------------
-
-class APack final
-    : public ::PROTOBUF_NAMESPACE_ID::
-          Message /* @@protoc_insertion_point(class_definition:APack) */ {
-   public:
-    inline APack() : APack(nullptr) {}
-    ~APack() override;
-    explicit PROTOBUF_CONSTEXPR APack(
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-    APack(const APack& from);
-    APack(APack&& from) noexcept : APack() { *this = ::std::move(from); }
-
-    inline APack& operator=(const APack& from) {
-        CopyFrom(from);
-        return *this;
-    }
-    inline APack& operator=(APack&& from) noexcept {
-        if (this == &from)
-            return *this;
-        if (GetOwningArena() == from.GetOwningArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-            && GetOwningArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-        ) {
-            InternalSwap(&from);
-        } else {
-            CopyFrom(from);
-        }
-        return *this;
-    }
-
-    inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields()
-        const {
-        return _internal_metadata_
-            .unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(
-                ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
-    }
-    inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
-        return _internal_metadata_
-            .mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-    }
-
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-        return GetDescriptor();
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-        return default_instance().GetMetadata().descriptor;
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-        return default_instance().GetMetadata().reflection;
-    }
-    static const APack& default_instance() {
-        return *internal_default_instance();
-    }
-    static inline const APack* internal_default_instance() {
-        return reinterpret_cast<const APack*>(&_APack_default_instance_);
-    }
-    static constexpr int kIndexInFileMessages = 4;
-
-    friend void swap(APack& a, APack& b) { a.Swap(&b); }
-    inline void Swap(APack* other) {
-        if (other == this)
-            return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() != nullptr &&
-            GetOwningArena() == other->GetOwningArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() == other->GetOwningArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-            InternalSwap(other);
-        } else {
-            ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-        }
-    }
-    void UnsafeArenaSwap(APack* other) {
-        if (other == this)
-            return;
-        GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-        InternalSwap(other);
-    }
-
-    // implements Message ----------------------------------------------
-
-    APack* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-        return CreateMaybeMessage<APack>(arena);
-    }
-    using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-    void CopyFrom(const APack& from);
-    using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-    void MergeFrom(const APack& from);
-
-   private:
-    static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                          const ::PROTOBUF_NAMESPACE_ID::Message& from);
-
-   public:
-    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-    bool IsInitialized() const final;
-
-    size_t ByteSizeLong() const final;
-    const char* _InternalParse(
-        const char* ptr,
-        ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-    uint8_t* _InternalSerialize(
-        uint8_t* target,
-        ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-    int GetCachedSize() const final { return _cached_size_.Get(); }
-
-   private:
-    void SharedCtor();
-    void SharedDtor();
-    void SetCachedSize(int size) const final;
-    void InternalSwap(APack* other);
-
-   private:
-    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-        return "APack";
-    }
-
-   protected:
-    explicit APack(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                   bool is_message_owned = false);
-
-   public:
-    static const ClassData _class_data_;
-    const ::PROTOBUF_NAMESPACE_ID::Message::ClassData* GetClassData()
-        const final;
-
-    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-    // nested types ----------------------------------------------------
-
-    // accessors -------------------------------------------------------
-
-    enum : int {
-        kThingsFieldNumber = 2,
-        kShipidFieldNumber = 3,
-        kSeqnumFieldNumber = 4,
-        kWhnumFieldNumber = 1,
-    };
-    // repeated .AProduct things = 2;
-    int things_size() const;
-
-   private:
-    int _internal_things_size() const;
-
-   public:
-    void clear_things();
-    ::AProduct* mutable_things(int index);
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::AProduct>* mutable_things();
-
-   private:
-    const ::AProduct& _internal_things(int index) const;
-    ::AProduct* _internal_add_things();
-
-   public:
-    const ::AProduct& things(int index) const;
-    ::AProduct* add_things();
-    const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::AProduct>& things() const;
-
-    // required int64 shipid = 3;
-    bool has_shipid() const;
-
-   private:
-    bool _internal_has_shipid() const;
-
-   public:
-    void clear_shipid();
-    int64_t shipid() const;
-    void set_shipid(int64_t value);
-
-   private:
-    int64_t _internal_shipid() const;
-    void _internal_set_shipid(int64_t value);
-
-   public:
-    // required int64 seqnum = 4;
-    bool has_seqnum() const;
-
-   private:
-    bool _internal_has_seqnum() const;
-
-   public:
-    void clear_seqnum();
-    int64_t seqnum() const;
-    void set_seqnum(int64_t value);
-
-   private:
-    int64_t _internal_seqnum() const;
-    void _internal_set_seqnum(int64_t value);
-
-   public:
-    // required int32 whnum = 1;
-    bool has_whnum() const;
-
-   private:
-    bool _internal_has_whnum() const;
-
-   public:
-    void clear_whnum();
-    int32_t whnum() const;
-    void set_whnum(int32_t value);
-
-   private:
-    int32_t _internal_whnum() const;
-    void _internal_set_whnum(int32_t value);
-
-   public:
-    // @@protoc_insertion_point(class_scope:APack)
-   private:
-    class _Internal;
-
-    // helper for ByteSizeLong()
-    size_t RequiredFieldsByteSizeFallback() const;
-
-    template <typename T>
-    friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-    typedef void InternalArenaConstructable_;
-    typedef void DestructorSkippable_;
-    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::AProduct> things_;
-    int64_t shipid_;
-    int64_t seqnum_;
-    int32_t whnum_;
-    friend struct ::TableStruct_world_5famazon_2eproto;
-};
-// -------------------------------------------------------------------
-
-class APacked final
-    : public ::PROTOBUF_NAMESPACE_ID::
-          Message /* @@protoc_insertion_point(class_definition:APacked) */ {
-   public:
-    inline APacked() : APacked(nullptr) {}
-    ~APacked() override;
-    explicit PROTOBUF_CONSTEXPR APacked(
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-    APacked(const APacked& from);
-    APacked(APacked&& from) noexcept : APacked() { *this = ::std::move(from); }
-
-    inline APacked& operator=(const APacked& from) {
-        CopyFrom(from);
-        return *this;
-    }
-    inline APacked& operator=(APacked&& from) noexcept {
-        if (this == &from)
-            return *this;
-        if (GetOwningArena() == from.GetOwningArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-            && GetOwningArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-        ) {
-            InternalSwap(&from);
-        } else {
-            CopyFrom(from);
-        }
-        return *this;
-    }
-
-    inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields()
-        const {
-        return _internal_metadata_
-            .unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(
-                ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
-    }
-    inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
-        return _internal_metadata_
-            .mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-    }
-
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-        return GetDescriptor();
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-        return default_instance().GetMetadata().descriptor;
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-        return default_instance().GetMetadata().reflection;
-    }
-    static const APacked& default_instance() {
-        return *internal_default_instance();
-    }
-    static inline const APacked* internal_default_instance() {
-        return reinterpret_cast<const APacked*>(&_APacked_default_instance_);
-    }
-    static constexpr int kIndexInFileMessages = 5;
-
-    friend void swap(APacked& a, APacked& b) { a.Swap(&b); }
-    inline void Swap(APacked* other) {
-        if (other == this)
-            return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() != nullptr &&
-            GetOwningArena() == other->GetOwningArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() == other->GetOwningArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-            InternalSwap(other);
-        } else {
-            ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-        }
-    }
-    void UnsafeArenaSwap(APacked* other) {
-        if (other == this)
-            return;
-        GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-        InternalSwap(other);
-    }
-
-    // implements Message ----------------------------------------------
-
-    APacked* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-        return CreateMaybeMessage<APacked>(arena);
-    }
-    using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-    void CopyFrom(const APacked& from);
-    using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-    void MergeFrom(const APacked& from);
-
-   private:
-    static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                          const ::PROTOBUF_NAMESPACE_ID::Message& from);
-
-   public:
-    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-    bool IsInitialized() const final;
-
-    size_t ByteSizeLong() const final;
-    const char* _InternalParse(
-        const char* ptr,
-        ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-    uint8_t* _InternalSerialize(
-        uint8_t* target,
-        ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-    int GetCachedSize() const final { return _cached_size_.Get(); }
-
-   private:
-    void SharedCtor();
-    void SharedDtor();
-    void SetCachedSize(int size) const final;
-    void InternalSwap(APacked* other);
-
-   private:
-    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-        return "APacked";
-    }
-
-   protected:
-    explicit APacked(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                     bool is_message_owned = false);
-
-   public:
-    static const ClassData _class_data_;
-    const ::PROTOBUF_NAMESPACE_ID::Message::ClassData* GetClassData()
-        const final;
-
-    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-    // nested types ----------------------------------------------------
-
-    // accessors -------------------------------------------------------
-
-    enum : int {
-        kShipidFieldNumber = 1,
-        kSeqnumFieldNumber = 2,
-    };
-    // required int64 shipid = 1;
-    bool has_shipid() const;
-
-   private:
-    bool _internal_has_shipid() const;
-
-   public:
-    void clear_shipid();
-    int64_t shipid() const;
-    void set_shipid(int64_t value);
-
-   private:
-    int64_t _internal_shipid() const;
-    void _internal_set_shipid(int64_t value);
-
-   public:
-    // required int64 seqnum = 2;
-    bool has_seqnum() const;
-
-   private:
-    bool _internal_has_seqnum() const;
-
-   public:
-    void clear_seqnum();
-    int64_t seqnum() const;
-    void set_seqnum(int64_t value);
-
-   private:
-    int64_t _internal_seqnum() const;
-    void _internal_set_seqnum(int64_t value);
-
-   public:
-    // @@protoc_insertion_point(class_scope:APacked)
-   private:
-    class _Internal;
-
-    // helper for ByteSizeLong()
-    size_t RequiredFieldsByteSizeFallback() const;
-
-    template <typename T>
-    friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-    typedef void InternalArenaConstructable_;
-    typedef void DestructorSkippable_;
-    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    int64_t shipid_;
-    int64_t seqnum_;
-    friend struct ::TableStruct_world_5famazon_2eproto;
-};
-// -------------------------------------------------------------------
-
-class ALoaded final
-    : public ::PROTOBUF_NAMESPACE_ID::
-          Message /* @@protoc_insertion_point(class_definition:ALoaded) */ {
-   public:
-    inline ALoaded() : ALoaded(nullptr) {}
-    ~ALoaded() override;
-    explicit PROTOBUF_CONSTEXPR ALoaded(
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-    ALoaded(const ALoaded& from);
-    ALoaded(ALoaded&& from) noexcept : ALoaded() { *this = ::std::move(from); }
-
-    inline ALoaded& operator=(const ALoaded& from) {
-        CopyFrom(from);
-        return *this;
-    }
-    inline ALoaded& operator=(ALoaded&& from) noexcept {
-        if (this == &from)
-            return *this;
-        if (GetOwningArena() == from.GetOwningArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-            && GetOwningArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-        ) {
-            InternalSwap(&from);
-        } else {
-            CopyFrom(from);
-        }
-        return *this;
-    }
-
-    inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields()
-        const {
-        return _internal_metadata_
-            .unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(
-                ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
-    }
-    inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
-        return _internal_metadata_
-            .mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-    }
-
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-        return GetDescriptor();
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-        return default_instance().GetMetadata().descriptor;
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-        return default_instance().GetMetadata().reflection;
-    }
-    static const ALoaded& default_instance() {
-        return *internal_default_instance();
-    }
-    static inline const ALoaded* internal_default_instance() {
-        return reinterpret_cast<const ALoaded*>(&_ALoaded_default_instance_);
-    }
-    static constexpr int kIndexInFileMessages = 6;
-
-    friend void swap(ALoaded& a, ALoaded& b) { a.Swap(&b); }
-    inline void Swap(ALoaded* other) {
-        if (other == this)
-            return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() != nullptr &&
-            GetOwningArena() == other->GetOwningArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() == other->GetOwningArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-            InternalSwap(other);
-        } else {
-            ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-        }
-    }
-    void UnsafeArenaSwap(ALoaded* other) {
-        if (other == this)
-            return;
-        GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-        InternalSwap(other);
-    }
-
-    // implements Message ----------------------------------------------
-
-    ALoaded* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-        return CreateMaybeMessage<ALoaded>(arena);
-    }
-    using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-    void CopyFrom(const ALoaded& from);
-    using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-    void MergeFrom(const ALoaded& from);
-
-   private:
-    static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                          const ::PROTOBUF_NAMESPACE_ID::Message& from);
-
-   public:
-    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-    bool IsInitialized() const final;
-
-    size_t ByteSizeLong() const final;
-    const char* _InternalParse(
-        const char* ptr,
-        ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-    uint8_t* _InternalSerialize(
-        uint8_t* target,
-        ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-    int GetCachedSize() const final { return _cached_size_.Get(); }
-
-   private:
-    void SharedCtor();
-    void SharedDtor();
-    void SetCachedSize(int size) const final;
-    void InternalSwap(ALoaded* other);
-
-   private:
-    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-        return "ALoaded";
-    }
-
-   protected:
-    explicit ALoaded(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                     bool is_message_owned = false);
-
-   public:
-    static const ClassData _class_data_;
-    const ::PROTOBUF_NAMESPACE_ID::Message::ClassData* GetClassData()
-        const final;
-
-    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-    // nested types ----------------------------------------------------
-
-    // accessors -------------------------------------------------------
-
-    enum : int {
-        kShipidFieldNumber = 1,
-        kSeqnumFieldNumber = 2,
-    };
-    // required int64 shipid = 1;
-    bool has_shipid() const;
-
-   private:
-    bool _internal_has_shipid() const;
-
-   public:
-    void clear_shipid();
-    int64_t shipid() const;
-    void set_shipid(int64_t value);
-
-   private:
-    int64_t _internal_shipid() const;
-    void _internal_set_shipid(int64_t value);
-
-   public:
-    // required int64 seqnum = 2;
-    bool has_seqnum() const;
-
-   private:
-    bool _internal_has_seqnum() const;
-
-   public:
-    void clear_seqnum();
-    int64_t seqnum() const;
-    void set_seqnum(int64_t value);
-
-   private:
-    int64_t _internal_seqnum() const;
-    void _internal_set_seqnum(int64_t value);
-
-   public:
-    // @@protoc_insertion_point(class_scope:ALoaded)
-   private:
-    class _Internal;
-
-    // helper for ByteSizeLong()
-    size_t RequiredFieldsByteSizeFallback() const;
-
-    template <typename T>
-    friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-    typedef void InternalArenaConstructable_;
-    typedef void DestructorSkippable_;
-    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    int64_t shipid_;
-    int64_t seqnum_;
-    friend struct ::TableStruct_world_5famazon_2eproto;
-};
-// -------------------------------------------------------------------
-
-class APutOnTruck final
-    : public ::PROTOBUF_NAMESPACE_ID::
-          Message /* @@protoc_insertion_point(class_definition:APutOnTruck) */ {
-   public:
-    inline APutOnTruck() : APutOnTruck(nullptr) {}
-    ~APutOnTruck() override;
-    explicit PROTOBUF_CONSTEXPR APutOnTruck(
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-    APutOnTruck(const APutOnTruck& from);
-    APutOnTruck(APutOnTruck&& from) noexcept : APutOnTruck() {
-        *this = ::std::move(from);
-    }
-
-    inline APutOnTruck& operator=(const APutOnTruck& from) {
-        CopyFrom(from);
-        return *this;
-    }
-    inline APutOnTruck& operator=(APutOnTruck&& from) noexcept {
-        if (this == &from)
-            return *this;
-        if (GetOwningArena() == from.GetOwningArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-            && GetOwningArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-        ) {
-            InternalSwap(&from);
-        } else {
-            CopyFrom(from);
-        }
-        return *this;
-    }
-
-    inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields()
-        const {
-        return _internal_metadata_
-            .unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(
-                ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
-    }
-    inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
-        return _internal_metadata_
-            .mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-    }
-
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-        return GetDescriptor();
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-        return default_instance().GetMetadata().descriptor;
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-        return default_instance().GetMetadata().reflection;
-    }
-    static const APutOnTruck& default_instance() {
-        return *internal_default_instance();
-    }
-    static inline const APutOnTruck* internal_default_instance() {
-        return reinterpret_cast<const APutOnTruck*>(
-            &_APutOnTruck_default_instance_);
-    }
-    static constexpr int kIndexInFileMessages = 7;
-
-    friend void swap(APutOnTruck& a, APutOnTruck& b) { a.Swap(&b); }
-    inline void Swap(APutOnTruck* other) {
-        if (other == this)
-            return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() != nullptr &&
-            GetOwningArena() == other->GetOwningArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() == other->GetOwningArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-            InternalSwap(other);
-        } else {
-            ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-        }
-    }
-    void UnsafeArenaSwap(APutOnTruck* other) {
-        if (other == this)
-            return;
-        GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-        InternalSwap(other);
-    }
-
-    // implements Message ----------------------------------------------
-
-    APutOnTruck* New(
-        ::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-        return CreateMaybeMessage<APutOnTruck>(arena);
-    }
-    using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-    void CopyFrom(const APutOnTruck& from);
-    using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-    void MergeFrom(const APutOnTruck& from);
-
-   private:
-    static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                          const ::PROTOBUF_NAMESPACE_ID::Message& from);
-
-   public:
-    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-    bool IsInitialized() const final;
-
-    size_t ByteSizeLong() const final;
-    const char* _InternalParse(
-        const char* ptr,
-        ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-    uint8_t* _InternalSerialize(
-        uint8_t* target,
-        ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-    int GetCachedSize() const final { return _cached_size_.Get(); }
-
-   private:
-    void SharedCtor();
-    void SharedDtor();
-    void SetCachedSize(int size) const final;
-    void InternalSwap(APutOnTruck* other);
-
-   private:
-    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-        return "APutOnTruck";
-    }
-
-   protected:
-    explicit APutOnTruck(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned = false);
-
-   public:
-    static const ClassData _class_data_;
-    const ::PROTOBUF_NAMESPACE_ID::Message::ClassData* GetClassData()
-        const final;
-
-    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-    // nested types ----------------------------------------------------
-
-    // accessors -------------------------------------------------------
-
-    enum : int {
-        kWhnumFieldNumber = 1,
-        kTruckidFieldNumber = 2,
-        kShipidFieldNumber = 3,
-        kSeqnumFieldNumber = 4,
-    };
-    // required int32 whnum = 1;
-    bool has_whnum() const;
-
-   private:
-    bool _internal_has_whnum() const;
-
-   public:
-    void clear_whnum();
-    int32_t whnum() const;
-    void set_whnum(int32_t value);
-
-   private:
-    int32_t _internal_whnum() const;
-    void _internal_set_whnum(int32_t value);
-
-   public:
-    // required int32 truckid = 2;
-    bool has_truckid() const;
-
-   private:
-    bool _internal_has_truckid() const;
-
-   public:
-    void clear_truckid();
-    int32_t truckid() const;
-    void set_truckid(int32_t value);
-
-   private:
-    int32_t _internal_truckid() const;
-    void _internal_set_truckid(int32_t value);
-
-   public:
-    // required int64 shipid = 3;
-    bool has_shipid() const;
-
-   private:
-    bool _internal_has_shipid() const;
-
-   public:
-    void clear_shipid();
-    int64_t shipid() const;
-    void set_shipid(int64_t value);
-
-   private:
-    int64_t _internal_shipid() const;
-    void _internal_set_shipid(int64_t value);
-
-   public:
-    // required int64 seqnum = 4;
-    bool has_seqnum() const;
-
-   private:
-    bool _internal_has_seqnum() const;
-
-   public:
-    void clear_seqnum();
-    int64_t seqnum() const;
-    void set_seqnum(int64_t value);
-
-   private:
-    int64_t _internal_seqnum() const;
-    void _internal_set_seqnum(int64_t value);
-
-   public:
-    // @@protoc_insertion_point(class_scope:APutOnTruck)
-   private:
-    class _Internal;
-
-    // helper for ByteSizeLong()
-    size_t RequiredFieldsByteSizeFallback() const;
-
-    template <typename T>
-    friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-    typedef void InternalArenaConstructable_;
-    typedef void DestructorSkippable_;
-    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    int32_t whnum_;
-    int32_t truckid_;
-    int64_t shipid_;
-    int64_t seqnum_;
-    friend struct ::TableStruct_world_5famazon_2eproto;
-};
-// -------------------------------------------------------------------
-
-class APurchaseMore final : public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:APurchaseMore)
-                                                                     */
-{
-   public:
-    inline APurchaseMore() : APurchaseMore(nullptr) {}
-    ~APurchaseMore() override;
-    explicit PROTOBUF_CONSTEXPR APurchaseMore(
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-    APurchaseMore(const APurchaseMore& from);
-    APurchaseMore(APurchaseMore&& from) noexcept : APurchaseMore() {
-        *this = ::std::move(from);
-    }
-
-    inline APurchaseMore& operator=(const APurchaseMore& from) {
-        CopyFrom(from);
-        return *this;
-    }
-    inline APurchaseMore& operator=(APurchaseMore&& from) noexcept {
-        if (this == &from)
-            return *this;
-        if (GetOwningArena() == from.GetOwningArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-            && GetOwningArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-        ) {
-            InternalSwap(&from);
-        } else {
-            CopyFrom(from);
-        }
-        return *this;
-    }
-
-    inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields()
-        const {
-        return _internal_metadata_
-            .unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(
-                ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
-    }
-    inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
-        return _internal_metadata_
-            .mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-    }
-
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-        return GetDescriptor();
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-        return default_instance().GetMetadata().descriptor;
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-        return default_instance().GetMetadata().reflection;
-    }
-    static const APurchaseMore& default_instance() {
-        return *internal_default_instance();
-    }
-    static inline const APurchaseMore* internal_default_instance() {
-        return reinterpret_cast<const APurchaseMore*>(
-            &_APurchaseMore_default_instance_);
-    }
-    static constexpr int kIndexInFileMessages = 8;
-
-    friend void swap(APurchaseMore& a, APurchaseMore& b) { a.Swap(&b); }
-    inline void Swap(APurchaseMore* other) {
-        if (other == this)
-            return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() != nullptr &&
-            GetOwningArena() == other->GetOwningArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() == other->GetOwningArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-            InternalSwap(other);
-        } else {
-            ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-        }
-    }
-    void UnsafeArenaSwap(APurchaseMore* other) {
-        if (other == this)
-            return;
-        GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-        InternalSwap(other);
-    }
-
-    // implements Message ----------------------------------------------
-
-    APurchaseMore* New(
-        ::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-        return CreateMaybeMessage<APurchaseMore>(arena);
-    }
-    using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-    void CopyFrom(const APurchaseMore& from);
-    using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-    void MergeFrom(const APurchaseMore& from);
-
-   private:
-    static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                          const ::PROTOBUF_NAMESPACE_ID::Message& from);
-
-   public:
-    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-    bool IsInitialized() const final;
-
-    size_t ByteSizeLong() const final;
-    const char* _InternalParse(
-        const char* ptr,
-        ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-    uint8_t* _InternalSerialize(
-        uint8_t* target,
-        ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-    int GetCachedSize() const final { return _cached_size_.Get(); }
-
-   private:
-    void SharedCtor();
-    void SharedDtor();
-    void SetCachedSize(int size) const final;
-    void InternalSwap(APurchaseMore* other);
-
-   private:
-    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-        return "APurchaseMore";
-    }
-
-   protected:
-    explicit APurchaseMore(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                           bool is_message_owned = false);
-
-   public:
-    static const ClassData _class_data_;
-    const ::PROTOBUF_NAMESPACE_ID::Message::ClassData* GetClassData()
-        const final;
-
-    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-    // nested types ----------------------------------------------------
-
-    // accessors -------------------------------------------------------
-
-    enum : int {
-        kThingsFieldNumber = 2,
-        kSeqnumFieldNumber = 3,
-        kWhnumFieldNumber = 1,
-    };
-    // repeated .AProduct things = 2;
-    int things_size() const;
-
-   private:
-    int _internal_things_size() const;
-
-   public:
-    void clear_things();
-    ::AProduct* mutable_things(int index);
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::AProduct>* mutable_things();
-
-   private:
-    const ::AProduct& _internal_things(int index) const;
-    ::AProduct* _internal_add_things();
-
-   public:
-    const ::AProduct& things(int index) const;
-    ::AProduct* add_things();
-    const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::AProduct>& things() const;
-
-    // required int64 seqnum = 3;
-    bool has_seqnum() const;
-
-   private:
-    bool _internal_has_seqnum() const;
-
-   public:
-    void clear_seqnum();
-    int64_t seqnum() const;
-    void set_seqnum(int64_t value);
-
-   private:
-    int64_t _internal_seqnum() const;
-    void _internal_set_seqnum(int64_t value);
-
-   public:
-    // required int32 whnum = 1;
-    bool has_whnum() const;
-
-   private:
-    bool _internal_has_whnum() const;
-
-   public:
-    void clear_whnum();
-    int32_t whnum() const;
-    void set_whnum(int32_t value);
-
-   private:
-    int32_t _internal_whnum() const;
-    void _internal_set_whnum(int32_t value);
-
-   public:
-    // @@protoc_insertion_point(class_scope:APurchaseMore)
-   private:
-    class _Internal;
-
-    // helper for ByteSizeLong()
-    size_t RequiredFieldsByteSizeFallback() const;
-
-    template <typename T>
-    friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-    typedef void InternalArenaConstructable_;
-    typedef void DestructorSkippable_;
-    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::AProduct> things_;
-    int64_t seqnum_;
-    int32_t whnum_;
-    friend struct ::TableStruct_world_5famazon_2eproto;
-};
-// -------------------------------------------------------------------
-
-class AErr final
-    : public ::PROTOBUF_NAMESPACE_ID::
-          Message /* @@protoc_insertion_point(class_definition:AErr) */ {
-   public:
-    inline AErr() : AErr(nullptr) {}
-    ~AErr() override;
-    explicit PROTOBUF_CONSTEXPR AErr(
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-    AErr(const AErr& from);
-    AErr(AErr&& from) noexcept : AErr() { *this = ::std::move(from); }
-
-    inline AErr& operator=(const AErr& from) {
-        CopyFrom(from);
-        return *this;
-    }
-    inline AErr& operator=(AErr&& from) noexcept {
-        if (this == &from)
-            return *this;
-        if (GetOwningArena() == from.GetOwningArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-            && GetOwningArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-        ) {
-            InternalSwap(&from);
-        } else {
-            CopyFrom(from);
-        }
-        return *this;
-    }
-
-    inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields()
-        const {
-        return _internal_metadata_
-            .unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(
-                ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
-    }
-    inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
-        return _internal_metadata_
-            .mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-    }
-
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-        return GetDescriptor();
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-        return default_instance().GetMetadata().descriptor;
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-        return default_instance().GetMetadata().reflection;
-    }
-    static const AErr& default_instance() {
-        return *internal_default_instance();
-    }
-    static inline const AErr* internal_default_instance() {
-        return reinterpret_cast<const AErr*>(&_AErr_default_instance_);
-    }
-    static constexpr int kIndexInFileMessages = 9;
-
-    friend void swap(AErr& a, AErr& b) { a.Swap(&b); }
-    inline void Swap(AErr* other) {
-        if (other == this)
-            return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() != nullptr &&
-            GetOwningArena() == other->GetOwningArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() == other->GetOwningArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-            InternalSwap(other);
-        } else {
-            ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-        }
-    }
-    void UnsafeArenaSwap(AErr* other) {
-        if (other == this)
-            return;
-        GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-        InternalSwap(other);
-    }
-
-    // implements Message ----------------------------------------------
-
-    AErr* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-        return CreateMaybeMessage<AErr>(arena);
-    }
-    using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-    void CopyFrom(const AErr& from);
-    using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-    void MergeFrom(const AErr& from);
-
-   private:
-    static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                          const ::PROTOBUF_NAMESPACE_ID::Message& from);
-
-   public:
-    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-    bool IsInitialized() const final;
-
-    size_t ByteSizeLong() const final;
-    const char* _InternalParse(
-        const char* ptr,
-        ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-    uint8_t* _InternalSerialize(
-        uint8_t* target,
-        ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-    int GetCachedSize() const final { return _cached_size_.Get(); }
-
-   private:
-    void SharedCtor();
-    void SharedDtor();
-    void SetCachedSize(int size) const final;
-    void InternalSwap(AErr* other);
-
-   private:
-    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-        return "AErr";
-    }
-
-   protected:
-    explicit AErr(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                  bool is_message_owned = false);
-
-   public:
-    static const ClassData _class_data_;
-    const ::PROTOBUF_NAMESPACE_ID::Message::ClassData* GetClassData()
-        const final;
-
-    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-    // nested types ----------------------------------------------------
-
-    // accessors -------------------------------------------------------
-
-    enum : int {
-        kErrFieldNumber = 1,
-        kOriginseqnumFieldNumber = 2,
-        kSeqnumFieldNumber = 3,
-    };
-    // required string err = 1;
-    bool has_err() const;
-
-   private:
-    bool _internal_has_err() const;
-
-   public:
-    void clear_err();
-    const std::string& err() const;
-    template <typename ArgT0 = const std::string&, typename... ArgT>
-    void set_err(ArgT0&& arg0, ArgT... args);
-    std::string* mutable_err();
-    PROTOBUF_NODISCARD std::string* release_err();
-    void set_allocated_err(std::string* err);
-
-   private:
-    const std::string& _internal_err() const;
-    inline PROTOBUF_ALWAYS_INLINE void _internal_set_err(
-        const std::string& value);
-    std::string* _internal_mutable_err();
-
-   public:
-    // required int64 originseqnum = 2;
-    bool has_originseqnum() const;
-
-   private:
-    bool _internal_has_originseqnum() const;
-
-   public:
-    void clear_originseqnum();
-    int64_t originseqnum() const;
-    void set_originseqnum(int64_t value);
-
-   private:
-    int64_t _internal_originseqnum() const;
-    void _internal_set_originseqnum(int64_t value);
-
-   public:
-    // required int64 seqnum = 3;
-    bool has_seqnum() const;
-
-   private:
-    bool _internal_has_seqnum() const;
-
-   public:
-    void clear_seqnum();
-    int64_t seqnum() const;
-    void set_seqnum(int64_t value);
-
-   private:
-    int64_t _internal_seqnum() const;
-    void _internal_set_seqnum(int64_t value);
-
-   public:
-    // @@protoc_insertion_point(class_scope:AErr)
-   private:
-    class _Internal;
-
-    // helper for ByteSizeLong()
-    size_t RequiredFieldsByteSizeFallback() const;
-
-    template <typename T>
-    friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-    typedef void InternalArenaConstructable_;
-    typedef void DestructorSkippable_;
-    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr err_;
-    int64_t originseqnum_;
-    int64_t seqnum_;
-    friend struct ::TableStruct_world_5famazon_2eproto;
-};
-// -------------------------------------------------------------------
-
-class AQuery final
-    : public ::PROTOBUF_NAMESPACE_ID::
-          Message /* @@protoc_insertion_point(class_definition:AQuery) */ {
-   public:
-    inline AQuery() : AQuery(nullptr) {}
-    ~AQuery() override;
-    explicit PROTOBUF_CONSTEXPR AQuery(
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-    AQuery(const AQuery& from);
-    AQuery(AQuery&& from) noexcept : AQuery() { *this = ::std::move(from); }
-
-    inline AQuery& operator=(const AQuery& from) {
-        CopyFrom(from);
-        return *this;
-    }
-    inline AQuery& operator=(AQuery&& from) noexcept {
-        if (this == &from)
-            return *this;
-        if (GetOwningArena() == from.GetOwningArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-            && GetOwningArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-        ) {
-            InternalSwap(&from);
-        } else {
-            CopyFrom(from);
-        }
-        return *this;
-    }
-
-    inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields()
-        const {
-        return _internal_metadata_
-            .unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(
-                ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
-    }
-    inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
-        return _internal_metadata_
-            .mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-    }
-
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-        return GetDescriptor();
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-        return default_instance().GetMetadata().descriptor;
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-        return default_instance().GetMetadata().reflection;
-    }
-    static const AQuery& default_instance() {
-        return *internal_default_instance();
-    }
-    static inline const AQuery* internal_default_instance() {
-        return reinterpret_cast<const AQuery*>(&_AQuery_default_instance_);
-    }
-    static constexpr int kIndexInFileMessages = 10;
-
-    friend void swap(AQuery& a, AQuery& b) { a.Swap(&b); }
-    inline void Swap(AQuery* other) {
-        if (other == this)
-            return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() != nullptr &&
-            GetOwningArena() == other->GetOwningArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() == other->GetOwningArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-            InternalSwap(other);
-        } else {
-            ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-        }
-    }
-    void UnsafeArenaSwap(AQuery* other) {
-        if (other == this)
-            return;
-        GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-        InternalSwap(other);
-    }
-
-    // implements Message ----------------------------------------------
-
-    AQuery* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-        return CreateMaybeMessage<AQuery>(arena);
-    }
-    using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-    void CopyFrom(const AQuery& from);
-    using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-    void MergeFrom(const AQuery& from);
-
-   private:
-    static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                          const ::PROTOBUF_NAMESPACE_ID::Message& from);
-
-   public:
-    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-    bool IsInitialized() const final;
-
-    size_t ByteSizeLong() const final;
-    const char* _InternalParse(
-        const char* ptr,
-        ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-    uint8_t* _InternalSerialize(
-        uint8_t* target,
-        ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-    int GetCachedSize() const final { return _cached_size_.Get(); }
-
-   private:
-    void SharedCtor();
-    void SharedDtor();
-    void SetCachedSize(int size) const final;
-    void InternalSwap(AQuery* other);
-
-   private:
-    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-        return "AQuery";
-    }
-
-   protected:
-    explicit AQuery(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                    bool is_message_owned = false);
-
-   public:
-    static const ClassData _class_data_;
-    const ::PROTOBUF_NAMESPACE_ID::Message::ClassData* GetClassData()
-        const final;
-
-    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-    // nested types ----------------------------------------------------
-
-    // accessors -------------------------------------------------------
-
-    enum : int {
-        kPackageidFieldNumber = 1,
-        kSeqnumFieldNumber = 2,
-    };
-    // required int64 packageid = 1;
-    bool has_packageid() const;
-
-   private:
-    bool _internal_has_packageid() const;
-
-   public:
-    void clear_packageid();
-    int64_t packageid() const;
-    void set_packageid(int64_t value);
-
-   private:
-    int64_t _internal_packageid() const;
-    void _internal_set_packageid(int64_t value);
-
-   public:
-    // required int64 seqnum = 2;
-    bool has_seqnum() const;
-
-   private:
-    bool _internal_has_seqnum() const;
-
-   public:
-    void clear_seqnum();
-    int64_t seqnum() const;
-    void set_seqnum(int64_t value);
-
-   private:
-    int64_t _internal_seqnum() const;
-    void _internal_set_seqnum(int64_t value);
-
-   public:
-    // @@protoc_insertion_point(class_scope:AQuery)
-   private:
-    class _Internal;
-
-    // helper for ByteSizeLong()
-    size_t RequiredFieldsByteSizeFallback() const;
-
-    template <typename T>
-    friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-    typedef void InternalArenaConstructable_;
-    typedef void DestructorSkippable_;
-    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    int64_t packageid_;
-    int64_t seqnum_;
-    friend struct ::TableStruct_world_5famazon_2eproto;
-};
-// -------------------------------------------------------------------
-
-class APackage final
-    : public ::PROTOBUF_NAMESPACE_ID::
-          Message /* @@protoc_insertion_point(class_definition:APackage) */ {
-   public:
-    inline APackage() : APackage(nullptr) {}
-    ~APackage() override;
-    explicit PROTOBUF_CONSTEXPR APackage(
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-    APackage(const APackage& from);
-    APackage(APackage&& from) noexcept : APackage() {
-        *this = ::std::move(from);
-    }
-
-    inline APackage& operator=(const APackage& from) {
-        CopyFrom(from);
-        return *this;
-    }
-    inline APackage& operator=(APackage&& from) noexcept {
-        if (this == &from)
-            return *this;
-        if (GetOwningArena() == from.GetOwningArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-            && GetOwningArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-        ) {
-            InternalSwap(&from);
-        } else {
-            CopyFrom(from);
-        }
-        return *this;
-    }
-
-    inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields()
-        const {
-        return _internal_metadata_
-            .unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(
-                ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
-    }
-    inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
-        return _internal_metadata_
-            .mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-    }
-
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-        return GetDescriptor();
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-        return default_instance().GetMetadata().descriptor;
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-        return default_instance().GetMetadata().reflection;
-    }
-    static const APackage& default_instance() {
-        return *internal_default_instance();
-    }
-    static inline const APackage* internal_default_instance() {
-        return reinterpret_cast<const APackage*>(&_APackage_default_instance_);
-    }
-    static constexpr int kIndexInFileMessages = 11;
-
-    friend void swap(APackage& a, APackage& b) { a.Swap(&b); }
-    inline void Swap(APackage* other) {
-        if (other == this)
-            return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() != nullptr &&
-            GetOwningArena() == other->GetOwningArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() == other->GetOwningArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-            InternalSwap(other);
-        } else {
-            ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-        }
-    }
-    void UnsafeArenaSwap(APackage* other) {
-        if (other == this)
-            return;
-        GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-        InternalSwap(other);
-    }
-
-    // implements Message ----------------------------------------------
-
-    APackage* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-        return CreateMaybeMessage<APackage>(arena);
-    }
-    using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-    void CopyFrom(const APackage& from);
-    using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-    void MergeFrom(const APackage& from);
-
-   private:
-    static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                          const ::PROTOBUF_NAMESPACE_ID::Message& from);
-
-   public:
-    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-    bool IsInitialized() const final;
-
-    size_t ByteSizeLong() const final;
-    const char* _InternalParse(
-        const char* ptr,
-        ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-    uint8_t* _InternalSerialize(
-        uint8_t* target,
-        ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-    int GetCachedSize() const final { return _cached_size_.Get(); }
-
-   private:
-    void SharedCtor();
-    void SharedDtor();
-    void SetCachedSize(int size) const final;
-    void InternalSwap(APackage* other);
-
-   private:
-    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-        return "APackage";
-    }
-
-   protected:
-    explicit APackage(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                      bool is_message_owned = false);
-
-   public:
-    static const ClassData _class_data_;
-    const ::PROTOBUF_NAMESPACE_ID::Message::ClassData* GetClassData()
-        const final;
-
-    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-    // nested types ----------------------------------------------------
-
-    // accessors -------------------------------------------------------
-
-    enum : int {
-        kStatusFieldNumber = 2,
-        kPackageidFieldNumber = 1,
-        kSeqnumFieldNumber = 3,
-    };
-    // required string status = 2;
-    bool has_status() const;
-
-   private:
-    bool _internal_has_status() const;
-
-   public:
-    void clear_status();
-    const std::string& status() const;
-    template <typename ArgT0 = const std::string&, typename... ArgT>
-    void set_status(ArgT0&& arg0, ArgT... args);
-    std::string* mutable_status();
-    PROTOBUF_NODISCARD std::string* release_status();
-    void set_allocated_status(std::string* status);
-
-   private:
-    const std::string& _internal_status() const;
-    inline PROTOBUF_ALWAYS_INLINE void _internal_set_status(
-        const std::string& value);
-    std::string* _internal_mutable_status();
-
-   public:
-    // required int64 packageid = 1;
-    bool has_packageid() const;
-
-   private:
-    bool _internal_has_packageid() const;
-
-   public:
-    void clear_packageid();
-    int64_t packageid() const;
-    void set_packageid(int64_t value);
-
-   private:
-    int64_t _internal_packageid() const;
-    void _internal_set_packageid(int64_t value);
-
-   public:
-    // required int64 seqnum = 3;
-    bool has_seqnum() const;
-
-   private:
-    bool _internal_has_seqnum() const;
-
-   public:
-    void clear_seqnum();
-    int64_t seqnum() const;
-    void set_seqnum(int64_t value);
-
-   private:
-    int64_t _internal_seqnum() const;
-    void _internal_set_seqnum(int64_t value);
-
-   public:
-    // @@protoc_insertion_point(class_scope:APackage)
-   private:
-    class _Internal;
-
-    // helper for ByteSizeLong()
-    size_t RequiredFieldsByteSizeFallback() const;
-
-    template <typename T>
-    friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-    typedef void InternalArenaConstructable_;
-    typedef void DestructorSkippable_;
-    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr status_;
-    int64_t packageid_;
-    int64_t seqnum_;
-    friend struct ::TableStruct_world_5famazon_2eproto;
-};
-// -------------------------------------------------------------------
-
-class ACommands final
-    : public ::PROTOBUF_NAMESPACE_ID::
-          Message /* @@protoc_insertion_point(class_definition:ACommands) */ {
-   public:
-    inline ACommands() : ACommands(nullptr) {}
-    ~ACommands() override;
-    explicit PROTOBUF_CONSTEXPR ACommands(
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-    ACommands(const ACommands& from);
-    ACommands(ACommands&& from) noexcept : ACommands() {
-        *this = ::std::move(from);
-    }
-
-    inline ACommands& operator=(const ACommands& from) {
-        CopyFrom(from);
-        return *this;
-    }
-    inline ACommands& operator=(ACommands&& from) noexcept {
-        if (this == &from)
-            return *this;
-        if (GetOwningArena() == from.GetOwningArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-            && GetOwningArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-        ) {
-            InternalSwap(&from);
-        } else {
-            CopyFrom(from);
-        }
-        return *this;
-    }
-
-    inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields()
-        const {
-        return _internal_metadata_
-            .unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(
-                ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
-    }
-    inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
-        return _internal_metadata_
-            .mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-    }
-
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-        return GetDescriptor();
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-        return default_instance().GetMetadata().descriptor;
-    }
-    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-        return default_instance().GetMetadata().reflection;
-    }
-    static const ACommands& default_instance() {
-        return *internal_default_instance();
-    }
-    static inline const ACommands* internal_default_instance() {
-        return reinterpret_cast<const ACommands*>(
-            &_ACommands_default_instance_);
-    }
-    static constexpr int kIndexInFileMessages = 12;
-
-    friend void swap(ACommands& a, ACommands& b) { a.Swap(&b); }
-    inline void Swap(ACommands* other) {
-        if (other == this)
-            return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() != nullptr &&
-            GetOwningArena() == other->GetOwningArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() == other->GetOwningArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-            InternalSwap(other);
-        } else {
-            ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-        }
-    }
-    void UnsafeArenaSwap(ACommands* other) {
-        if (other == this)
-            return;
-        GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-        InternalSwap(other);
-    }
-
-    // implements Message ----------------------------------------------
-
-    ACommands* New(
-        ::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-        return CreateMaybeMessage<ACommands>(arena);
-    }
-    using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-    void CopyFrom(const ACommands& from);
-    using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-    void MergeFrom(const ACommands& from);
-
-   private:
-    static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                          const ::PROTOBUF_NAMESPACE_ID::Message& from);
-
-   public:
-    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-    bool IsInitialized() const final;
-
-    size_t ByteSizeLong() const final;
-    const char* _InternalParse(
-        const char* ptr,
-        ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-    uint8_t* _InternalSerialize(
-        uint8_t* target,
-        ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-    int GetCachedSize() const final { return _cached_size_.Get(); }
-
-   private:
-    void SharedCtor();
-    void SharedDtor();
-    void SetCachedSize(int size) const final;
-    void InternalSwap(ACommands* other);
-
-   private:
-    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-        return "ACommands";
-    }
-
-   protected:
-    explicit ACommands(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+class AProduct final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:AProduct) */ {
+ public:
+  inline AProduct() : AProduct(nullptr) {}
+  ~AProduct() override;
+  explicit PROTOBUF_CONSTEXPR AProduct(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AProduct(const AProduct& from);
+  AProduct(AProduct&& from) noexcept
+    : AProduct() {
+    *this = ::std::move(from);
+  }
+
+  inline AProduct& operator=(const AProduct& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AProduct& operator=(AProduct&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AProduct& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AProduct* internal_default_instance() {
+    return reinterpret_cast<const AProduct*>(
+               &_AProduct_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  friend void swap(AProduct& a, AProduct& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AProduct* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AProduct* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AProduct* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AProduct>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const AProduct& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const AProduct& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AProduct* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "AProduct";
+  }
+  protected:
+  explicit AProduct(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
+  public:
 
-   public:
-    static const ClassData _class_data_;
-    const ::PROTOBUF_NAMESPACE_ID::Message::ClassData* GetClassData()
-        const final;
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
 
-    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
 
-    // nested types ----------------------------------------------------
+  // nested types ----------------------------------------------------
 
-    // accessors -------------------------------------------------------
+  // accessors -------------------------------------------------------
 
-    enum : int {
-        kBuyFieldNumber = 1,
-        kTopackFieldNumber = 2,
-        kLoadFieldNumber = 3,
-        kQueriesFieldNumber = 4,
-        kAcksFieldNumber = 7,
-        kSimspeedFieldNumber = 5,
-        kDisconnectFieldNumber = 6,
-    };
-    // repeated .APurchaseMore buy = 1;
-    int buy_size() const;
+  enum : int {
+    kDescriptionFieldNumber = 2,
+    kIdFieldNumber = 1,
+    kCountFieldNumber = 3,
+  };
+  // required string description = 2;
+  bool has_description() const;
+  private:
+  bool _internal_has_description() const;
+  public:
+  void clear_description();
+  const std::string& description() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_description(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_description();
+  PROTOBUF_NODISCARD std::string* release_description();
+  void set_allocated_description(std::string* description);
+  private:
+  const std::string& _internal_description() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_description(const std::string& value);
+  std::string* _internal_mutable_description();
+  public:
 
-   private:
-    int _internal_buy_size() const;
+  // required int64 id = 1;
+  bool has_id() const;
+  private:
+  bool _internal_has_id() const;
+  public:
+  void clear_id();
+  int64_t id() const;
+  void set_id(int64_t value);
+  private:
+  int64_t _internal_id() const;
+  void _internal_set_id(int64_t value);
+  public:
 
-   public:
-    void clear_buy();
-    ::APurchaseMore* mutable_buy(int index);
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APurchaseMore>* mutable_buy();
+  // required int32 count = 3;
+  bool has_count() const;
+  private:
+  bool _internal_has_count() const;
+  public:
+  void clear_count();
+  int32_t count() const;
+  void set_count(int32_t value);
+  private:
+  int32_t _internal_count() const;
+  void _internal_set_count(int32_t value);
+  public:
 
-   private:
-    const ::APurchaseMore& _internal_buy(int index) const;
-    ::APurchaseMore* _internal_add_buy();
+  // @@protoc_insertion_point(class_scope:AProduct)
+ private:
+  class _Internal;
 
-   public:
-    const ::APurchaseMore& buy(int index) const;
-    ::APurchaseMore* add_buy();
-    const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APurchaseMore>& buy()
-        const;
+  // helper for ByteSizeLong()
+  size_t RequiredFieldsByteSizeFallback() const;
 
-    // repeated .APack topack = 2;
-    int topack_size() const;
-
-   private:
-    int _internal_topack_size() const;
-
-   public:
-    void clear_topack();
-    ::APack* mutable_topack(int index);
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APack>* mutable_topack();
-
-   private:
-    const ::APack& _internal_topack(int index) const;
-    ::APack* _internal_add_topack();
-
-   public:
-    const ::APack& topack(int index) const;
-    ::APack* add_topack();
-    const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APack>& topack() const;
-
-    // repeated .APutOnTruck load = 3;
-    int load_size() const;
-
-   private:
-    int _internal_load_size() const;
-
-   public:
-    void clear_load();
-    ::APutOnTruck* mutable_load(int index);
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APutOnTruck>* mutable_load();
-
-   private:
-    const ::APutOnTruck& _internal_load(int index) const;
-    ::APutOnTruck* _internal_add_load();
-
-   public:
-    const ::APutOnTruck& load(int index) const;
-    ::APutOnTruck* add_load();
-    const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APutOnTruck>& load()
-        const;
-
-    // repeated .AQuery queries = 4;
-    int queries_size() const;
-
-   private:
-    int _internal_queries_size() const;
-
-   public:
-    void clear_queries();
-    ::AQuery* mutable_queries(int index);
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::AQuery>* mutable_queries();
-
-   private:
-    const ::AQuery& _internal_queries(int index) const;
-    ::AQuery* _internal_add_queries();
-
-   public:
-    const ::AQuery& queries(int index) const;
-    ::AQuery* add_queries();
-    const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::AQuery>& queries() const;
-
-    // repeated int64 acks = 7;
-    int acks_size() const;
-
-   private:
-    int _internal_acks_size() const;
-
-   public:
-    void clear_acks();
-
-   private:
-    int64_t _internal_acks(int index) const;
-    const ::PROTOBUF_NAMESPACE_ID::RepeatedField<int64_t>& _internal_acks()
-        const;
-    void _internal_add_acks(int64_t value);
-    ::PROTOBUF_NAMESPACE_ID::RepeatedField<int64_t>* _internal_mutable_acks();
-
-   public:
-    int64_t acks(int index) const;
-    void set_acks(int index, int64_t value);
-    void add_acks(int64_t value);
-    const ::PROTOBUF_NAMESPACE_ID::RepeatedField<int64_t>& acks() const;
-    ::PROTOBUF_NAMESPACE_ID::RepeatedField<int64_t>* mutable_acks();
-
-    // optional uint32 simspeed = 5;
-    bool has_simspeed() const;
-
-   private:
-    bool _internal_has_simspeed() const;
-
-   public:
-    void clear_simspeed();
-    uint32_t simspeed() const;
-    void set_simspeed(uint32_t value);
-
-   private:
-    uint32_t _internal_simspeed() const;
-    void _internal_set_simspeed(uint32_t value);
-
-   public:
-    // optional bool disconnect = 6;
-    bool has_disconnect() const;
-
-   private:
-    bool _internal_has_disconnect() const;
-
-   public:
-    void clear_disconnect();
-    bool disconnect() const;
-    void set_disconnect(bool value);
-
-   private:
-    bool _internal_disconnect() const;
-    void _internal_set_disconnect(bool value);
-
-   public:
-    // @@protoc_insertion_point(class_scope:ACommands)
-   private:
-    class _Internal;
-
-    template <typename T>
-    friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-    typedef void InternalArenaConstructable_;
-    typedef void DestructorSkippable_;
-    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APurchaseMore> buy_;
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APack> topack_;
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APutOnTruck> load_;
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::AQuery> queries_;
-    ::PROTOBUF_NAMESPACE_ID::RepeatedField<int64_t> acks_;
-    uint32_t simspeed_;
-    bool disconnect_;
-    friend struct ::TableStruct_world_5famazon_2eproto;
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr description_;
+  int64_t id_;
+  int32_t count_;
+  friend struct ::TableStruct_world_5famazon_2eproto;
 };
 // -------------------------------------------------------------------
 
-class AResponses final
-    : public ::PROTOBUF_NAMESPACE_ID::
-          Message /* @@protoc_insertion_point(class_definition:AResponses) */ {
-   public:
-    inline AResponses() : AResponses(nullptr) {}
-    ~AResponses() override;
-    explicit PROTOBUF_CONSTEXPR AResponses(
-        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+class AInitWarehouse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:AInitWarehouse) */ {
+ public:
+  inline AInitWarehouse() : AInitWarehouse(nullptr) {}
+  ~AInitWarehouse() override;
+  explicit PROTOBUF_CONSTEXPR AInitWarehouse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-    AResponses(const AResponses& from);
-    AResponses(AResponses&& from) noexcept : AResponses() {
-        *this = ::std::move(from);
+  AInitWarehouse(const AInitWarehouse& from);
+  AInitWarehouse(AInitWarehouse&& from) noexcept
+    : AInitWarehouse() {
+    *this = ::std::move(from);
+  }
+
+  inline AInitWarehouse& operator=(const AInitWarehouse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AInitWarehouse& operator=(AInitWarehouse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
     }
+    return *this;
+  }
 
-    inline AResponses& operator=(const AResponses& from) {
-        CopyFrom(from);
-        return *this;
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AInitWarehouse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AInitWarehouse* internal_default_instance() {
+    return reinterpret_cast<const AInitWarehouse*>(
+               &_AInitWarehouse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(AInitWarehouse& a, AInitWarehouse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AInitWarehouse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
-    inline AResponses& operator=(AResponses&& from) noexcept {
-        if (this == &from)
-            return *this;
-        if (GetOwningArena() == from.GetOwningArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-            && GetOwningArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-        ) {
-            InternalSwap(&from);
-        } else {
-            CopyFrom(from);
-        }
-        return *this;
+  }
+  void UnsafeArenaSwap(AInitWarehouse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AInitWarehouse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AInitWarehouse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const AInitWarehouse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const AInitWarehouse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AInitWarehouse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "AInitWarehouse";
+  }
+  protected:
+  explicit AInitWarehouse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIdFieldNumber = 1,
+    kXFieldNumber = 2,
+    kYFieldNumber = 3,
+  };
+  // required int32 id = 1;
+  bool has_id() const;
+  private:
+  bool _internal_has_id() const;
+  public:
+  void clear_id();
+  int32_t id() const;
+  void set_id(int32_t value);
+  private:
+  int32_t _internal_id() const;
+  void _internal_set_id(int32_t value);
+  public:
+
+  // required int32 x = 2;
+  bool has_x() const;
+  private:
+  bool _internal_has_x() const;
+  public:
+  void clear_x();
+  int32_t x() const;
+  void set_x(int32_t value);
+  private:
+  int32_t _internal_x() const;
+  void _internal_set_x(int32_t value);
+  public:
+
+  // required int32 y = 3;
+  bool has_y() const;
+  private:
+  bool _internal_has_y() const;
+  public:
+  void clear_y();
+  int32_t y() const;
+  void set_y(int32_t value);
+  private:
+  int32_t _internal_y() const;
+  void _internal_set_y(int32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:AInitWarehouse)
+ private:
+  class _Internal;
+
+  // helper for ByteSizeLong()
+  size_t RequiredFieldsByteSizeFallback() const;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  int32_t id_;
+  int32_t x_;
+  int32_t y_;
+  friend struct ::TableStruct_world_5famazon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AConnect final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:AConnect) */ {
+ public:
+  inline AConnect() : AConnect(nullptr) {}
+  ~AConnect() override;
+  explicit PROTOBUF_CONSTEXPR AConnect(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AConnect(const AConnect& from);
+  AConnect(AConnect&& from) noexcept
+    : AConnect() {
+    *this = ::std::move(from);
+  }
+
+  inline AConnect& operator=(const AConnect& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AConnect& operator=(AConnect&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
     }
+    return *this;
+  }
 
-    inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields()
-        const {
-        return _internal_metadata_
-            .unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(
-                ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AConnect& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AConnect* internal_default_instance() {
+    return reinterpret_cast<const AConnect*>(
+               &_AConnect_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(AConnect& a, AConnect& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AConnect* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
-    inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
-        return _internal_metadata_
-            .mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
+  void UnsafeArenaSwap(AConnect* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AConnect* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AConnect>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const AConnect& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const AConnect& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AConnect* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "AConnect";
+  }
+  protected:
+  explicit AConnect(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kInitwhFieldNumber = 2,
+    kWorldidFieldNumber = 1,
+    kIsAmazonFieldNumber = 3,
+  };
+  // repeated .AInitWarehouse initwh = 2;
+  int initwh_size() const;
+  private:
+  int _internal_initwh_size() const;
+  public:
+  void clear_initwh();
+  ::AInitWarehouse* mutable_initwh(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AInitWarehouse >*
+      mutable_initwh();
+  private:
+  const ::AInitWarehouse& _internal_initwh(int index) const;
+  ::AInitWarehouse* _internal_add_initwh();
+  public:
+  const ::AInitWarehouse& initwh(int index) const;
+  ::AInitWarehouse* add_initwh();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AInitWarehouse >&
+      initwh() const;
+
+  // optional int64 worldid = 1;
+  bool has_worldid() const;
+  private:
+  bool _internal_has_worldid() const;
+  public:
+  void clear_worldid();
+  int64_t worldid() const;
+  void set_worldid(int64_t value);
+  private:
+  int64_t _internal_worldid() const;
+  void _internal_set_worldid(int64_t value);
+  public:
+
+  // required bool isAmazon = 3;
+  bool has_isamazon() const;
+  private:
+  bool _internal_has_isamazon() const;
+  public:
+  void clear_isamazon();
+  bool isamazon() const;
+  void set_isamazon(bool value);
+  private:
+  bool _internal_isamazon() const;
+  void _internal_set_isamazon(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:AConnect)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AInitWarehouse > initwh_;
+  int64_t worldid_;
+  bool isamazon_;
+  friend struct ::TableStruct_world_5famazon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AConnected final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:AConnected) */ {
+ public:
+  inline AConnected() : AConnected(nullptr) {}
+  ~AConnected() override;
+  explicit PROTOBUF_CONSTEXPR AConnected(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AConnected(const AConnected& from);
+  AConnected(AConnected&& from) noexcept
+    : AConnected() {
+    *this = ::std::move(from);
+  }
+
+  inline AConnected& operator=(const AConnected& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AConnected& operator=(AConnected&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
     }
+    return *this;
+  }
 
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-        return GetDescriptor();
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AConnected& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AConnected* internal_default_instance() {
+    return reinterpret_cast<const AConnected*>(
+               &_AConnected_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(AConnected& a, AConnected& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AConnected* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
-    static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-        return default_instance().GetMetadata().descriptor;
+  }
+  void UnsafeArenaSwap(AConnected* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AConnected* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AConnected>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const AConnected& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const AConnected& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AConnected* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "AConnected";
+  }
+  protected:
+  explicit AConnected(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kResultFieldNumber = 2,
+    kWorldidFieldNumber = 1,
+  };
+  // required string result = 2;
+  bool has_result() const;
+  private:
+  bool _internal_has_result() const;
+  public:
+  void clear_result();
+  const std::string& result() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_result(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_result();
+  PROTOBUF_NODISCARD std::string* release_result();
+  void set_allocated_result(std::string* result);
+  private:
+  const std::string& _internal_result() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_result(const std::string& value);
+  std::string* _internal_mutable_result();
+  public:
+
+  // required int64 worldid = 1;
+  bool has_worldid() const;
+  private:
+  bool _internal_has_worldid() const;
+  public:
+  void clear_worldid();
+  int64_t worldid() const;
+  void set_worldid(int64_t value);
+  private:
+  int64_t _internal_worldid() const;
+  void _internal_set_worldid(int64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:AConnected)
+ private:
+  class _Internal;
+
+  // helper for ByteSizeLong()
+  size_t RequiredFieldsByteSizeFallback() const;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr result_;
+  int64_t worldid_;
+  friend struct ::TableStruct_world_5famazon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class APack final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:APack) */ {
+ public:
+  inline APack() : APack(nullptr) {}
+  ~APack() override;
+  explicit PROTOBUF_CONSTEXPR APack(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  APack(const APack& from);
+  APack(APack&& from) noexcept
+    : APack() {
+    *this = ::std::move(from);
+  }
+
+  inline APack& operator=(const APack& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline APack& operator=(APack&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
     }
-    static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-        return default_instance().GetMetadata().reflection;
+    return *this;
+  }
+
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const APack& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const APack* internal_default_instance() {
+    return reinterpret_cast<const APack*>(
+               &_APack_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(APack& a, APack& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(APack* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
-    static const AResponses& default_instance() {
-        return *internal_default_instance();
+  }
+  void UnsafeArenaSwap(APack* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  APack* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<APack>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const APack& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const APack& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(APack* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "APack";
+  }
+  protected:
+  explicit APack(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kThingsFieldNumber = 2,
+    kShipidFieldNumber = 3,
+    kSeqnumFieldNumber = 4,
+    kWhnumFieldNumber = 1,
+  };
+  // repeated .AProduct things = 2;
+  int things_size() const;
+  private:
+  int _internal_things_size() const;
+  public:
+  void clear_things();
+  ::AProduct* mutable_things(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AProduct >*
+      mutable_things();
+  private:
+  const ::AProduct& _internal_things(int index) const;
+  ::AProduct* _internal_add_things();
+  public:
+  const ::AProduct& things(int index) const;
+  ::AProduct* add_things();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AProduct >&
+      things() const;
+
+  // required int64 shipid = 3;
+  bool has_shipid() const;
+  private:
+  bool _internal_has_shipid() const;
+  public:
+  void clear_shipid();
+  int64_t shipid() const;
+  void set_shipid(int64_t value);
+  private:
+  int64_t _internal_shipid() const;
+  void _internal_set_shipid(int64_t value);
+  public:
+
+  // required int64 seqnum = 4;
+  bool has_seqnum() const;
+  private:
+  bool _internal_has_seqnum() const;
+  public:
+  void clear_seqnum();
+  int64_t seqnum() const;
+  void set_seqnum(int64_t value);
+  private:
+  int64_t _internal_seqnum() const;
+  void _internal_set_seqnum(int64_t value);
+  public:
+
+  // required int32 whnum = 1;
+  bool has_whnum() const;
+  private:
+  bool _internal_has_whnum() const;
+  public:
+  void clear_whnum();
+  int32_t whnum() const;
+  void set_whnum(int32_t value);
+  private:
+  int32_t _internal_whnum() const;
+  void _internal_set_whnum(int32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:APack)
+ private:
+  class _Internal;
+
+  // helper for ByteSizeLong()
+  size_t RequiredFieldsByteSizeFallback() const;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AProduct > things_;
+  int64_t shipid_;
+  int64_t seqnum_;
+  int32_t whnum_;
+  friend struct ::TableStruct_world_5famazon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class APacked final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:APacked) */ {
+ public:
+  inline APacked() : APacked(nullptr) {}
+  ~APacked() override;
+  explicit PROTOBUF_CONSTEXPR APacked(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  APacked(const APacked& from);
+  APacked(APacked&& from) noexcept
+    : APacked() {
+    *this = ::std::move(from);
+  }
+
+  inline APacked& operator=(const APacked& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline APacked& operator=(APacked&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
     }
-    static inline const AResponses* internal_default_instance() {
-        return reinterpret_cast<const AResponses*>(
-            &_AResponses_default_instance_);
+    return *this;
+  }
+
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const APacked& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const APacked* internal_default_instance() {
+    return reinterpret_cast<const APacked*>(
+               &_APacked_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(APacked& a, APacked& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(APacked* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
-    static constexpr int kIndexInFileMessages = 13;
+  }
+  void UnsafeArenaSwap(APacked* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
 
-    friend void swap(AResponses& a, AResponses& b) { a.Swap(&b); }
-    inline void Swap(AResponses* other) {
-        if (other == this)
-            return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() != nullptr &&
-            GetOwningArena() == other->GetOwningArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-        if (GetOwningArena() == other->GetOwningArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-            InternalSwap(other);
-        } else {
-            ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-        }
+  // implements Message ----------------------------------------------
+
+  APacked* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<APacked>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const APacked& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const APacked& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(APacked* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "APacked";
+  }
+  protected:
+  explicit APacked(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kShipidFieldNumber = 1,
+    kSeqnumFieldNumber = 2,
+  };
+  // required int64 shipid = 1;
+  bool has_shipid() const;
+  private:
+  bool _internal_has_shipid() const;
+  public:
+  void clear_shipid();
+  int64_t shipid() const;
+  void set_shipid(int64_t value);
+  private:
+  int64_t _internal_shipid() const;
+  void _internal_set_shipid(int64_t value);
+  public:
+
+  // required int64 seqnum = 2;
+  bool has_seqnum() const;
+  private:
+  bool _internal_has_seqnum() const;
+  public:
+  void clear_seqnum();
+  int64_t seqnum() const;
+  void set_seqnum(int64_t value);
+  private:
+  int64_t _internal_seqnum() const;
+  void _internal_set_seqnum(int64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:APacked)
+ private:
+  class _Internal;
+
+  // helper for ByteSizeLong()
+  size_t RequiredFieldsByteSizeFallback() const;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  int64_t shipid_;
+  int64_t seqnum_;
+  friend struct ::TableStruct_world_5famazon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ALoaded final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ALoaded) */ {
+ public:
+  inline ALoaded() : ALoaded(nullptr) {}
+  ~ALoaded() override;
+  explicit PROTOBUF_CONSTEXPR ALoaded(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ALoaded(const ALoaded& from);
+  ALoaded(ALoaded&& from) noexcept
+    : ALoaded() {
+    *this = ::std::move(from);
+  }
+
+  inline ALoaded& operator=(const ALoaded& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ALoaded& operator=(ALoaded&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
     }
-    void UnsafeArenaSwap(AResponses* other) {
-        if (other == this)
-            return;
-        GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-        InternalSwap(other);
+    return *this;
+  }
+
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ALoaded& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ALoaded* internal_default_instance() {
+    return reinterpret_cast<const ALoaded*>(
+               &_ALoaded_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(ALoaded& a, ALoaded& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ALoaded* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
+  }
+  void UnsafeArenaSwap(ALoaded* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
 
-    // implements Message ----------------------------------------------
+  // implements Message ----------------------------------------------
 
-    AResponses* New(
-        ::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-        return CreateMaybeMessage<AResponses>(arena);
+  ALoaded* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ALoaded>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ALoaded& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ALoaded& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ALoaded* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "ALoaded";
+  }
+  protected:
+  explicit ALoaded(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kShipidFieldNumber = 1,
+    kSeqnumFieldNumber = 2,
+  };
+  // required int64 shipid = 1;
+  bool has_shipid() const;
+  private:
+  bool _internal_has_shipid() const;
+  public:
+  void clear_shipid();
+  int64_t shipid() const;
+  void set_shipid(int64_t value);
+  private:
+  int64_t _internal_shipid() const;
+  void _internal_set_shipid(int64_t value);
+  public:
+
+  // required int64 seqnum = 2;
+  bool has_seqnum() const;
+  private:
+  bool _internal_has_seqnum() const;
+  public:
+  void clear_seqnum();
+  int64_t seqnum() const;
+  void set_seqnum(int64_t value);
+  private:
+  int64_t _internal_seqnum() const;
+  void _internal_set_seqnum(int64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:ALoaded)
+ private:
+  class _Internal;
+
+  // helper for ByteSizeLong()
+  size_t RequiredFieldsByteSizeFallback() const;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  int64_t shipid_;
+  int64_t seqnum_;
+  friend struct ::TableStruct_world_5famazon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class APutOnTruck final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:APutOnTruck) */ {
+ public:
+  inline APutOnTruck() : APutOnTruck(nullptr) {}
+  ~APutOnTruck() override;
+  explicit PROTOBUF_CONSTEXPR APutOnTruck(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  APutOnTruck(const APutOnTruck& from);
+  APutOnTruck(APutOnTruck&& from) noexcept
+    : APutOnTruck() {
+    *this = ::std::move(from);
+  }
+
+  inline APutOnTruck& operator=(const APutOnTruck& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline APutOnTruck& operator=(APutOnTruck&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
     }
-    using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-    void CopyFrom(const AResponses& from);
-    using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-    void MergeFrom(const AResponses& from);
+    return *this;
+  }
 
-   private:
-    static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                          const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
 
-   public:
-    PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-    bool IsInitialized() const final;
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const APutOnTruck& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const APutOnTruck* internal_default_instance() {
+    return reinterpret_cast<const APutOnTruck*>(
+               &_APutOnTruck_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
 
-    size_t ByteSizeLong() const final;
-    const char* _InternalParse(
-        const char* ptr,
-        ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-    uint8_t* _InternalSerialize(
-        uint8_t* target,
-        ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-    int GetCachedSize() const final { return _cached_size_.Get(); }
-
-   private:
-    void SharedCtor();
-    void SharedDtor();
-    void SetCachedSize(int size) const final;
-    void InternalSwap(AResponses* other);
-
-   private:
-    friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-    static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-        return "AResponses";
+  friend void swap(APutOnTruck& a, APutOnTruck& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(APutOnTruck* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
+  }
+  void UnsafeArenaSwap(APutOnTruck* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
 
-   protected:
-    explicit AResponses(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                        bool is_message_owned = false);
+  // implements Message ----------------------------------------------
 
-   public:
-    static const ClassData _class_data_;
-    const ::PROTOBUF_NAMESPACE_ID::Message::ClassData* GetClassData()
-        const final;
+  APutOnTruck* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<APutOnTruck>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const APutOnTruck& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const APutOnTruck& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
 
-    ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
 
-    // nested types ----------------------------------------------------
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(APutOnTruck* other);
 
-    // accessors -------------------------------------------------------
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "APutOnTruck";
+  }
+  protected:
+  explicit APutOnTruck(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
 
-    enum : int {
-        kArrivedFieldNumber = 1,
-        kReadyFieldNumber = 2,
-        kLoadedFieldNumber = 3,
-        kErrorFieldNumber = 5,
-        kAcksFieldNumber = 6,
-        kPackagestatusFieldNumber = 7,
-        kFinishedFieldNumber = 4,
-    };
-    // repeated .APurchaseMore arrived = 1;
-    int arrived_size() const;
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
 
-   private:
-    int _internal_arrived_size() const;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
 
-   public:
-    void clear_arrived();
-    ::APurchaseMore* mutable_arrived(int index);
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APurchaseMore>*
-    mutable_arrived();
+  // nested types ----------------------------------------------------
 
-   private:
-    const ::APurchaseMore& _internal_arrived(int index) const;
-    ::APurchaseMore* _internal_add_arrived();
+  // accessors -------------------------------------------------------
 
-   public:
-    const ::APurchaseMore& arrived(int index) const;
-    ::APurchaseMore* add_arrived();
-    const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APurchaseMore>& arrived()
-        const;
+  enum : int {
+    kWhnumFieldNumber = 1,
+    kTruckidFieldNumber = 2,
+    kShipidFieldNumber = 3,
+    kSeqnumFieldNumber = 4,
+  };
+  // required int32 whnum = 1;
+  bool has_whnum() const;
+  private:
+  bool _internal_has_whnum() const;
+  public:
+  void clear_whnum();
+  int32_t whnum() const;
+  void set_whnum(int32_t value);
+  private:
+  int32_t _internal_whnum() const;
+  void _internal_set_whnum(int32_t value);
+  public:
 
-    // repeated .APacked ready = 2;
-    int ready_size() const;
+  // required int32 truckid = 2;
+  bool has_truckid() const;
+  private:
+  bool _internal_has_truckid() const;
+  public:
+  void clear_truckid();
+  int32_t truckid() const;
+  void set_truckid(int32_t value);
+  private:
+  int32_t _internal_truckid() const;
+  void _internal_set_truckid(int32_t value);
+  public:
 
-   private:
-    int _internal_ready_size() const;
+  // required int64 shipid = 3;
+  bool has_shipid() const;
+  private:
+  bool _internal_has_shipid() const;
+  public:
+  void clear_shipid();
+  int64_t shipid() const;
+  void set_shipid(int64_t value);
+  private:
+  int64_t _internal_shipid() const;
+  void _internal_set_shipid(int64_t value);
+  public:
 
-   public:
-    void clear_ready();
-    ::APacked* mutable_ready(int index);
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APacked>* mutable_ready();
+  // required int64 seqnum = 4;
+  bool has_seqnum() const;
+  private:
+  bool _internal_has_seqnum() const;
+  public:
+  void clear_seqnum();
+  int64_t seqnum() const;
+  void set_seqnum(int64_t value);
+  private:
+  int64_t _internal_seqnum() const;
+  void _internal_set_seqnum(int64_t value);
+  public:
 
-   private:
-    const ::APacked& _internal_ready(int index) const;
-    ::APacked* _internal_add_ready();
+  // @@protoc_insertion_point(class_scope:APutOnTruck)
+ private:
+  class _Internal;
 
-   public:
-    const ::APacked& ready(int index) const;
-    ::APacked* add_ready();
-    const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APacked>& ready() const;
+  // helper for ByteSizeLong()
+  size_t RequiredFieldsByteSizeFallback() const;
 
-    // repeated .ALoaded loaded = 3;
-    int loaded_size() const;
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  int32_t whnum_;
+  int32_t truckid_;
+  int64_t shipid_;
+  int64_t seqnum_;
+  friend struct ::TableStruct_world_5famazon_2eproto;
+};
+// -------------------------------------------------------------------
 
-   private:
-    int _internal_loaded_size() const;
+class APurchaseMore final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:APurchaseMore) */ {
+ public:
+  inline APurchaseMore() : APurchaseMore(nullptr) {}
+  ~APurchaseMore() override;
+  explicit PROTOBUF_CONSTEXPR APurchaseMore(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-   public:
-    void clear_loaded();
-    ::ALoaded* mutable_loaded(int index);
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::ALoaded>* mutable_loaded();
+  APurchaseMore(const APurchaseMore& from);
+  APurchaseMore(APurchaseMore&& from) noexcept
+    : APurchaseMore() {
+    *this = ::std::move(from);
+  }
 
-   private:
-    const ::ALoaded& _internal_loaded(int index) const;
-    ::ALoaded* _internal_add_loaded();
+  inline APurchaseMore& operator=(const APurchaseMore& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline APurchaseMore& operator=(APurchaseMore&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
 
-   public:
-    const ::ALoaded& loaded(int index) const;
-    ::ALoaded* add_loaded();
-    const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::ALoaded>& loaded() const;
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
 
-    // repeated .AErr error = 5;
-    int error_size() const;
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const APurchaseMore& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const APurchaseMore* internal_default_instance() {
+    return reinterpret_cast<const APurchaseMore*>(
+               &_APurchaseMore_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
 
-   private:
-    int _internal_error_size() const;
+  friend void swap(APurchaseMore& a, APurchaseMore& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(APurchaseMore* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(APurchaseMore* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
 
-   public:
-    void clear_error();
-    ::AErr* mutable_error(int index);
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::AErr>* mutable_error();
+  // implements Message ----------------------------------------------
 
-   private:
-    const ::AErr& _internal_error(int index) const;
-    ::AErr* _internal_add_error();
+  APurchaseMore* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<APurchaseMore>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const APurchaseMore& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const APurchaseMore& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
 
-   public:
-    const ::AErr& error(int index) const;
-    ::AErr* add_error();
-    const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::AErr>& error() const;
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
 
-    // repeated int64 acks = 6;
-    int acks_size() const;
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(APurchaseMore* other);
 
-   private:
-    int _internal_acks_size() const;
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "APurchaseMore";
+  }
+  protected:
+  explicit APurchaseMore(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
 
-   public:
-    void clear_acks();
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
 
-   private:
-    int64_t _internal_acks(int index) const;
-    const ::PROTOBUF_NAMESPACE_ID::RepeatedField<int64_t>& _internal_acks()
-        const;
-    void _internal_add_acks(int64_t value);
-    ::PROTOBUF_NAMESPACE_ID::RepeatedField<int64_t>* _internal_mutable_acks();
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
 
-   public:
-    int64_t acks(int index) const;
-    void set_acks(int index, int64_t value);
-    void add_acks(int64_t value);
-    const ::PROTOBUF_NAMESPACE_ID::RepeatedField<int64_t>& acks() const;
-    ::PROTOBUF_NAMESPACE_ID::RepeatedField<int64_t>* mutable_acks();
+  // nested types ----------------------------------------------------
 
-    // repeated .APackage packagestatus = 7;
-    int packagestatus_size() const;
+  // accessors -------------------------------------------------------
 
-   private:
-    int _internal_packagestatus_size() const;
+  enum : int {
+    kThingsFieldNumber = 2,
+    kSeqnumFieldNumber = 3,
+    kWhnumFieldNumber = 1,
+  };
+  // repeated .AProduct things = 2;
+  int things_size() const;
+  private:
+  int _internal_things_size() const;
+  public:
+  void clear_things();
+  ::AProduct* mutable_things(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AProduct >*
+      mutable_things();
+  private:
+  const ::AProduct& _internal_things(int index) const;
+  ::AProduct* _internal_add_things();
+  public:
+  const ::AProduct& things(int index) const;
+  ::AProduct* add_things();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AProduct >&
+      things() const;
 
-   public:
-    void clear_packagestatus();
-    ::APackage* mutable_packagestatus(int index);
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APackage>*
-    mutable_packagestatus();
+  // required int64 seqnum = 3;
+  bool has_seqnum() const;
+  private:
+  bool _internal_has_seqnum() const;
+  public:
+  void clear_seqnum();
+  int64_t seqnum() const;
+  void set_seqnum(int64_t value);
+  private:
+  int64_t _internal_seqnum() const;
+  void _internal_set_seqnum(int64_t value);
+  public:
 
-   private:
-    const ::APackage& _internal_packagestatus(int index) const;
-    ::APackage* _internal_add_packagestatus();
+  // required int32 whnum = 1;
+  bool has_whnum() const;
+  private:
+  bool _internal_has_whnum() const;
+  public:
+  void clear_whnum();
+  int32_t whnum() const;
+  void set_whnum(int32_t value);
+  private:
+  int32_t _internal_whnum() const;
+  void _internal_set_whnum(int32_t value);
+  public:
 
-   public:
-    const ::APackage& packagestatus(int index) const;
-    ::APackage* add_packagestatus();
-    const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APackage>& packagestatus()
-        const;
+  // @@protoc_insertion_point(class_scope:APurchaseMore)
+ private:
+  class _Internal;
 
-    // optional bool finished = 4;
-    bool has_finished() const;
+  // helper for ByteSizeLong()
+  size_t RequiredFieldsByteSizeFallback() const;
 
-   private:
-    bool _internal_has_finished() const;
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AProduct > things_;
+  int64_t seqnum_;
+  int32_t whnum_;
+  friend struct ::TableStruct_world_5famazon_2eproto;
+};
+// -------------------------------------------------------------------
 
-   public:
-    void clear_finished();
-    bool finished() const;
-    void set_finished(bool value);
+class AErr final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:AErr) */ {
+ public:
+  inline AErr() : AErr(nullptr) {}
+  ~AErr() override;
+  explicit PROTOBUF_CONSTEXPR AErr(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-   private:
-    bool _internal_finished() const;
-    void _internal_set_finished(bool value);
+  AErr(const AErr& from);
+  AErr(AErr&& from) noexcept
+    : AErr() {
+    *this = ::std::move(from);
+  }
 
-   public:
-    // @@protoc_insertion_point(class_scope:AResponses)
-   private:
-    class _Internal;
+  inline AErr& operator=(const AErr& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AErr& operator=(AErr&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
 
-    template <typename T>
-    friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-    typedef void InternalArenaConstructable_;
-    typedef void DestructorSkippable_;
-    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APurchaseMore> arrived_;
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APacked> ready_;
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::ALoaded> loaded_;
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::AErr> error_;
-    ::PROTOBUF_NAMESPACE_ID::RepeatedField<int64_t> acks_;
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APackage> packagestatus_;
-    bool finished_;
-    friend struct ::TableStruct_world_5famazon_2eproto;
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AErr& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AErr* internal_default_instance() {
+    return reinterpret_cast<const AErr*>(
+               &_AErr_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(AErr& a, AErr& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AErr* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AErr* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AErr* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AErr>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const AErr& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const AErr& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AErr* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "AErr";
+  }
+  protected:
+  explicit AErr(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kErrFieldNumber = 1,
+    kOriginseqnumFieldNumber = 2,
+    kSeqnumFieldNumber = 3,
+  };
+  // required string err = 1;
+  bool has_err() const;
+  private:
+  bool _internal_has_err() const;
+  public:
+  void clear_err();
+  const std::string& err() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_err(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_err();
+  PROTOBUF_NODISCARD std::string* release_err();
+  void set_allocated_err(std::string* err);
+  private:
+  const std::string& _internal_err() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_err(const std::string& value);
+  std::string* _internal_mutable_err();
+  public:
+
+  // required int64 originseqnum = 2;
+  bool has_originseqnum() const;
+  private:
+  bool _internal_has_originseqnum() const;
+  public:
+  void clear_originseqnum();
+  int64_t originseqnum() const;
+  void set_originseqnum(int64_t value);
+  private:
+  int64_t _internal_originseqnum() const;
+  void _internal_set_originseqnum(int64_t value);
+  public:
+
+  // required int64 seqnum = 3;
+  bool has_seqnum() const;
+  private:
+  bool _internal_has_seqnum() const;
+  public:
+  void clear_seqnum();
+  int64_t seqnum() const;
+  void set_seqnum(int64_t value);
+  private:
+  int64_t _internal_seqnum() const;
+  void _internal_set_seqnum(int64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:AErr)
+ private:
+  class _Internal;
+
+  // helper for ByteSizeLong()
+  size_t RequiredFieldsByteSizeFallback() const;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr err_;
+  int64_t originseqnum_;
+  int64_t seqnum_;
+  friend struct ::TableStruct_world_5famazon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AQuery final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:AQuery) */ {
+ public:
+  inline AQuery() : AQuery(nullptr) {}
+  ~AQuery() override;
+  explicit PROTOBUF_CONSTEXPR AQuery(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AQuery(const AQuery& from);
+  AQuery(AQuery&& from) noexcept
+    : AQuery() {
+    *this = ::std::move(from);
+  }
+
+  inline AQuery& operator=(const AQuery& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AQuery& operator=(AQuery&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AQuery& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AQuery* internal_default_instance() {
+    return reinterpret_cast<const AQuery*>(
+               &_AQuery_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  friend void swap(AQuery& a, AQuery& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AQuery* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AQuery* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AQuery* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AQuery>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const AQuery& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const AQuery& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AQuery* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "AQuery";
+  }
+  protected:
+  explicit AQuery(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPackageidFieldNumber = 1,
+    kSeqnumFieldNumber = 2,
+  };
+  // required int64 packageid = 1;
+  bool has_packageid() const;
+  private:
+  bool _internal_has_packageid() const;
+  public:
+  void clear_packageid();
+  int64_t packageid() const;
+  void set_packageid(int64_t value);
+  private:
+  int64_t _internal_packageid() const;
+  void _internal_set_packageid(int64_t value);
+  public:
+
+  // required int64 seqnum = 2;
+  bool has_seqnum() const;
+  private:
+  bool _internal_has_seqnum() const;
+  public:
+  void clear_seqnum();
+  int64_t seqnum() const;
+  void set_seqnum(int64_t value);
+  private:
+  int64_t _internal_seqnum() const;
+  void _internal_set_seqnum(int64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:AQuery)
+ private:
+  class _Internal;
+
+  // helper for ByteSizeLong()
+  size_t RequiredFieldsByteSizeFallback() const;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  int64_t packageid_;
+  int64_t seqnum_;
+  friend struct ::TableStruct_world_5famazon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class APackage final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:APackage) */ {
+ public:
+  inline APackage() : APackage(nullptr) {}
+  ~APackage() override;
+  explicit PROTOBUF_CONSTEXPR APackage(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  APackage(const APackage& from);
+  APackage(APackage&& from) noexcept
+    : APackage() {
+    *this = ::std::move(from);
+  }
+
+  inline APackage& operator=(const APackage& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline APackage& operator=(APackage&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const APackage& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const APackage* internal_default_instance() {
+    return reinterpret_cast<const APackage*>(
+               &_APackage_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    11;
+
+  friend void swap(APackage& a, APackage& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(APackage* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(APackage* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  APackage* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<APackage>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const APackage& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const APackage& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(APackage* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "APackage";
+  }
+  protected:
+  explicit APackage(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kStatusFieldNumber = 2,
+    kPackageidFieldNumber = 1,
+    kSeqnumFieldNumber = 3,
+  };
+  // required string status = 2;
+  bool has_status() const;
+  private:
+  bool _internal_has_status() const;
+  public:
+  void clear_status();
+  const std::string& status() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_status(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_status();
+  PROTOBUF_NODISCARD std::string* release_status();
+  void set_allocated_status(std::string* status);
+  private:
+  const std::string& _internal_status() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_status(const std::string& value);
+  std::string* _internal_mutable_status();
+  public:
+
+  // required int64 packageid = 1;
+  bool has_packageid() const;
+  private:
+  bool _internal_has_packageid() const;
+  public:
+  void clear_packageid();
+  int64_t packageid() const;
+  void set_packageid(int64_t value);
+  private:
+  int64_t _internal_packageid() const;
+  void _internal_set_packageid(int64_t value);
+  public:
+
+  // required int64 seqnum = 3;
+  bool has_seqnum() const;
+  private:
+  bool _internal_has_seqnum() const;
+  public:
+  void clear_seqnum();
+  int64_t seqnum() const;
+  void set_seqnum(int64_t value);
+  private:
+  int64_t _internal_seqnum() const;
+  void _internal_set_seqnum(int64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:APackage)
+ private:
+  class _Internal;
+
+  // helper for ByteSizeLong()
+  size_t RequiredFieldsByteSizeFallback() const;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr status_;
+  int64_t packageid_;
+  int64_t seqnum_;
+  friend struct ::TableStruct_world_5famazon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ACommands final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ACommands) */ {
+ public:
+  inline ACommands() : ACommands(nullptr) {}
+  ~ACommands() override;
+  explicit PROTOBUF_CONSTEXPR ACommands(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ACommands(const ACommands& from);
+  ACommands(ACommands&& from) noexcept
+    : ACommands() {
+    *this = ::std::move(from);
+  }
+
+  inline ACommands& operator=(const ACommands& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ACommands& operator=(ACommands&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ACommands& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ACommands* internal_default_instance() {
+    return reinterpret_cast<const ACommands*>(
+               &_ACommands_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    12;
+
+  friend void swap(ACommands& a, ACommands& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ACommands* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ACommands* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ACommands* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ACommands>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ACommands& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ACommands& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ACommands* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "ACommands";
+  }
+  protected:
+  explicit ACommands(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kBuyFieldNumber = 1,
+    kTopackFieldNumber = 2,
+    kLoadFieldNumber = 3,
+    kQueriesFieldNumber = 4,
+    kAcksFieldNumber = 7,
+    kSimspeedFieldNumber = 5,
+    kDisconnectFieldNumber = 6,
+  };
+  // repeated .APurchaseMore buy = 1;
+  int buy_size() const;
+  private:
+  int _internal_buy_size() const;
+  public:
+  void clear_buy();
+  ::APurchaseMore* mutable_buy(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APurchaseMore >*
+      mutable_buy();
+  private:
+  const ::APurchaseMore& _internal_buy(int index) const;
+  ::APurchaseMore* _internal_add_buy();
+  public:
+  const ::APurchaseMore& buy(int index) const;
+  ::APurchaseMore* add_buy();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APurchaseMore >&
+      buy() const;
+
+  // repeated .APack topack = 2;
+  int topack_size() const;
+  private:
+  int _internal_topack_size() const;
+  public:
+  void clear_topack();
+  ::APack* mutable_topack(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APack >*
+      mutable_topack();
+  private:
+  const ::APack& _internal_topack(int index) const;
+  ::APack* _internal_add_topack();
+  public:
+  const ::APack& topack(int index) const;
+  ::APack* add_topack();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APack >&
+      topack() const;
+
+  // repeated .APutOnTruck load = 3;
+  int load_size() const;
+  private:
+  int _internal_load_size() const;
+  public:
+  void clear_load();
+  ::APutOnTruck* mutable_load(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APutOnTruck >*
+      mutable_load();
+  private:
+  const ::APutOnTruck& _internal_load(int index) const;
+  ::APutOnTruck* _internal_add_load();
+  public:
+  const ::APutOnTruck& load(int index) const;
+  ::APutOnTruck* add_load();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APutOnTruck >&
+      load() const;
+
+  // repeated .AQuery queries = 4;
+  int queries_size() const;
+  private:
+  int _internal_queries_size() const;
+  public:
+  void clear_queries();
+  ::AQuery* mutable_queries(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AQuery >*
+      mutable_queries();
+  private:
+  const ::AQuery& _internal_queries(int index) const;
+  ::AQuery* _internal_add_queries();
+  public:
+  const ::AQuery& queries(int index) const;
+  ::AQuery* add_queries();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AQuery >&
+      queries() const;
+
+  // repeated int64 acks = 7;
+  int acks_size() const;
+  private:
+  int _internal_acks_size() const;
+  public:
+  void clear_acks();
+  private:
+  int64_t _internal_acks(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >&
+      _internal_acks() const;
+  void _internal_add_acks(int64_t value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
+      _internal_mutable_acks();
+  public:
+  int64_t acks(int index) const;
+  void set_acks(int index, int64_t value);
+  void add_acks(int64_t value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >&
+      acks() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
+      mutable_acks();
+
+  // optional uint32 simspeed = 5;
+  bool has_simspeed() const;
+  private:
+  bool _internal_has_simspeed() const;
+  public:
+  void clear_simspeed();
+  uint32_t simspeed() const;
+  void set_simspeed(uint32_t value);
+  private:
+  uint32_t _internal_simspeed() const;
+  void _internal_set_simspeed(uint32_t value);
+  public:
+
+  // optional bool disconnect = 6;
+  bool has_disconnect() const;
+  private:
+  bool _internal_has_disconnect() const;
+  public:
+  void clear_disconnect();
+  bool disconnect() const;
+  void set_disconnect(bool value);
+  private:
+  bool _internal_disconnect() const;
+  void _internal_set_disconnect(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:ACommands)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APurchaseMore > buy_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APack > topack_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APutOnTruck > load_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AQuery > queries_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t > acks_;
+  uint32_t simspeed_;
+  bool disconnect_;
+  friend struct ::TableStruct_world_5famazon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AResponses final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:AResponses) */ {
+ public:
+  inline AResponses() : AResponses(nullptr) {}
+  ~AResponses() override;
+  explicit PROTOBUF_CONSTEXPR AResponses(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AResponses(const AResponses& from);
+  AResponses(AResponses&& from) noexcept
+    : AResponses() {
+    *this = ::std::move(from);
+  }
+
+  inline AResponses& operator=(const AResponses& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AResponses& operator=(AResponses&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AResponses& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AResponses* internal_default_instance() {
+    return reinterpret_cast<const AResponses*>(
+               &_AResponses_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    13;
+
+  friend void swap(AResponses& a, AResponses& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AResponses* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AResponses* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AResponses* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AResponses>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const AResponses& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const AResponses& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AResponses* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "AResponses";
+  }
+  protected:
+  explicit AResponses(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kArrivedFieldNumber = 1,
+    kReadyFieldNumber = 2,
+    kLoadedFieldNumber = 3,
+    kErrorFieldNumber = 5,
+    kAcksFieldNumber = 6,
+    kPackagestatusFieldNumber = 7,
+    kFinishedFieldNumber = 4,
+  };
+  // repeated .APurchaseMore arrived = 1;
+  int arrived_size() const;
+  private:
+  int _internal_arrived_size() const;
+  public:
+  void clear_arrived();
+  ::APurchaseMore* mutable_arrived(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APurchaseMore >*
+      mutable_arrived();
+  private:
+  const ::APurchaseMore& _internal_arrived(int index) const;
+  ::APurchaseMore* _internal_add_arrived();
+  public:
+  const ::APurchaseMore& arrived(int index) const;
+  ::APurchaseMore* add_arrived();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APurchaseMore >&
+      arrived() const;
+
+  // repeated .APacked ready = 2;
+  int ready_size() const;
+  private:
+  int _internal_ready_size() const;
+  public:
+  void clear_ready();
+  ::APacked* mutable_ready(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APacked >*
+      mutable_ready();
+  private:
+  const ::APacked& _internal_ready(int index) const;
+  ::APacked* _internal_add_ready();
+  public:
+  const ::APacked& ready(int index) const;
+  ::APacked* add_ready();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APacked >&
+      ready() const;
+
+  // repeated .ALoaded loaded = 3;
+  int loaded_size() const;
+  private:
+  int _internal_loaded_size() const;
+  public:
+  void clear_loaded();
+  ::ALoaded* mutable_loaded(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::ALoaded >*
+      mutable_loaded();
+  private:
+  const ::ALoaded& _internal_loaded(int index) const;
+  ::ALoaded* _internal_add_loaded();
+  public:
+  const ::ALoaded& loaded(int index) const;
+  ::ALoaded* add_loaded();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::ALoaded >&
+      loaded() const;
+
+  // repeated .AErr error = 5;
+  int error_size() const;
+  private:
+  int _internal_error_size() const;
+  public:
+  void clear_error();
+  ::AErr* mutable_error(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AErr >*
+      mutable_error();
+  private:
+  const ::AErr& _internal_error(int index) const;
+  ::AErr* _internal_add_error();
+  public:
+  const ::AErr& error(int index) const;
+  ::AErr* add_error();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AErr >&
+      error() const;
+
+  // repeated int64 acks = 6;
+  int acks_size() const;
+  private:
+  int _internal_acks_size() const;
+  public:
+  void clear_acks();
+  private:
+  int64_t _internal_acks(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >&
+      _internal_acks() const;
+  void _internal_add_acks(int64_t value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
+      _internal_mutable_acks();
+  public:
+  int64_t acks(int index) const;
+  void set_acks(int index, int64_t value);
+  void add_acks(int64_t value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >&
+      acks() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
+      mutable_acks();
+
+  // repeated .APackage packagestatus = 7;
+  int packagestatus_size() const;
+  private:
+  int _internal_packagestatus_size() const;
+  public:
+  void clear_packagestatus();
+  ::APackage* mutable_packagestatus(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APackage >*
+      mutable_packagestatus();
+  private:
+  const ::APackage& _internal_packagestatus(int index) const;
+  ::APackage* _internal_add_packagestatus();
+  public:
+  const ::APackage& packagestatus(int index) const;
+  ::APackage* add_packagestatus();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APackage >&
+      packagestatus() const;
+
+  // optional bool finished = 4;
+  bool has_finished() const;
+  private:
+  bool _internal_has_finished() const;
+  public:
+  void clear_finished();
+  bool finished() const;
+  void set_finished(bool value);
+  private:
+  bool _internal_finished() const;
+  void _internal_set_finished(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:AResponses)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APurchaseMore > arrived_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APacked > ready_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::ALoaded > loaded_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AErr > error_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t > acks_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APackage > packagestatus_;
+  bool finished_;
+  friend struct ::TableStruct_world_5famazon_2eproto;
 };
 // ===================================================================
+
 
 // ===================================================================
 
 #ifdef __GNUC__
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wstrict-aliasing"
+  #pragma GCC diagnostic push
+  #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
 // AProduct
 
 // required int64 id = 1;
 inline bool AProduct::_internal_has_id() const {
-    bool value = (_has_bits_[0] & 0x00000002u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
 }
 inline bool AProduct::has_id() const {
-    return _internal_has_id();
+  return _internal_has_id();
 }
 inline void AProduct::clear_id() {
-    id_ = int64_t{0};
-    _has_bits_[0] &= ~0x00000002u;
+  id_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline int64_t AProduct::_internal_id() const {
-    return id_;
+  return id_;
 }
 inline int64_t AProduct::id() const {
-    // @@protoc_insertion_point(field_get:AProduct.id)
-    return _internal_id();
+  // @@protoc_insertion_point(field_get:AProduct.id)
+  return _internal_id();
 }
 inline void AProduct::_internal_set_id(int64_t value) {
-    _has_bits_[0] |= 0x00000002u;
-    id_ = value;
+  _has_bits_[0] |= 0x00000002u;
+  id_ = value;
 }
 inline void AProduct::set_id(int64_t value) {
-    _internal_set_id(value);
-    // @@protoc_insertion_point(field_set:AProduct.id)
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:AProduct.id)
 }
 
 // required string description = 2;
 inline bool AProduct::_internal_has_description() const {
-    bool value = (_has_bits_[0] & 0x00000001u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
 }
 inline bool AProduct::has_description() const {
-    return _internal_has_description();
+  return _internal_has_description();
 }
 inline void AProduct::clear_description() {
-    description_.ClearToEmpty();
-    _has_bits_[0] &= ~0x00000001u;
+  description_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline const std::string& AProduct::description() const {
-    // @@protoc_insertion_point(field_get:AProduct.description)
-    return _internal_description();
+  // @@protoc_insertion_point(field_get:AProduct.description)
+  return _internal_description();
 }
 template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE void AProduct::set_description(ArgT0&& arg0,
-                                                             ArgT... args) {
-    _has_bits_[0] |= 0x00000001u;
-    description_.Set(static_cast<ArgT0&&>(arg0), args...,
-                     GetArenaForAllocation());
-    // @@protoc_insertion_point(field_set:AProduct.description)
+inline PROTOBUF_ALWAYS_INLINE
+void AProduct::set_description(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ description_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:AProduct.description)
 }
 inline std::string* AProduct::mutable_description() {
-    std::string* _s = _internal_mutable_description();
-    // @@protoc_insertion_point(field_mutable:AProduct.description)
-    return _s;
+  std::string* _s = _internal_mutable_description();
+  // @@protoc_insertion_point(field_mutable:AProduct.description)
+  return _s;
 }
 inline const std::string& AProduct::_internal_description() const {
-    return description_.Get();
+  return description_.Get();
 }
 inline void AProduct::_internal_set_description(const std::string& value) {
-    _has_bits_[0] |= 0x00000001u;
-    description_.Set(value, GetArenaForAllocation());
+  _has_bits_[0] |= 0x00000001u;
+  description_.Set(value, GetArenaForAllocation());
 }
 inline std::string* AProduct::_internal_mutable_description() {
-    _has_bits_[0] |= 0x00000001u;
-    return description_.Mutable(GetArenaForAllocation());
+  _has_bits_[0] |= 0x00000001u;
+  return description_.Mutable(GetArenaForAllocation());
 }
 inline std::string* AProduct::release_description() {
-    // @@protoc_insertion_point(field_release:AProduct.description)
-    if (!_internal_has_description()) {
-        return nullptr;
-    }
-    _has_bits_[0] &= ~0x00000001u;
-    auto* p = description_.Release();
+  // @@protoc_insertion_point(field_release:AProduct.description)
+  if (!_internal_has_description()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = description_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    if (description_.IsDefault()) {
-        description_.Set("", GetArenaForAllocation());
-    }
-#endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    return p;
+  if (description_.IsDefault()) {
+    description_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
 }
 inline void AProduct::set_allocated_description(std::string* description) {
-    if (description != nullptr) {
-        _has_bits_[0] |= 0x00000001u;
-    } else {
-        _has_bits_[0] &= ~0x00000001u;
-    }
-    description_.SetAllocated(description, GetArenaForAllocation());
+  if (description != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  description_.SetAllocated(description, GetArenaForAllocation());
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    if (description_.IsDefault()) {
-        description_.Set("", GetArenaForAllocation());
-    }
-#endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        // @@protoc_insertion_point(field_set_allocated:AProduct.description)
+  if (description_.IsDefault()) {
+    description_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:AProduct.description)
 }
 
 // required int32 count = 3;
 inline bool AProduct::_internal_has_count() const {
-    bool value = (_has_bits_[0] & 0x00000004u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
 }
 inline bool AProduct::has_count() const {
-    return _internal_has_count();
+  return _internal_has_count();
 }
 inline void AProduct::clear_count() {
-    count_ = 0;
-    _has_bits_[0] &= ~0x00000004u;
+  count_ = 0;
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline int32_t AProduct::_internal_count() const {
-    return count_;
+  return count_;
 }
 inline int32_t AProduct::count() const {
-    // @@protoc_insertion_point(field_get:AProduct.count)
-    return _internal_count();
+  // @@protoc_insertion_point(field_get:AProduct.count)
+  return _internal_count();
 }
 inline void AProduct::_internal_set_count(int32_t value) {
-    _has_bits_[0] |= 0x00000004u;
-    count_ = value;
+  _has_bits_[0] |= 0x00000004u;
+  count_ = value;
 }
 inline void AProduct::set_count(int32_t value) {
-    _internal_set_count(value);
-    // @@protoc_insertion_point(field_set:AProduct.count)
+  _internal_set_count(value);
+  // @@protoc_insertion_point(field_set:AProduct.count)
 }
 
 // -------------------------------------------------------------------
@@ -3394,86 +3055,86 @@ inline void AProduct::set_count(int32_t value) {
 
 // required int32 id = 1;
 inline bool AInitWarehouse::_internal_has_id() const {
-    bool value = (_has_bits_[0] & 0x00000001u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
 }
 inline bool AInitWarehouse::has_id() const {
-    return _internal_has_id();
+  return _internal_has_id();
 }
 inline void AInitWarehouse::clear_id() {
-    id_ = 0;
-    _has_bits_[0] &= ~0x00000001u;
+  id_ = 0;
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline int32_t AInitWarehouse::_internal_id() const {
-    return id_;
+  return id_;
 }
 inline int32_t AInitWarehouse::id() const {
-    // @@protoc_insertion_point(field_get:AInitWarehouse.id)
-    return _internal_id();
+  // @@protoc_insertion_point(field_get:AInitWarehouse.id)
+  return _internal_id();
 }
 inline void AInitWarehouse::_internal_set_id(int32_t value) {
-    _has_bits_[0] |= 0x00000001u;
-    id_ = value;
+  _has_bits_[0] |= 0x00000001u;
+  id_ = value;
 }
 inline void AInitWarehouse::set_id(int32_t value) {
-    _internal_set_id(value);
-    // @@protoc_insertion_point(field_set:AInitWarehouse.id)
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:AInitWarehouse.id)
 }
 
 // required int32 x = 2;
 inline bool AInitWarehouse::_internal_has_x() const {
-    bool value = (_has_bits_[0] & 0x00000002u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
 }
 inline bool AInitWarehouse::has_x() const {
-    return _internal_has_x();
+  return _internal_has_x();
 }
 inline void AInitWarehouse::clear_x() {
-    x_ = 0;
-    _has_bits_[0] &= ~0x00000002u;
+  x_ = 0;
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline int32_t AInitWarehouse::_internal_x() const {
-    return x_;
+  return x_;
 }
 inline int32_t AInitWarehouse::x() const {
-    // @@protoc_insertion_point(field_get:AInitWarehouse.x)
-    return _internal_x();
+  // @@protoc_insertion_point(field_get:AInitWarehouse.x)
+  return _internal_x();
 }
 inline void AInitWarehouse::_internal_set_x(int32_t value) {
-    _has_bits_[0] |= 0x00000002u;
-    x_ = value;
+  _has_bits_[0] |= 0x00000002u;
+  x_ = value;
 }
 inline void AInitWarehouse::set_x(int32_t value) {
-    _internal_set_x(value);
-    // @@protoc_insertion_point(field_set:AInitWarehouse.x)
+  _internal_set_x(value);
+  // @@protoc_insertion_point(field_set:AInitWarehouse.x)
 }
 
 // required int32 y = 3;
 inline bool AInitWarehouse::_internal_has_y() const {
-    bool value = (_has_bits_[0] & 0x00000004u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
 }
 inline bool AInitWarehouse::has_y() const {
-    return _internal_has_y();
+  return _internal_has_y();
 }
 inline void AInitWarehouse::clear_y() {
-    y_ = 0;
-    _has_bits_[0] &= ~0x00000004u;
+  y_ = 0;
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline int32_t AInitWarehouse::_internal_y() const {
-    return y_;
+  return y_;
 }
 inline int32_t AInitWarehouse::y() const {
-    // @@protoc_insertion_point(field_get:AInitWarehouse.y)
-    return _internal_y();
+  // @@protoc_insertion_point(field_get:AInitWarehouse.y)
+  return _internal_y();
 }
 inline void AInitWarehouse::_internal_set_y(int32_t value) {
-    _has_bits_[0] |= 0x00000004u;
-    y_ = value;
+  _has_bits_[0] |= 0x00000004u;
+  y_ = value;
 }
 inline void AInitWarehouse::set_y(int32_t value) {
-    _internal_set_y(value);
-    // @@protoc_insertion_point(field_set:AInitWarehouse.y)
+  _internal_set_y(value);
+  // @@protoc_insertion_point(field_set:AInitWarehouse.y)
 }
 
 // -------------------------------------------------------------------
@@ -3482,98 +3143,98 @@ inline void AInitWarehouse::set_y(int32_t value) {
 
 // optional int64 worldid = 1;
 inline bool AConnect::_internal_has_worldid() const {
-    bool value = (_has_bits_[0] & 0x00000001u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
 }
 inline bool AConnect::has_worldid() const {
-    return _internal_has_worldid();
+  return _internal_has_worldid();
 }
 inline void AConnect::clear_worldid() {
-    worldid_ = int64_t{0};
-    _has_bits_[0] &= ~0x00000001u;
+  worldid_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline int64_t AConnect::_internal_worldid() const {
-    return worldid_;
+  return worldid_;
 }
 inline int64_t AConnect::worldid() const {
-    // @@protoc_insertion_point(field_get:AConnect.worldid)
-    return _internal_worldid();
+  // @@protoc_insertion_point(field_get:AConnect.worldid)
+  return _internal_worldid();
 }
 inline void AConnect::_internal_set_worldid(int64_t value) {
-    _has_bits_[0] |= 0x00000001u;
-    worldid_ = value;
+  _has_bits_[0] |= 0x00000001u;
+  worldid_ = value;
 }
 inline void AConnect::set_worldid(int64_t value) {
-    _internal_set_worldid(value);
-    // @@protoc_insertion_point(field_set:AConnect.worldid)
+  _internal_set_worldid(value);
+  // @@protoc_insertion_point(field_set:AConnect.worldid)
 }
 
 // repeated .AInitWarehouse initwh = 2;
 inline int AConnect::_internal_initwh_size() const {
-    return initwh_.size();
+  return initwh_.size();
 }
 inline int AConnect::initwh_size() const {
-    return _internal_initwh_size();
+  return _internal_initwh_size();
 }
 inline void AConnect::clear_initwh() {
-    initwh_.Clear();
+  initwh_.Clear();
 }
 inline ::AInitWarehouse* AConnect::mutable_initwh(int index) {
-    // @@protoc_insertion_point(field_mutable:AConnect.initwh)
-    return initwh_.Mutable(index);
+  // @@protoc_insertion_point(field_mutable:AConnect.initwh)
+  return initwh_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::AInitWarehouse>*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AInitWarehouse >*
 AConnect::mutable_initwh() {
-    // @@protoc_insertion_point(field_mutable_list:AConnect.initwh)
-    return &initwh_;
+  // @@protoc_insertion_point(field_mutable_list:AConnect.initwh)
+  return &initwh_;
 }
 inline const ::AInitWarehouse& AConnect::_internal_initwh(int index) const {
-    return initwh_.Get(index);
+  return initwh_.Get(index);
 }
 inline const ::AInitWarehouse& AConnect::initwh(int index) const {
-    // @@protoc_insertion_point(field_get:AConnect.initwh)
-    return _internal_initwh(index);
+  // @@protoc_insertion_point(field_get:AConnect.initwh)
+  return _internal_initwh(index);
 }
 inline ::AInitWarehouse* AConnect::_internal_add_initwh() {
-    return initwh_.Add();
+  return initwh_.Add();
 }
 inline ::AInitWarehouse* AConnect::add_initwh() {
-    ::AInitWarehouse* _add = _internal_add_initwh();
-    // @@protoc_insertion_point(field_add:AConnect.initwh)
-    return _add;
+  ::AInitWarehouse* _add = _internal_add_initwh();
+  // @@protoc_insertion_point(field_add:AConnect.initwh)
+  return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::AInitWarehouse>&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AInitWarehouse >&
 AConnect::initwh() const {
-    // @@protoc_insertion_point(field_list:AConnect.initwh)
-    return initwh_;
+  // @@protoc_insertion_point(field_list:AConnect.initwh)
+  return initwh_;
 }
 
 // required bool isAmazon = 3;
 inline bool AConnect::_internal_has_isamazon() const {
-    bool value = (_has_bits_[0] & 0x00000002u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
 }
 inline bool AConnect::has_isamazon() const {
-    return _internal_has_isamazon();
+  return _internal_has_isamazon();
 }
 inline void AConnect::clear_isamazon() {
-    isamazon_ = false;
-    _has_bits_[0] &= ~0x00000002u;
+  isamazon_ = false;
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline bool AConnect::_internal_isamazon() const {
-    return isamazon_;
+  return isamazon_;
 }
 inline bool AConnect::isamazon() const {
-    // @@protoc_insertion_point(field_get:AConnect.isAmazon)
-    return _internal_isamazon();
+  // @@protoc_insertion_point(field_get:AConnect.isAmazon)
+  return _internal_isamazon();
 }
 inline void AConnect::_internal_set_isamazon(bool value) {
-    _has_bits_[0] |= 0x00000002u;
-    isamazon_ = value;
+  _has_bits_[0] |= 0x00000002u;
+  isamazon_ = value;
 }
 inline void AConnect::set_isamazon(bool value) {
-    _internal_set_isamazon(value);
-    // @@protoc_insertion_point(field_set:AConnect.isAmazon)
+  _internal_set_isamazon(value);
+  // @@protoc_insertion_point(field_set:AConnect.isAmazon)
 }
 
 // -------------------------------------------------------------------
@@ -3582,98 +3243,98 @@ inline void AConnect::set_isamazon(bool value) {
 
 // required int64 worldid = 1;
 inline bool AConnected::_internal_has_worldid() const {
-    bool value = (_has_bits_[0] & 0x00000002u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
 }
 inline bool AConnected::has_worldid() const {
-    return _internal_has_worldid();
+  return _internal_has_worldid();
 }
 inline void AConnected::clear_worldid() {
-    worldid_ = int64_t{0};
-    _has_bits_[0] &= ~0x00000002u;
+  worldid_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline int64_t AConnected::_internal_worldid() const {
-    return worldid_;
+  return worldid_;
 }
 inline int64_t AConnected::worldid() const {
-    // @@protoc_insertion_point(field_get:AConnected.worldid)
-    return _internal_worldid();
+  // @@protoc_insertion_point(field_get:AConnected.worldid)
+  return _internal_worldid();
 }
 inline void AConnected::_internal_set_worldid(int64_t value) {
-    _has_bits_[0] |= 0x00000002u;
-    worldid_ = value;
+  _has_bits_[0] |= 0x00000002u;
+  worldid_ = value;
 }
 inline void AConnected::set_worldid(int64_t value) {
-    _internal_set_worldid(value);
-    // @@protoc_insertion_point(field_set:AConnected.worldid)
+  _internal_set_worldid(value);
+  // @@protoc_insertion_point(field_set:AConnected.worldid)
 }
 
 // required string result = 2;
 inline bool AConnected::_internal_has_result() const {
-    bool value = (_has_bits_[0] & 0x00000001u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
 }
 inline bool AConnected::has_result() const {
-    return _internal_has_result();
+  return _internal_has_result();
 }
 inline void AConnected::clear_result() {
-    result_.ClearToEmpty();
-    _has_bits_[0] &= ~0x00000001u;
+  result_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline const std::string& AConnected::result() const {
-    // @@protoc_insertion_point(field_get:AConnected.result)
-    return _internal_result();
+  // @@protoc_insertion_point(field_get:AConnected.result)
+  return _internal_result();
 }
 template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE void AConnected::set_result(ArgT0&& arg0,
-                                                          ArgT... args) {
-    _has_bits_[0] |= 0x00000001u;
-    result_.Set(static_cast<ArgT0&&>(arg0), args..., GetArenaForAllocation());
-    // @@protoc_insertion_point(field_set:AConnected.result)
+inline PROTOBUF_ALWAYS_INLINE
+void AConnected::set_result(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ result_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:AConnected.result)
 }
 inline std::string* AConnected::mutable_result() {
-    std::string* _s = _internal_mutable_result();
-    // @@protoc_insertion_point(field_mutable:AConnected.result)
-    return _s;
+  std::string* _s = _internal_mutable_result();
+  // @@protoc_insertion_point(field_mutable:AConnected.result)
+  return _s;
 }
 inline const std::string& AConnected::_internal_result() const {
-    return result_.Get();
+  return result_.Get();
 }
 inline void AConnected::_internal_set_result(const std::string& value) {
-    _has_bits_[0] |= 0x00000001u;
-    result_.Set(value, GetArenaForAllocation());
+  _has_bits_[0] |= 0x00000001u;
+  result_.Set(value, GetArenaForAllocation());
 }
 inline std::string* AConnected::_internal_mutable_result() {
-    _has_bits_[0] |= 0x00000001u;
-    return result_.Mutable(GetArenaForAllocation());
+  _has_bits_[0] |= 0x00000001u;
+  return result_.Mutable(GetArenaForAllocation());
 }
 inline std::string* AConnected::release_result() {
-    // @@protoc_insertion_point(field_release:AConnected.result)
-    if (!_internal_has_result()) {
-        return nullptr;
-    }
-    _has_bits_[0] &= ~0x00000001u;
-    auto* p = result_.Release();
+  // @@protoc_insertion_point(field_release:AConnected.result)
+  if (!_internal_has_result()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = result_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    if (result_.IsDefault()) {
-        result_.Set("", GetArenaForAllocation());
-    }
-#endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    return p;
+  if (result_.IsDefault()) {
+    result_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
 }
 inline void AConnected::set_allocated_result(std::string* result) {
-    if (result != nullptr) {
-        _has_bits_[0] |= 0x00000001u;
-    } else {
-        _has_bits_[0] &= ~0x00000001u;
-    }
-    result_.SetAllocated(result, GetArenaForAllocation());
+  if (result != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  result_.SetAllocated(result, GetArenaForAllocation());
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    if (result_.IsDefault()) {
-        result_.Set("", GetArenaForAllocation());
-    }
-#endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        // @@protoc_insertion_point(field_set_allocated:AConnected.result)
+  if (result_.IsDefault()) {
+    result_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:AConnected.result)
 }
 
 // -------------------------------------------------------------------
@@ -3682,126 +3343,126 @@ inline void AConnected::set_allocated_result(std::string* result) {
 
 // required int32 whnum = 1;
 inline bool APack::_internal_has_whnum() const {
-    bool value = (_has_bits_[0] & 0x00000004u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
 }
 inline bool APack::has_whnum() const {
-    return _internal_has_whnum();
+  return _internal_has_whnum();
 }
 inline void APack::clear_whnum() {
-    whnum_ = 0;
-    _has_bits_[0] &= ~0x00000004u;
+  whnum_ = 0;
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline int32_t APack::_internal_whnum() const {
-    return whnum_;
+  return whnum_;
 }
 inline int32_t APack::whnum() const {
-    // @@protoc_insertion_point(field_get:APack.whnum)
-    return _internal_whnum();
+  // @@protoc_insertion_point(field_get:APack.whnum)
+  return _internal_whnum();
 }
 inline void APack::_internal_set_whnum(int32_t value) {
-    _has_bits_[0] |= 0x00000004u;
-    whnum_ = value;
+  _has_bits_[0] |= 0x00000004u;
+  whnum_ = value;
 }
 inline void APack::set_whnum(int32_t value) {
-    _internal_set_whnum(value);
-    // @@protoc_insertion_point(field_set:APack.whnum)
+  _internal_set_whnum(value);
+  // @@protoc_insertion_point(field_set:APack.whnum)
 }
 
 // repeated .AProduct things = 2;
 inline int APack::_internal_things_size() const {
-    return things_.size();
+  return things_.size();
 }
 inline int APack::things_size() const {
-    return _internal_things_size();
+  return _internal_things_size();
 }
 inline void APack::clear_things() {
-    things_.Clear();
+  things_.Clear();
 }
 inline ::AProduct* APack::mutable_things(int index) {
-    // @@protoc_insertion_point(field_mutable:APack.things)
-    return things_.Mutable(index);
+  // @@protoc_insertion_point(field_mutable:APack.things)
+  return things_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::AProduct>*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AProduct >*
 APack::mutable_things() {
-    // @@protoc_insertion_point(field_mutable_list:APack.things)
-    return &things_;
+  // @@protoc_insertion_point(field_mutable_list:APack.things)
+  return &things_;
 }
 inline const ::AProduct& APack::_internal_things(int index) const {
-    return things_.Get(index);
+  return things_.Get(index);
 }
 inline const ::AProduct& APack::things(int index) const {
-    // @@protoc_insertion_point(field_get:APack.things)
-    return _internal_things(index);
+  // @@protoc_insertion_point(field_get:APack.things)
+  return _internal_things(index);
 }
 inline ::AProduct* APack::_internal_add_things() {
-    return things_.Add();
+  return things_.Add();
 }
 inline ::AProduct* APack::add_things() {
-    ::AProduct* _add = _internal_add_things();
-    // @@protoc_insertion_point(field_add:APack.things)
-    return _add;
+  ::AProduct* _add = _internal_add_things();
+  // @@protoc_insertion_point(field_add:APack.things)
+  return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::AProduct>&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AProduct >&
 APack::things() const {
-    // @@protoc_insertion_point(field_list:APack.things)
-    return things_;
+  // @@protoc_insertion_point(field_list:APack.things)
+  return things_;
 }
 
 // required int64 shipid = 3;
 inline bool APack::_internal_has_shipid() const {
-    bool value = (_has_bits_[0] & 0x00000001u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
 }
 inline bool APack::has_shipid() const {
-    return _internal_has_shipid();
+  return _internal_has_shipid();
 }
 inline void APack::clear_shipid() {
-    shipid_ = int64_t{0};
-    _has_bits_[0] &= ~0x00000001u;
+  shipid_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline int64_t APack::_internal_shipid() const {
-    return shipid_;
+  return shipid_;
 }
 inline int64_t APack::shipid() const {
-    // @@protoc_insertion_point(field_get:APack.shipid)
-    return _internal_shipid();
+  // @@protoc_insertion_point(field_get:APack.shipid)
+  return _internal_shipid();
 }
 inline void APack::_internal_set_shipid(int64_t value) {
-    _has_bits_[0] |= 0x00000001u;
-    shipid_ = value;
+  _has_bits_[0] |= 0x00000001u;
+  shipid_ = value;
 }
 inline void APack::set_shipid(int64_t value) {
-    _internal_set_shipid(value);
-    // @@protoc_insertion_point(field_set:APack.shipid)
+  _internal_set_shipid(value);
+  // @@protoc_insertion_point(field_set:APack.shipid)
 }
 
 // required int64 seqnum = 4;
 inline bool APack::_internal_has_seqnum() const {
-    bool value = (_has_bits_[0] & 0x00000002u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
 }
 inline bool APack::has_seqnum() const {
-    return _internal_has_seqnum();
+  return _internal_has_seqnum();
 }
 inline void APack::clear_seqnum() {
-    seqnum_ = int64_t{0};
-    _has_bits_[0] &= ~0x00000002u;
+  seqnum_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline int64_t APack::_internal_seqnum() const {
-    return seqnum_;
+  return seqnum_;
 }
 inline int64_t APack::seqnum() const {
-    // @@protoc_insertion_point(field_get:APack.seqnum)
-    return _internal_seqnum();
+  // @@protoc_insertion_point(field_get:APack.seqnum)
+  return _internal_seqnum();
 }
 inline void APack::_internal_set_seqnum(int64_t value) {
-    _has_bits_[0] |= 0x00000002u;
-    seqnum_ = value;
+  _has_bits_[0] |= 0x00000002u;
+  seqnum_ = value;
 }
 inline void APack::set_seqnum(int64_t value) {
-    _internal_set_seqnum(value);
-    // @@protoc_insertion_point(field_set:APack.seqnum)
+  _internal_set_seqnum(value);
+  // @@protoc_insertion_point(field_set:APack.seqnum)
 }
 
 // -------------------------------------------------------------------
@@ -3810,58 +3471,58 @@ inline void APack::set_seqnum(int64_t value) {
 
 // required int64 shipid = 1;
 inline bool APacked::_internal_has_shipid() const {
-    bool value = (_has_bits_[0] & 0x00000001u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
 }
 inline bool APacked::has_shipid() const {
-    return _internal_has_shipid();
+  return _internal_has_shipid();
 }
 inline void APacked::clear_shipid() {
-    shipid_ = int64_t{0};
-    _has_bits_[0] &= ~0x00000001u;
+  shipid_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline int64_t APacked::_internal_shipid() const {
-    return shipid_;
+  return shipid_;
 }
 inline int64_t APacked::shipid() const {
-    // @@protoc_insertion_point(field_get:APacked.shipid)
-    return _internal_shipid();
+  // @@protoc_insertion_point(field_get:APacked.shipid)
+  return _internal_shipid();
 }
 inline void APacked::_internal_set_shipid(int64_t value) {
-    _has_bits_[0] |= 0x00000001u;
-    shipid_ = value;
+  _has_bits_[0] |= 0x00000001u;
+  shipid_ = value;
 }
 inline void APacked::set_shipid(int64_t value) {
-    _internal_set_shipid(value);
-    // @@protoc_insertion_point(field_set:APacked.shipid)
+  _internal_set_shipid(value);
+  // @@protoc_insertion_point(field_set:APacked.shipid)
 }
 
 // required int64 seqnum = 2;
 inline bool APacked::_internal_has_seqnum() const {
-    bool value = (_has_bits_[0] & 0x00000002u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
 }
 inline bool APacked::has_seqnum() const {
-    return _internal_has_seqnum();
+  return _internal_has_seqnum();
 }
 inline void APacked::clear_seqnum() {
-    seqnum_ = int64_t{0};
-    _has_bits_[0] &= ~0x00000002u;
+  seqnum_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline int64_t APacked::_internal_seqnum() const {
-    return seqnum_;
+  return seqnum_;
 }
 inline int64_t APacked::seqnum() const {
-    // @@protoc_insertion_point(field_get:APacked.seqnum)
-    return _internal_seqnum();
+  // @@protoc_insertion_point(field_get:APacked.seqnum)
+  return _internal_seqnum();
 }
 inline void APacked::_internal_set_seqnum(int64_t value) {
-    _has_bits_[0] |= 0x00000002u;
-    seqnum_ = value;
+  _has_bits_[0] |= 0x00000002u;
+  seqnum_ = value;
 }
 inline void APacked::set_seqnum(int64_t value) {
-    _internal_set_seqnum(value);
-    // @@protoc_insertion_point(field_set:APacked.seqnum)
+  _internal_set_seqnum(value);
+  // @@protoc_insertion_point(field_set:APacked.seqnum)
 }
 
 // -------------------------------------------------------------------
@@ -3870,58 +3531,58 @@ inline void APacked::set_seqnum(int64_t value) {
 
 // required int64 shipid = 1;
 inline bool ALoaded::_internal_has_shipid() const {
-    bool value = (_has_bits_[0] & 0x00000001u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
 }
 inline bool ALoaded::has_shipid() const {
-    return _internal_has_shipid();
+  return _internal_has_shipid();
 }
 inline void ALoaded::clear_shipid() {
-    shipid_ = int64_t{0};
-    _has_bits_[0] &= ~0x00000001u;
+  shipid_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline int64_t ALoaded::_internal_shipid() const {
-    return shipid_;
+  return shipid_;
 }
 inline int64_t ALoaded::shipid() const {
-    // @@protoc_insertion_point(field_get:ALoaded.shipid)
-    return _internal_shipid();
+  // @@protoc_insertion_point(field_get:ALoaded.shipid)
+  return _internal_shipid();
 }
 inline void ALoaded::_internal_set_shipid(int64_t value) {
-    _has_bits_[0] |= 0x00000001u;
-    shipid_ = value;
+  _has_bits_[0] |= 0x00000001u;
+  shipid_ = value;
 }
 inline void ALoaded::set_shipid(int64_t value) {
-    _internal_set_shipid(value);
-    // @@protoc_insertion_point(field_set:ALoaded.shipid)
+  _internal_set_shipid(value);
+  // @@protoc_insertion_point(field_set:ALoaded.shipid)
 }
 
 // required int64 seqnum = 2;
 inline bool ALoaded::_internal_has_seqnum() const {
-    bool value = (_has_bits_[0] & 0x00000002u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
 }
 inline bool ALoaded::has_seqnum() const {
-    return _internal_has_seqnum();
+  return _internal_has_seqnum();
 }
 inline void ALoaded::clear_seqnum() {
-    seqnum_ = int64_t{0};
-    _has_bits_[0] &= ~0x00000002u;
+  seqnum_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline int64_t ALoaded::_internal_seqnum() const {
-    return seqnum_;
+  return seqnum_;
 }
 inline int64_t ALoaded::seqnum() const {
-    // @@protoc_insertion_point(field_get:ALoaded.seqnum)
-    return _internal_seqnum();
+  // @@protoc_insertion_point(field_get:ALoaded.seqnum)
+  return _internal_seqnum();
 }
 inline void ALoaded::_internal_set_seqnum(int64_t value) {
-    _has_bits_[0] |= 0x00000002u;
-    seqnum_ = value;
+  _has_bits_[0] |= 0x00000002u;
+  seqnum_ = value;
 }
 inline void ALoaded::set_seqnum(int64_t value) {
-    _internal_set_seqnum(value);
-    // @@protoc_insertion_point(field_set:ALoaded.seqnum)
+  _internal_set_seqnum(value);
+  // @@protoc_insertion_point(field_set:ALoaded.seqnum)
 }
 
 // -------------------------------------------------------------------
@@ -3930,114 +3591,114 @@ inline void ALoaded::set_seqnum(int64_t value) {
 
 // required int32 whnum = 1;
 inline bool APutOnTruck::_internal_has_whnum() const {
-    bool value = (_has_bits_[0] & 0x00000001u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
 }
 inline bool APutOnTruck::has_whnum() const {
-    return _internal_has_whnum();
+  return _internal_has_whnum();
 }
 inline void APutOnTruck::clear_whnum() {
-    whnum_ = 0;
-    _has_bits_[0] &= ~0x00000001u;
+  whnum_ = 0;
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline int32_t APutOnTruck::_internal_whnum() const {
-    return whnum_;
+  return whnum_;
 }
 inline int32_t APutOnTruck::whnum() const {
-    // @@protoc_insertion_point(field_get:APutOnTruck.whnum)
-    return _internal_whnum();
+  // @@protoc_insertion_point(field_get:APutOnTruck.whnum)
+  return _internal_whnum();
 }
 inline void APutOnTruck::_internal_set_whnum(int32_t value) {
-    _has_bits_[0] |= 0x00000001u;
-    whnum_ = value;
+  _has_bits_[0] |= 0x00000001u;
+  whnum_ = value;
 }
 inline void APutOnTruck::set_whnum(int32_t value) {
-    _internal_set_whnum(value);
-    // @@protoc_insertion_point(field_set:APutOnTruck.whnum)
+  _internal_set_whnum(value);
+  // @@protoc_insertion_point(field_set:APutOnTruck.whnum)
 }
 
 // required int32 truckid = 2;
 inline bool APutOnTruck::_internal_has_truckid() const {
-    bool value = (_has_bits_[0] & 0x00000002u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
 }
 inline bool APutOnTruck::has_truckid() const {
-    return _internal_has_truckid();
+  return _internal_has_truckid();
 }
 inline void APutOnTruck::clear_truckid() {
-    truckid_ = 0;
-    _has_bits_[0] &= ~0x00000002u;
+  truckid_ = 0;
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline int32_t APutOnTruck::_internal_truckid() const {
-    return truckid_;
+  return truckid_;
 }
 inline int32_t APutOnTruck::truckid() const {
-    // @@protoc_insertion_point(field_get:APutOnTruck.truckid)
-    return _internal_truckid();
+  // @@protoc_insertion_point(field_get:APutOnTruck.truckid)
+  return _internal_truckid();
 }
 inline void APutOnTruck::_internal_set_truckid(int32_t value) {
-    _has_bits_[0] |= 0x00000002u;
-    truckid_ = value;
+  _has_bits_[0] |= 0x00000002u;
+  truckid_ = value;
 }
 inline void APutOnTruck::set_truckid(int32_t value) {
-    _internal_set_truckid(value);
-    // @@protoc_insertion_point(field_set:APutOnTruck.truckid)
+  _internal_set_truckid(value);
+  // @@protoc_insertion_point(field_set:APutOnTruck.truckid)
 }
 
 // required int64 shipid = 3;
 inline bool APutOnTruck::_internal_has_shipid() const {
-    bool value = (_has_bits_[0] & 0x00000004u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
 }
 inline bool APutOnTruck::has_shipid() const {
-    return _internal_has_shipid();
+  return _internal_has_shipid();
 }
 inline void APutOnTruck::clear_shipid() {
-    shipid_ = int64_t{0};
-    _has_bits_[0] &= ~0x00000004u;
+  shipid_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline int64_t APutOnTruck::_internal_shipid() const {
-    return shipid_;
+  return shipid_;
 }
 inline int64_t APutOnTruck::shipid() const {
-    // @@protoc_insertion_point(field_get:APutOnTruck.shipid)
-    return _internal_shipid();
+  // @@protoc_insertion_point(field_get:APutOnTruck.shipid)
+  return _internal_shipid();
 }
 inline void APutOnTruck::_internal_set_shipid(int64_t value) {
-    _has_bits_[0] |= 0x00000004u;
-    shipid_ = value;
+  _has_bits_[0] |= 0x00000004u;
+  shipid_ = value;
 }
 inline void APutOnTruck::set_shipid(int64_t value) {
-    _internal_set_shipid(value);
-    // @@protoc_insertion_point(field_set:APutOnTruck.shipid)
+  _internal_set_shipid(value);
+  // @@protoc_insertion_point(field_set:APutOnTruck.shipid)
 }
 
 // required int64 seqnum = 4;
 inline bool APutOnTruck::_internal_has_seqnum() const {
-    bool value = (_has_bits_[0] & 0x00000008u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  return value;
 }
 inline bool APutOnTruck::has_seqnum() const {
-    return _internal_has_seqnum();
+  return _internal_has_seqnum();
 }
 inline void APutOnTruck::clear_seqnum() {
-    seqnum_ = int64_t{0};
-    _has_bits_[0] &= ~0x00000008u;
+  seqnum_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000008u;
 }
 inline int64_t APutOnTruck::_internal_seqnum() const {
-    return seqnum_;
+  return seqnum_;
 }
 inline int64_t APutOnTruck::seqnum() const {
-    // @@protoc_insertion_point(field_get:APutOnTruck.seqnum)
-    return _internal_seqnum();
+  // @@protoc_insertion_point(field_get:APutOnTruck.seqnum)
+  return _internal_seqnum();
 }
 inline void APutOnTruck::_internal_set_seqnum(int64_t value) {
-    _has_bits_[0] |= 0x00000008u;
-    seqnum_ = value;
+  _has_bits_[0] |= 0x00000008u;
+  seqnum_ = value;
 }
 inline void APutOnTruck::set_seqnum(int64_t value) {
-    _internal_set_seqnum(value);
-    // @@protoc_insertion_point(field_set:APutOnTruck.seqnum)
+  _internal_set_seqnum(value);
+  // @@protoc_insertion_point(field_set:APutOnTruck.seqnum)
 }
 
 // -------------------------------------------------------------------
@@ -4046,98 +3707,98 @@ inline void APutOnTruck::set_seqnum(int64_t value) {
 
 // required int32 whnum = 1;
 inline bool APurchaseMore::_internal_has_whnum() const {
-    bool value = (_has_bits_[0] & 0x00000002u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
 }
 inline bool APurchaseMore::has_whnum() const {
-    return _internal_has_whnum();
+  return _internal_has_whnum();
 }
 inline void APurchaseMore::clear_whnum() {
-    whnum_ = 0;
-    _has_bits_[0] &= ~0x00000002u;
+  whnum_ = 0;
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline int32_t APurchaseMore::_internal_whnum() const {
-    return whnum_;
+  return whnum_;
 }
 inline int32_t APurchaseMore::whnum() const {
-    // @@protoc_insertion_point(field_get:APurchaseMore.whnum)
-    return _internal_whnum();
+  // @@protoc_insertion_point(field_get:APurchaseMore.whnum)
+  return _internal_whnum();
 }
 inline void APurchaseMore::_internal_set_whnum(int32_t value) {
-    _has_bits_[0] |= 0x00000002u;
-    whnum_ = value;
+  _has_bits_[0] |= 0x00000002u;
+  whnum_ = value;
 }
 inline void APurchaseMore::set_whnum(int32_t value) {
-    _internal_set_whnum(value);
-    // @@protoc_insertion_point(field_set:APurchaseMore.whnum)
+  _internal_set_whnum(value);
+  // @@protoc_insertion_point(field_set:APurchaseMore.whnum)
 }
 
 // repeated .AProduct things = 2;
 inline int APurchaseMore::_internal_things_size() const {
-    return things_.size();
+  return things_.size();
 }
 inline int APurchaseMore::things_size() const {
-    return _internal_things_size();
+  return _internal_things_size();
 }
 inline void APurchaseMore::clear_things() {
-    things_.Clear();
+  things_.Clear();
 }
 inline ::AProduct* APurchaseMore::mutable_things(int index) {
-    // @@protoc_insertion_point(field_mutable:APurchaseMore.things)
-    return things_.Mutable(index);
+  // @@protoc_insertion_point(field_mutable:APurchaseMore.things)
+  return things_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::AProduct>*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AProduct >*
 APurchaseMore::mutable_things() {
-    // @@protoc_insertion_point(field_mutable_list:APurchaseMore.things)
-    return &things_;
+  // @@protoc_insertion_point(field_mutable_list:APurchaseMore.things)
+  return &things_;
 }
 inline const ::AProduct& APurchaseMore::_internal_things(int index) const {
-    return things_.Get(index);
+  return things_.Get(index);
 }
 inline const ::AProduct& APurchaseMore::things(int index) const {
-    // @@protoc_insertion_point(field_get:APurchaseMore.things)
-    return _internal_things(index);
+  // @@protoc_insertion_point(field_get:APurchaseMore.things)
+  return _internal_things(index);
 }
 inline ::AProduct* APurchaseMore::_internal_add_things() {
-    return things_.Add();
+  return things_.Add();
 }
 inline ::AProduct* APurchaseMore::add_things() {
-    ::AProduct* _add = _internal_add_things();
-    // @@protoc_insertion_point(field_add:APurchaseMore.things)
-    return _add;
+  ::AProduct* _add = _internal_add_things();
+  // @@protoc_insertion_point(field_add:APurchaseMore.things)
+  return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::AProduct>&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AProduct >&
 APurchaseMore::things() const {
-    // @@protoc_insertion_point(field_list:APurchaseMore.things)
-    return things_;
+  // @@protoc_insertion_point(field_list:APurchaseMore.things)
+  return things_;
 }
 
 // required int64 seqnum = 3;
 inline bool APurchaseMore::_internal_has_seqnum() const {
-    bool value = (_has_bits_[0] & 0x00000001u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
 }
 inline bool APurchaseMore::has_seqnum() const {
-    return _internal_has_seqnum();
+  return _internal_has_seqnum();
 }
 inline void APurchaseMore::clear_seqnum() {
-    seqnum_ = int64_t{0};
-    _has_bits_[0] &= ~0x00000001u;
+  seqnum_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline int64_t APurchaseMore::_internal_seqnum() const {
-    return seqnum_;
+  return seqnum_;
 }
 inline int64_t APurchaseMore::seqnum() const {
-    // @@protoc_insertion_point(field_get:APurchaseMore.seqnum)
-    return _internal_seqnum();
+  // @@protoc_insertion_point(field_get:APurchaseMore.seqnum)
+  return _internal_seqnum();
 }
 inline void APurchaseMore::_internal_set_seqnum(int64_t value) {
-    _has_bits_[0] |= 0x00000001u;
-    seqnum_ = value;
+  _has_bits_[0] |= 0x00000001u;
+  seqnum_ = value;
 }
 inline void APurchaseMore::set_seqnum(int64_t value) {
-    _internal_set_seqnum(value);
-    // @@protoc_insertion_point(field_set:APurchaseMore.seqnum)
+  _internal_set_seqnum(value);
+  // @@protoc_insertion_point(field_set:APurchaseMore.seqnum)
 }
 
 // -------------------------------------------------------------------
@@ -4146,125 +3807,126 @@ inline void APurchaseMore::set_seqnum(int64_t value) {
 
 // required string err = 1;
 inline bool AErr::_internal_has_err() const {
-    bool value = (_has_bits_[0] & 0x00000001u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
 }
 inline bool AErr::has_err() const {
-    return _internal_has_err();
+  return _internal_has_err();
 }
 inline void AErr::clear_err() {
-    err_.ClearToEmpty();
-    _has_bits_[0] &= ~0x00000001u;
+  err_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline const std::string& AErr::err() const {
-    // @@protoc_insertion_point(field_get:AErr.err)
-    return _internal_err();
+  // @@protoc_insertion_point(field_get:AErr.err)
+  return _internal_err();
 }
 template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE void AErr::set_err(ArgT0&& arg0, ArgT... args) {
-    _has_bits_[0] |= 0x00000001u;
-    err_.Set(static_cast<ArgT0&&>(arg0), args..., GetArenaForAllocation());
-    // @@protoc_insertion_point(field_set:AErr.err)
+inline PROTOBUF_ALWAYS_INLINE
+void AErr::set_err(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ err_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:AErr.err)
 }
 inline std::string* AErr::mutable_err() {
-    std::string* _s = _internal_mutable_err();
-    // @@protoc_insertion_point(field_mutable:AErr.err)
-    return _s;
+  std::string* _s = _internal_mutable_err();
+  // @@protoc_insertion_point(field_mutable:AErr.err)
+  return _s;
 }
 inline const std::string& AErr::_internal_err() const {
-    return err_.Get();
+  return err_.Get();
 }
 inline void AErr::_internal_set_err(const std::string& value) {
-    _has_bits_[0] |= 0x00000001u;
-    err_.Set(value, GetArenaForAllocation());
+  _has_bits_[0] |= 0x00000001u;
+  err_.Set(value, GetArenaForAllocation());
 }
 inline std::string* AErr::_internal_mutable_err() {
-    _has_bits_[0] |= 0x00000001u;
-    return err_.Mutable(GetArenaForAllocation());
+  _has_bits_[0] |= 0x00000001u;
+  return err_.Mutable(GetArenaForAllocation());
 }
 inline std::string* AErr::release_err() {
-    // @@protoc_insertion_point(field_release:AErr.err)
-    if (!_internal_has_err()) {
-        return nullptr;
-    }
-    _has_bits_[0] &= ~0x00000001u;
-    auto* p = err_.Release();
+  // @@protoc_insertion_point(field_release:AErr.err)
+  if (!_internal_has_err()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = err_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    if (err_.IsDefault()) {
-        err_.Set("", GetArenaForAllocation());
-    }
-#endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    return p;
+  if (err_.IsDefault()) {
+    err_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
 }
 inline void AErr::set_allocated_err(std::string* err) {
-    if (err != nullptr) {
-        _has_bits_[0] |= 0x00000001u;
-    } else {
-        _has_bits_[0] &= ~0x00000001u;
-    }
-    err_.SetAllocated(err, GetArenaForAllocation());
+  if (err != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  err_.SetAllocated(err, GetArenaForAllocation());
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    if (err_.IsDefault()) {
-        err_.Set("", GetArenaForAllocation());
-    }
-#endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        // @@protoc_insertion_point(field_set_allocated:AErr.err)
+  if (err_.IsDefault()) {
+    err_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:AErr.err)
 }
 
 // required int64 originseqnum = 2;
 inline bool AErr::_internal_has_originseqnum() const {
-    bool value = (_has_bits_[0] & 0x00000002u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
 }
 inline bool AErr::has_originseqnum() const {
-    return _internal_has_originseqnum();
+  return _internal_has_originseqnum();
 }
 inline void AErr::clear_originseqnum() {
-    originseqnum_ = int64_t{0};
-    _has_bits_[0] &= ~0x00000002u;
+  originseqnum_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline int64_t AErr::_internal_originseqnum() const {
-    return originseqnum_;
+  return originseqnum_;
 }
 inline int64_t AErr::originseqnum() const {
-    // @@protoc_insertion_point(field_get:AErr.originseqnum)
-    return _internal_originseqnum();
+  // @@protoc_insertion_point(field_get:AErr.originseqnum)
+  return _internal_originseqnum();
 }
 inline void AErr::_internal_set_originseqnum(int64_t value) {
-    _has_bits_[0] |= 0x00000002u;
-    originseqnum_ = value;
+  _has_bits_[0] |= 0x00000002u;
+  originseqnum_ = value;
 }
 inline void AErr::set_originseqnum(int64_t value) {
-    _internal_set_originseqnum(value);
-    // @@protoc_insertion_point(field_set:AErr.originseqnum)
+  _internal_set_originseqnum(value);
+  // @@protoc_insertion_point(field_set:AErr.originseqnum)
 }
 
 // required int64 seqnum = 3;
 inline bool AErr::_internal_has_seqnum() const {
-    bool value = (_has_bits_[0] & 0x00000004u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
 }
 inline bool AErr::has_seqnum() const {
-    return _internal_has_seqnum();
+  return _internal_has_seqnum();
 }
 inline void AErr::clear_seqnum() {
-    seqnum_ = int64_t{0};
-    _has_bits_[0] &= ~0x00000004u;
+  seqnum_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline int64_t AErr::_internal_seqnum() const {
-    return seqnum_;
+  return seqnum_;
 }
 inline int64_t AErr::seqnum() const {
-    // @@protoc_insertion_point(field_get:AErr.seqnum)
-    return _internal_seqnum();
+  // @@protoc_insertion_point(field_get:AErr.seqnum)
+  return _internal_seqnum();
 }
 inline void AErr::_internal_set_seqnum(int64_t value) {
-    _has_bits_[0] |= 0x00000004u;
-    seqnum_ = value;
+  _has_bits_[0] |= 0x00000004u;
+  seqnum_ = value;
 }
 inline void AErr::set_seqnum(int64_t value) {
-    _internal_set_seqnum(value);
-    // @@protoc_insertion_point(field_set:AErr.seqnum)
+  _internal_set_seqnum(value);
+  // @@protoc_insertion_point(field_set:AErr.seqnum)
 }
 
 // -------------------------------------------------------------------
@@ -4273,58 +3935,58 @@ inline void AErr::set_seqnum(int64_t value) {
 
 // required int64 packageid = 1;
 inline bool AQuery::_internal_has_packageid() const {
-    bool value = (_has_bits_[0] & 0x00000001u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
 }
 inline bool AQuery::has_packageid() const {
-    return _internal_has_packageid();
+  return _internal_has_packageid();
 }
 inline void AQuery::clear_packageid() {
-    packageid_ = int64_t{0};
-    _has_bits_[0] &= ~0x00000001u;
+  packageid_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline int64_t AQuery::_internal_packageid() const {
-    return packageid_;
+  return packageid_;
 }
 inline int64_t AQuery::packageid() const {
-    // @@protoc_insertion_point(field_get:AQuery.packageid)
-    return _internal_packageid();
+  // @@protoc_insertion_point(field_get:AQuery.packageid)
+  return _internal_packageid();
 }
 inline void AQuery::_internal_set_packageid(int64_t value) {
-    _has_bits_[0] |= 0x00000001u;
-    packageid_ = value;
+  _has_bits_[0] |= 0x00000001u;
+  packageid_ = value;
 }
 inline void AQuery::set_packageid(int64_t value) {
-    _internal_set_packageid(value);
-    // @@protoc_insertion_point(field_set:AQuery.packageid)
+  _internal_set_packageid(value);
+  // @@protoc_insertion_point(field_set:AQuery.packageid)
 }
 
 // required int64 seqnum = 2;
 inline bool AQuery::_internal_has_seqnum() const {
-    bool value = (_has_bits_[0] & 0x00000002u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
 }
 inline bool AQuery::has_seqnum() const {
-    return _internal_has_seqnum();
+  return _internal_has_seqnum();
 }
 inline void AQuery::clear_seqnum() {
-    seqnum_ = int64_t{0};
-    _has_bits_[0] &= ~0x00000002u;
+  seqnum_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline int64_t AQuery::_internal_seqnum() const {
-    return seqnum_;
+  return seqnum_;
 }
 inline int64_t AQuery::seqnum() const {
-    // @@protoc_insertion_point(field_get:AQuery.seqnum)
-    return _internal_seqnum();
+  // @@protoc_insertion_point(field_get:AQuery.seqnum)
+  return _internal_seqnum();
 }
 inline void AQuery::_internal_set_seqnum(int64_t value) {
-    _has_bits_[0] |= 0x00000002u;
-    seqnum_ = value;
+  _has_bits_[0] |= 0x00000002u;
+  seqnum_ = value;
 }
 inline void AQuery::set_seqnum(int64_t value) {
-    _internal_set_seqnum(value);
-    // @@protoc_insertion_point(field_set:AQuery.seqnum)
+  _internal_set_seqnum(value);
+  // @@protoc_insertion_point(field_set:AQuery.seqnum)
 }
 
 // -------------------------------------------------------------------
@@ -4333,126 +3995,126 @@ inline void AQuery::set_seqnum(int64_t value) {
 
 // required int64 packageid = 1;
 inline bool APackage::_internal_has_packageid() const {
-    bool value = (_has_bits_[0] & 0x00000002u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
 }
 inline bool APackage::has_packageid() const {
-    return _internal_has_packageid();
+  return _internal_has_packageid();
 }
 inline void APackage::clear_packageid() {
-    packageid_ = int64_t{0};
-    _has_bits_[0] &= ~0x00000002u;
+  packageid_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline int64_t APackage::_internal_packageid() const {
-    return packageid_;
+  return packageid_;
 }
 inline int64_t APackage::packageid() const {
-    // @@protoc_insertion_point(field_get:APackage.packageid)
-    return _internal_packageid();
+  // @@protoc_insertion_point(field_get:APackage.packageid)
+  return _internal_packageid();
 }
 inline void APackage::_internal_set_packageid(int64_t value) {
-    _has_bits_[0] |= 0x00000002u;
-    packageid_ = value;
+  _has_bits_[0] |= 0x00000002u;
+  packageid_ = value;
 }
 inline void APackage::set_packageid(int64_t value) {
-    _internal_set_packageid(value);
-    // @@protoc_insertion_point(field_set:APackage.packageid)
+  _internal_set_packageid(value);
+  // @@protoc_insertion_point(field_set:APackage.packageid)
 }
 
 // required string status = 2;
 inline bool APackage::_internal_has_status() const {
-    bool value = (_has_bits_[0] & 0x00000001u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
 }
 inline bool APackage::has_status() const {
-    return _internal_has_status();
+  return _internal_has_status();
 }
 inline void APackage::clear_status() {
-    status_.ClearToEmpty();
-    _has_bits_[0] &= ~0x00000001u;
+  status_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline const std::string& APackage::status() const {
-    // @@protoc_insertion_point(field_get:APackage.status)
-    return _internal_status();
+  // @@protoc_insertion_point(field_get:APackage.status)
+  return _internal_status();
 }
 template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE void APackage::set_status(ArgT0&& arg0,
-                                                        ArgT... args) {
-    _has_bits_[0] |= 0x00000001u;
-    status_.Set(static_cast<ArgT0&&>(arg0), args..., GetArenaForAllocation());
-    // @@protoc_insertion_point(field_set:APackage.status)
+inline PROTOBUF_ALWAYS_INLINE
+void APackage::set_status(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ status_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:APackage.status)
 }
 inline std::string* APackage::mutable_status() {
-    std::string* _s = _internal_mutable_status();
-    // @@protoc_insertion_point(field_mutable:APackage.status)
-    return _s;
+  std::string* _s = _internal_mutable_status();
+  // @@protoc_insertion_point(field_mutable:APackage.status)
+  return _s;
 }
 inline const std::string& APackage::_internal_status() const {
-    return status_.Get();
+  return status_.Get();
 }
 inline void APackage::_internal_set_status(const std::string& value) {
-    _has_bits_[0] |= 0x00000001u;
-    status_.Set(value, GetArenaForAllocation());
+  _has_bits_[0] |= 0x00000001u;
+  status_.Set(value, GetArenaForAllocation());
 }
 inline std::string* APackage::_internal_mutable_status() {
-    _has_bits_[0] |= 0x00000001u;
-    return status_.Mutable(GetArenaForAllocation());
+  _has_bits_[0] |= 0x00000001u;
+  return status_.Mutable(GetArenaForAllocation());
 }
 inline std::string* APackage::release_status() {
-    // @@protoc_insertion_point(field_release:APackage.status)
-    if (!_internal_has_status()) {
-        return nullptr;
-    }
-    _has_bits_[0] &= ~0x00000001u;
-    auto* p = status_.Release();
+  // @@protoc_insertion_point(field_release:APackage.status)
+  if (!_internal_has_status()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = status_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    if (status_.IsDefault()) {
-        status_.Set("", GetArenaForAllocation());
-    }
-#endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    return p;
+  if (status_.IsDefault()) {
+    status_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
 }
 inline void APackage::set_allocated_status(std::string* status) {
-    if (status != nullptr) {
-        _has_bits_[0] |= 0x00000001u;
-    } else {
-        _has_bits_[0] &= ~0x00000001u;
-    }
-    status_.SetAllocated(status, GetArenaForAllocation());
+  if (status != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  status_.SetAllocated(status, GetArenaForAllocation());
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    if (status_.IsDefault()) {
-        status_.Set("", GetArenaForAllocation());
-    }
-#endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        // @@protoc_insertion_point(field_set_allocated:APackage.status)
+  if (status_.IsDefault()) {
+    status_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:APackage.status)
 }
 
 // required int64 seqnum = 3;
 inline bool APackage::_internal_has_seqnum() const {
-    bool value = (_has_bits_[0] & 0x00000004u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
 }
 inline bool APackage::has_seqnum() const {
-    return _internal_has_seqnum();
+  return _internal_has_seqnum();
 }
 inline void APackage::clear_seqnum() {
-    seqnum_ = int64_t{0};
-    _has_bits_[0] &= ~0x00000004u;
+  seqnum_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline int64_t APackage::_internal_seqnum() const {
-    return seqnum_;
+  return seqnum_;
 }
 inline int64_t APackage::seqnum() const {
-    // @@protoc_insertion_point(field_get:APackage.seqnum)
-    return _internal_seqnum();
+  // @@protoc_insertion_point(field_get:APackage.seqnum)
+  return _internal_seqnum();
 }
 inline void APackage::_internal_set_seqnum(int64_t value) {
-    _has_bits_[0] |= 0x00000004u;
-    seqnum_ = value;
+  _has_bits_[0] |= 0x00000004u;
+  seqnum_ = value;
 }
 inline void APackage::set_seqnum(int64_t value) {
-    _internal_set_seqnum(value);
-    // @@protoc_insertion_point(field_set:APackage.seqnum)
+  _internal_set_seqnum(value);
+  // @@protoc_insertion_point(field_set:APackage.seqnum)
 }
 
 // -------------------------------------------------------------------
@@ -4461,265 +4123,265 @@ inline void APackage::set_seqnum(int64_t value) {
 
 // repeated .APurchaseMore buy = 1;
 inline int ACommands::_internal_buy_size() const {
-    return buy_.size();
+  return buy_.size();
 }
 inline int ACommands::buy_size() const {
-    return _internal_buy_size();
+  return _internal_buy_size();
 }
 inline void ACommands::clear_buy() {
-    buy_.Clear();
+  buy_.Clear();
 }
 inline ::APurchaseMore* ACommands::mutable_buy(int index) {
-    // @@protoc_insertion_point(field_mutable:ACommands.buy)
-    return buy_.Mutable(index);
+  // @@protoc_insertion_point(field_mutable:ACommands.buy)
+  return buy_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APurchaseMore>*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APurchaseMore >*
 ACommands::mutable_buy() {
-    // @@protoc_insertion_point(field_mutable_list:ACommands.buy)
-    return &buy_;
+  // @@protoc_insertion_point(field_mutable_list:ACommands.buy)
+  return &buy_;
 }
 inline const ::APurchaseMore& ACommands::_internal_buy(int index) const {
-    return buy_.Get(index);
+  return buy_.Get(index);
 }
 inline const ::APurchaseMore& ACommands::buy(int index) const {
-    // @@protoc_insertion_point(field_get:ACommands.buy)
-    return _internal_buy(index);
+  // @@protoc_insertion_point(field_get:ACommands.buy)
+  return _internal_buy(index);
 }
 inline ::APurchaseMore* ACommands::_internal_add_buy() {
-    return buy_.Add();
+  return buy_.Add();
 }
 inline ::APurchaseMore* ACommands::add_buy() {
-    ::APurchaseMore* _add = _internal_add_buy();
-    // @@protoc_insertion_point(field_add:ACommands.buy)
-    return _add;
+  ::APurchaseMore* _add = _internal_add_buy();
+  // @@protoc_insertion_point(field_add:ACommands.buy)
+  return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APurchaseMore>&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APurchaseMore >&
 ACommands::buy() const {
-    // @@protoc_insertion_point(field_list:ACommands.buy)
-    return buy_;
+  // @@protoc_insertion_point(field_list:ACommands.buy)
+  return buy_;
 }
 
 // repeated .APack topack = 2;
 inline int ACommands::_internal_topack_size() const {
-    return topack_.size();
+  return topack_.size();
 }
 inline int ACommands::topack_size() const {
-    return _internal_topack_size();
+  return _internal_topack_size();
 }
 inline void ACommands::clear_topack() {
-    topack_.Clear();
+  topack_.Clear();
 }
 inline ::APack* ACommands::mutable_topack(int index) {
-    // @@protoc_insertion_point(field_mutable:ACommands.topack)
-    return topack_.Mutable(index);
+  // @@protoc_insertion_point(field_mutable:ACommands.topack)
+  return topack_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APack>*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APack >*
 ACommands::mutable_topack() {
-    // @@protoc_insertion_point(field_mutable_list:ACommands.topack)
-    return &topack_;
+  // @@protoc_insertion_point(field_mutable_list:ACommands.topack)
+  return &topack_;
 }
 inline const ::APack& ACommands::_internal_topack(int index) const {
-    return topack_.Get(index);
+  return topack_.Get(index);
 }
 inline const ::APack& ACommands::topack(int index) const {
-    // @@protoc_insertion_point(field_get:ACommands.topack)
-    return _internal_topack(index);
+  // @@protoc_insertion_point(field_get:ACommands.topack)
+  return _internal_topack(index);
 }
 inline ::APack* ACommands::_internal_add_topack() {
-    return topack_.Add();
+  return topack_.Add();
 }
 inline ::APack* ACommands::add_topack() {
-    ::APack* _add = _internal_add_topack();
-    // @@protoc_insertion_point(field_add:ACommands.topack)
-    return _add;
+  ::APack* _add = _internal_add_topack();
+  // @@protoc_insertion_point(field_add:ACommands.topack)
+  return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APack>&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APack >&
 ACommands::topack() const {
-    // @@protoc_insertion_point(field_list:ACommands.topack)
-    return topack_;
+  // @@protoc_insertion_point(field_list:ACommands.topack)
+  return topack_;
 }
 
 // repeated .APutOnTruck load = 3;
 inline int ACommands::_internal_load_size() const {
-    return load_.size();
+  return load_.size();
 }
 inline int ACommands::load_size() const {
-    return _internal_load_size();
+  return _internal_load_size();
 }
 inline void ACommands::clear_load() {
-    load_.Clear();
+  load_.Clear();
 }
 inline ::APutOnTruck* ACommands::mutable_load(int index) {
-    // @@protoc_insertion_point(field_mutable:ACommands.load)
-    return load_.Mutable(index);
+  // @@protoc_insertion_point(field_mutable:ACommands.load)
+  return load_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APutOnTruck>*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APutOnTruck >*
 ACommands::mutable_load() {
-    // @@protoc_insertion_point(field_mutable_list:ACommands.load)
-    return &load_;
+  // @@protoc_insertion_point(field_mutable_list:ACommands.load)
+  return &load_;
 }
 inline const ::APutOnTruck& ACommands::_internal_load(int index) const {
-    return load_.Get(index);
+  return load_.Get(index);
 }
 inline const ::APutOnTruck& ACommands::load(int index) const {
-    // @@protoc_insertion_point(field_get:ACommands.load)
-    return _internal_load(index);
+  // @@protoc_insertion_point(field_get:ACommands.load)
+  return _internal_load(index);
 }
 inline ::APutOnTruck* ACommands::_internal_add_load() {
-    return load_.Add();
+  return load_.Add();
 }
 inline ::APutOnTruck* ACommands::add_load() {
-    ::APutOnTruck* _add = _internal_add_load();
-    // @@protoc_insertion_point(field_add:ACommands.load)
-    return _add;
+  ::APutOnTruck* _add = _internal_add_load();
+  // @@protoc_insertion_point(field_add:ACommands.load)
+  return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APutOnTruck>&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APutOnTruck >&
 ACommands::load() const {
-    // @@protoc_insertion_point(field_list:ACommands.load)
-    return load_;
+  // @@protoc_insertion_point(field_list:ACommands.load)
+  return load_;
 }
 
 // repeated .AQuery queries = 4;
 inline int ACommands::_internal_queries_size() const {
-    return queries_.size();
+  return queries_.size();
 }
 inline int ACommands::queries_size() const {
-    return _internal_queries_size();
+  return _internal_queries_size();
 }
 inline void ACommands::clear_queries() {
-    queries_.Clear();
+  queries_.Clear();
 }
 inline ::AQuery* ACommands::mutable_queries(int index) {
-    // @@protoc_insertion_point(field_mutable:ACommands.queries)
-    return queries_.Mutable(index);
+  // @@protoc_insertion_point(field_mutable:ACommands.queries)
+  return queries_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::AQuery>*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AQuery >*
 ACommands::mutable_queries() {
-    // @@protoc_insertion_point(field_mutable_list:ACommands.queries)
-    return &queries_;
+  // @@protoc_insertion_point(field_mutable_list:ACommands.queries)
+  return &queries_;
 }
 inline const ::AQuery& ACommands::_internal_queries(int index) const {
-    return queries_.Get(index);
+  return queries_.Get(index);
 }
 inline const ::AQuery& ACommands::queries(int index) const {
-    // @@protoc_insertion_point(field_get:ACommands.queries)
-    return _internal_queries(index);
+  // @@protoc_insertion_point(field_get:ACommands.queries)
+  return _internal_queries(index);
 }
 inline ::AQuery* ACommands::_internal_add_queries() {
-    return queries_.Add();
+  return queries_.Add();
 }
 inline ::AQuery* ACommands::add_queries() {
-    ::AQuery* _add = _internal_add_queries();
-    // @@protoc_insertion_point(field_add:ACommands.queries)
-    return _add;
+  ::AQuery* _add = _internal_add_queries();
+  // @@protoc_insertion_point(field_add:ACommands.queries)
+  return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::AQuery>&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AQuery >&
 ACommands::queries() const {
-    // @@protoc_insertion_point(field_list:ACommands.queries)
-    return queries_;
+  // @@protoc_insertion_point(field_list:ACommands.queries)
+  return queries_;
 }
 
 // optional uint32 simspeed = 5;
 inline bool ACommands::_internal_has_simspeed() const {
-    bool value = (_has_bits_[0] & 0x00000001u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
 }
 inline bool ACommands::has_simspeed() const {
-    return _internal_has_simspeed();
+  return _internal_has_simspeed();
 }
 inline void ACommands::clear_simspeed() {
-    simspeed_ = 0u;
-    _has_bits_[0] &= ~0x00000001u;
+  simspeed_ = 0u;
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline uint32_t ACommands::_internal_simspeed() const {
-    return simspeed_;
+  return simspeed_;
 }
 inline uint32_t ACommands::simspeed() const {
-    // @@protoc_insertion_point(field_get:ACommands.simspeed)
-    return _internal_simspeed();
+  // @@protoc_insertion_point(field_get:ACommands.simspeed)
+  return _internal_simspeed();
 }
 inline void ACommands::_internal_set_simspeed(uint32_t value) {
-    _has_bits_[0] |= 0x00000001u;
-    simspeed_ = value;
+  _has_bits_[0] |= 0x00000001u;
+  simspeed_ = value;
 }
 inline void ACommands::set_simspeed(uint32_t value) {
-    _internal_set_simspeed(value);
-    // @@protoc_insertion_point(field_set:ACommands.simspeed)
+  _internal_set_simspeed(value);
+  // @@protoc_insertion_point(field_set:ACommands.simspeed)
 }
 
 // optional bool disconnect = 6;
 inline bool ACommands::_internal_has_disconnect() const {
-    bool value = (_has_bits_[0] & 0x00000002u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
 }
 inline bool ACommands::has_disconnect() const {
-    return _internal_has_disconnect();
+  return _internal_has_disconnect();
 }
 inline void ACommands::clear_disconnect() {
-    disconnect_ = false;
-    _has_bits_[0] &= ~0x00000002u;
+  disconnect_ = false;
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline bool ACommands::_internal_disconnect() const {
-    return disconnect_;
+  return disconnect_;
 }
 inline bool ACommands::disconnect() const {
-    // @@protoc_insertion_point(field_get:ACommands.disconnect)
-    return _internal_disconnect();
+  // @@protoc_insertion_point(field_get:ACommands.disconnect)
+  return _internal_disconnect();
 }
 inline void ACommands::_internal_set_disconnect(bool value) {
-    _has_bits_[0] |= 0x00000002u;
-    disconnect_ = value;
+  _has_bits_[0] |= 0x00000002u;
+  disconnect_ = value;
 }
 inline void ACommands::set_disconnect(bool value) {
-    _internal_set_disconnect(value);
-    // @@protoc_insertion_point(field_set:ACommands.disconnect)
+  _internal_set_disconnect(value);
+  // @@protoc_insertion_point(field_set:ACommands.disconnect)
 }
 
 // repeated int64 acks = 7;
 inline int ACommands::_internal_acks_size() const {
-    return acks_.size();
+  return acks_.size();
 }
 inline int ACommands::acks_size() const {
-    return _internal_acks_size();
+  return _internal_acks_size();
 }
 inline void ACommands::clear_acks() {
-    acks_.Clear();
+  acks_.Clear();
 }
 inline int64_t ACommands::_internal_acks(int index) const {
-    return acks_.Get(index);
+  return acks_.Get(index);
 }
 inline int64_t ACommands::acks(int index) const {
-    // @@protoc_insertion_point(field_get:ACommands.acks)
-    return _internal_acks(index);
+  // @@protoc_insertion_point(field_get:ACommands.acks)
+  return _internal_acks(index);
 }
 inline void ACommands::set_acks(int index, int64_t value) {
-    acks_.Set(index, value);
-    // @@protoc_insertion_point(field_set:ACommands.acks)
+  acks_.Set(index, value);
+  // @@protoc_insertion_point(field_set:ACommands.acks)
 }
 inline void ACommands::_internal_add_acks(int64_t value) {
-    acks_.Add(value);
+  acks_.Add(value);
 }
 inline void ACommands::add_acks(int64_t value) {
-    _internal_add_acks(value);
-    // @@protoc_insertion_point(field_add:ACommands.acks)
+  _internal_add_acks(value);
+  // @@protoc_insertion_point(field_add:ACommands.acks)
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField<int64_t>&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >&
 ACommands::_internal_acks() const {
-    return acks_;
+  return acks_;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField<int64_t>& ACommands::acks()
-    const {
-    // @@protoc_insertion_point(field_list:ACommands.acks)
-    return _internal_acks();
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >&
+ACommands::acks() const {
+  // @@protoc_insertion_point(field_list:ACommands.acks)
+  return _internal_acks();
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedField<int64_t>*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
 ACommands::_internal_mutable_acks() {
-    return &acks_;
+  return &acks_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedField<int64_t>*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
 ACommands::mutable_acks() {
-    // @@protoc_insertion_point(field_mutable_list:ACommands.acks)
-    return _internal_mutable_acks();
+  // @@protoc_insertion_point(field_mutable_list:ACommands.acks)
+  return _internal_mutable_acks();
 }
 
 // -------------------------------------------------------------------
@@ -4728,281 +4390,281 @@ ACommands::mutable_acks() {
 
 // repeated .APurchaseMore arrived = 1;
 inline int AResponses::_internal_arrived_size() const {
-    return arrived_.size();
+  return arrived_.size();
 }
 inline int AResponses::arrived_size() const {
-    return _internal_arrived_size();
+  return _internal_arrived_size();
 }
 inline void AResponses::clear_arrived() {
-    arrived_.Clear();
+  arrived_.Clear();
 }
 inline ::APurchaseMore* AResponses::mutable_arrived(int index) {
-    // @@protoc_insertion_point(field_mutable:AResponses.arrived)
-    return arrived_.Mutable(index);
+  // @@protoc_insertion_point(field_mutable:AResponses.arrived)
+  return arrived_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APurchaseMore>*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APurchaseMore >*
 AResponses::mutable_arrived() {
-    // @@protoc_insertion_point(field_mutable_list:AResponses.arrived)
-    return &arrived_;
+  // @@protoc_insertion_point(field_mutable_list:AResponses.arrived)
+  return &arrived_;
 }
 inline const ::APurchaseMore& AResponses::_internal_arrived(int index) const {
-    return arrived_.Get(index);
+  return arrived_.Get(index);
 }
 inline const ::APurchaseMore& AResponses::arrived(int index) const {
-    // @@protoc_insertion_point(field_get:AResponses.arrived)
-    return _internal_arrived(index);
+  // @@protoc_insertion_point(field_get:AResponses.arrived)
+  return _internal_arrived(index);
 }
 inline ::APurchaseMore* AResponses::_internal_add_arrived() {
-    return arrived_.Add();
+  return arrived_.Add();
 }
 inline ::APurchaseMore* AResponses::add_arrived() {
-    ::APurchaseMore* _add = _internal_add_arrived();
-    // @@protoc_insertion_point(field_add:AResponses.arrived)
-    return _add;
+  ::APurchaseMore* _add = _internal_add_arrived();
+  // @@protoc_insertion_point(field_add:AResponses.arrived)
+  return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APurchaseMore>&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APurchaseMore >&
 AResponses::arrived() const {
-    // @@protoc_insertion_point(field_list:AResponses.arrived)
-    return arrived_;
+  // @@protoc_insertion_point(field_list:AResponses.arrived)
+  return arrived_;
 }
 
 // repeated .APacked ready = 2;
 inline int AResponses::_internal_ready_size() const {
-    return ready_.size();
+  return ready_.size();
 }
 inline int AResponses::ready_size() const {
-    return _internal_ready_size();
+  return _internal_ready_size();
 }
 inline void AResponses::clear_ready() {
-    ready_.Clear();
+  ready_.Clear();
 }
 inline ::APacked* AResponses::mutable_ready(int index) {
-    // @@protoc_insertion_point(field_mutable:AResponses.ready)
-    return ready_.Mutable(index);
+  // @@protoc_insertion_point(field_mutable:AResponses.ready)
+  return ready_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APacked>*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APacked >*
 AResponses::mutable_ready() {
-    // @@protoc_insertion_point(field_mutable_list:AResponses.ready)
-    return &ready_;
+  // @@protoc_insertion_point(field_mutable_list:AResponses.ready)
+  return &ready_;
 }
 inline const ::APacked& AResponses::_internal_ready(int index) const {
-    return ready_.Get(index);
+  return ready_.Get(index);
 }
 inline const ::APacked& AResponses::ready(int index) const {
-    // @@protoc_insertion_point(field_get:AResponses.ready)
-    return _internal_ready(index);
+  // @@protoc_insertion_point(field_get:AResponses.ready)
+  return _internal_ready(index);
 }
 inline ::APacked* AResponses::_internal_add_ready() {
-    return ready_.Add();
+  return ready_.Add();
 }
 inline ::APacked* AResponses::add_ready() {
-    ::APacked* _add = _internal_add_ready();
-    // @@protoc_insertion_point(field_add:AResponses.ready)
-    return _add;
+  ::APacked* _add = _internal_add_ready();
+  // @@protoc_insertion_point(field_add:AResponses.ready)
+  return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APacked>&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APacked >&
 AResponses::ready() const {
-    // @@protoc_insertion_point(field_list:AResponses.ready)
-    return ready_;
+  // @@protoc_insertion_point(field_list:AResponses.ready)
+  return ready_;
 }
 
 // repeated .ALoaded loaded = 3;
 inline int AResponses::_internal_loaded_size() const {
-    return loaded_.size();
+  return loaded_.size();
 }
 inline int AResponses::loaded_size() const {
-    return _internal_loaded_size();
+  return _internal_loaded_size();
 }
 inline void AResponses::clear_loaded() {
-    loaded_.Clear();
+  loaded_.Clear();
 }
 inline ::ALoaded* AResponses::mutable_loaded(int index) {
-    // @@protoc_insertion_point(field_mutable:AResponses.loaded)
-    return loaded_.Mutable(index);
+  // @@protoc_insertion_point(field_mutable:AResponses.loaded)
+  return loaded_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::ALoaded>*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::ALoaded >*
 AResponses::mutable_loaded() {
-    // @@protoc_insertion_point(field_mutable_list:AResponses.loaded)
-    return &loaded_;
+  // @@protoc_insertion_point(field_mutable_list:AResponses.loaded)
+  return &loaded_;
 }
 inline const ::ALoaded& AResponses::_internal_loaded(int index) const {
-    return loaded_.Get(index);
+  return loaded_.Get(index);
 }
 inline const ::ALoaded& AResponses::loaded(int index) const {
-    // @@protoc_insertion_point(field_get:AResponses.loaded)
-    return _internal_loaded(index);
+  // @@protoc_insertion_point(field_get:AResponses.loaded)
+  return _internal_loaded(index);
 }
 inline ::ALoaded* AResponses::_internal_add_loaded() {
-    return loaded_.Add();
+  return loaded_.Add();
 }
 inline ::ALoaded* AResponses::add_loaded() {
-    ::ALoaded* _add = _internal_add_loaded();
-    // @@protoc_insertion_point(field_add:AResponses.loaded)
-    return _add;
+  ::ALoaded* _add = _internal_add_loaded();
+  // @@protoc_insertion_point(field_add:AResponses.loaded)
+  return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::ALoaded>&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::ALoaded >&
 AResponses::loaded() const {
-    // @@protoc_insertion_point(field_list:AResponses.loaded)
-    return loaded_;
+  // @@protoc_insertion_point(field_list:AResponses.loaded)
+  return loaded_;
 }
 
 // optional bool finished = 4;
 inline bool AResponses::_internal_has_finished() const {
-    bool value = (_has_bits_[0] & 0x00000001u) != 0;
-    return value;
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
 }
 inline bool AResponses::has_finished() const {
-    return _internal_has_finished();
+  return _internal_has_finished();
 }
 inline void AResponses::clear_finished() {
-    finished_ = false;
-    _has_bits_[0] &= ~0x00000001u;
+  finished_ = false;
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline bool AResponses::_internal_finished() const {
-    return finished_;
+  return finished_;
 }
 inline bool AResponses::finished() const {
-    // @@protoc_insertion_point(field_get:AResponses.finished)
-    return _internal_finished();
+  // @@protoc_insertion_point(field_get:AResponses.finished)
+  return _internal_finished();
 }
 inline void AResponses::_internal_set_finished(bool value) {
-    _has_bits_[0] |= 0x00000001u;
-    finished_ = value;
+  _has_bits_[0] |= 0x00000001u;
+  finished_ = value;
 }
 inline void AResponses::set_finished(bool value) {
-    _internal_set_finished(value);
-    // @@protoc_insertion_point(field_set:AResponses.finished)
+  _internal_set_finished(value);
+  // @@protoc_insertion_point(field_set:AResponses.finished)
 }
 
 // repeated .AErr error = 5;
 inline int AResponses::_internal_error_size() const {
-    return error_.size();
+  return error_.size();
 }
 inline int AResponses::error_size() const {
-    return _internal_error_size();
+  return _internal_error_size();
 }
 inline void AResponses::clear_error() {
-    error_.Clear();
+  error_.Clear();
 }
 inline ::AErr* AResponses::mutable_error(int index) {
-    // @@protoc_insertion_point(field_mutable:AResponses.error)
-    return error_.Mutable(index);
+  // @@protoc_insertion_point(field_mutable:AResponses.error)
+  return error_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::AErr>*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AErr >*
 AResponses::mutable_error() {
-    // @@protoc_insertion_point(field_mutable_list:AResponses.error)
-    return &error_;
+  // @@protoc_insertion_point(field_mutable_list:AResponses.error)
+  return &error_;
 }
 inline const ::AErr& AResponses::_internal_error(int index) const {
-    return error_.Get(index);
+  return error_.Get(index);
 }
 inline const ::AErr& AResponses::error(int index) const {
-    // @@protoc_insertion_point(field_get:AResponses.error)
-    return _internal_error(index);
+  // @@protoc_insertion_point(field_get:AResponses.error)
+  return _internal_error(index);
 }
 inline ::AErr* AResponses::_internal_add_error() {
-    return error_.Add();
+  return error_.Add();
 }
 inline ::AErr* AResponses::add_error() {
-    ::AErr* _add = _internal_add_error();
-    // @@protoc_insertion_point(field_add:AResponses.error)
-    return _add;
+  ::AErr* _add = _internal_add_error();
+  // @@protoc_insertion_point(field_add:AResponses.error)
+  return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::AErr>&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::AErr >&
 AResponses::error() const {
-    // @@protoc_insertion_point(field_list:AResponses.error)
-    return error_;
+  // @@protoc_insertion_point(field_list:AResponses.error)
+  return error_;
 }
 
 // repeated int64 acks = 6;
 inline int AResponses::_internal_acks_size() const {
-    return acks_.size();
+  return acks_.size();
 }
 inline int AResponses::acks_size() const {
-    return _internal_acks_size();
+  return _internal_acks_size();
 }
 inline void AResponses::clear_acks() {
-    acks_.Clear();
+  acks_.Clear();
 }
 inline int64_t AResponses::_internal_acks(int index) const {
-    return acks_.Get(index);
+  return acks_.Get(index);
 }
 inline int64_t AResponses::acks(int index) const {
-    // @@protoc_insertion_point(field_get:AResponses.acks)
-    return _internal_acks(index);
+  // @@protoc_insertion_point(field_get:AResponses.acks)
+  return _internal_acks(index);
 }
 inline void AResponses::set_acks(int index, int64_t value) {
-    acks_.Set(index, value);
-    // @@protoc_insertion_point(field_set:AResponses.acks)
+  acks_.Set(index, value);
+  // @@protoc_insertion_point(field_set:AResponses.acks)
 }
 inline void AResponses::_internal_add_acks(int64_t value) {
-    acks_.Add(value);
+  acks_.Add(value);
 }
 inline void AResponses::add_acks(int64_t value) {
-    _internal_add_acks(value);
-    // @@protoc_insertion_point(field_add:AResponses.acks)
+  _internal_add_acks(value);
+  // @@protoc_insertion_point(field_add:AResponses.acks)
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField<int64_t>&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >&
 AResponses::_internal_acks() const {
-    return acks_;
+  return acks_;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField<int64_t>& AResponses::acks()
-    const {
-    // @@protoc_insertion_point(field_list:AResponses.acks)
-    return _internal_acks();
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >&
+AResponses::acks() const {
+  // @@protoc_insertion_point(field_list:AResponses.acks)
+  return _internal_acks();
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedField<int64_t>*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
 AResponses::_internal_mutable_acks() {
-    return &acks_;
+  return &acks_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedField<int64_t>*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
 AResponses::mutable_acks() {
-    // @@protoc_insertion_point(field_mutable_list:AResponses.acks)
-    return _internal_mutable_acks();
+  // @@protoc_insertion_point(field_mutable_list:AResponses.acks)
+  return _internal_mutable_acks();
 }
 
 // repeated .APackage packagestatus = 7;
 inline int AResponses::_internal_packagestatus_size() const {
-    return packagestatus_.size();
+  return packagestatus_.size();
 }
 inline int AResponses::packagestatus_size() const {
-    return _internal_packagestatus_size();
+  return _internal_packagestatus_size();
 }
 inline void AResponses::clear_packagestatus() {
-    packagestatus_.Clear();
+  packagestatus_.Clear();
 }
 inline ::APackage* AResponses::mutable_packagestatus(int index) {
-    // @@protoc_insertion_point(field_mutable:AResponses.packagestatus)
-    return packagestatus_.Mutable(index);
+  // @@protoc_insertion_point(field_mutable:AResponses.packagestatus)
+  return packagestatus_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APackage>*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APackage >*
 AResponses::mutable_packagestatus() {
-    // @@protoc_insertion_point(field_mutable_list:AResponses.packagestatus)
-    return &packagestatus_;
+  // @@protoc_insertion_point(field_mutable_list:AResponses.packagestatus)
+  return &packagestatus_;
 }
 inline const ::APackage& AResponses::_internal_packagestatus(int index) const {
-    return packagestatus_.Get(index);
+  return packagestatus_.Get(index);
 }
 inline const ::APackage& AResponses::packagestatus(int index) const {
-    // @@protoc_insertion_point(field_get:AResponses.packagestatus)
-    return _internal_packagestatus(index);
+  // @@protoc_insertion_point(field_get:AResponses.packagestatus)
+  return _internal_packagestatus(index);
 }
 inline ::APackage* AResponses::_internal_add_packagestatus() {
-    return packagestatus_.Add();
+  return packagestatus_.Add();
 }
 inline ::APackage* AResponses::add_packagestatus() {
-    ::APackage* _add = _internal_add_packagestatus();
-    // @@protoc_insertion_point(field_add:AResponses.packagestatus)
-    return _add;
+  ::APackage* _add = _internal_add_packagestatus();
+  // @@protoc_insertion_point(field_add:AResponses.packagestatus)
+  return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<::APackage>&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::APackage >&
 AResponses::packagestatus() const {
-    // @@protoc_insertion_point(field_list:AResponses.packagestatus)
-    return packagestatus_;
+  // @@protoc_insertion_point(field_list:AResponses.packagestatus)
+  return packagestatus_;
 }
 
 #ifdef __GNUC__
-#pragma GCC diagnostic pop
+  #pragma GCC diagnostic pop
 #endif  // __GNUC__
 // -------------------------------------------------------------------
 
@@ -5030,7 +4692,9 @@ AResponses::packagestatus() const {
 
 // -------------------------------------------------------------------
 
+
 // @@protoc_insertion_point(namespace_scope)
+
 
 // @@protoc_insertion_point(global_scope)
 
