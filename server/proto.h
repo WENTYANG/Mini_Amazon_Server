@@ -35,15 +35,18 @@ bool recvMesgFrom(T& message, google::protobuf::io::FileInputStream* in) {
     google::protobuf::io::CodedInputStream input(in);
     uint32_t size;
     if (!input.ReadVarint32(&size)) {
+        cerr << "ReadVarint32 fail" << endl;
         return false;
     }
     // Tell the stream not to read beyond that size.
     google::protobuf::io::CodedInputStream::Limit limit = input.PushLimit(size);
     // Parse the message.
     if (!message.MergeFromCodedStream(&input)) {
+        cerr << "Fail to parse mesg" << endl;
         return false;
     }
     if (!input.ConsumedEntireMessage()) {
+        cerr << "ConsumedEntireMessage fail" << endl;
         return false;
     }
     // Release the limit.

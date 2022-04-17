@@ -9,7 +9,7 @@ Server::Server()
     : frontHostName("0.0.0.0"),
       frontPortNum("8888"),
       worldHostName("vcm-24273.vm.duke.edu"),
-      worldPortNum("23456"),
+      worldPortNum("12345"),
       upsHostName("0.0.0.0"),
       upsPortNum("8888"),
       num_wh(5),
@@ -29,6 +29,7 @@ Server::~Server() {
     close(ups_fd);
     close(world_fd);
 }
+
 /*-----------------------------Server run-----------------------------------*/
 void Server::run() {
     try {
@@ -38,6 +39,7 @@ void Server::run() {
         // Connect to world, when developing, set withUPS=false to initialize a
         // new world
         connectWorld(false);
+
         // Accept order from front end
         acceptOrder();
     } catch (const std::exception& e) {
@@ -50,6 +52,9 @@ void Server::run() {
 */
 void Server::connectUPS() {
     ups_fd = clientRequestConnection(upsHostName, upsPortNum);
+    /*
+        To be modified
+    */
     string world_id = socketRecvMsg(ups_fd);
 
     worldID = stoi(world_id);
@@ -74,6 +79,8 @@ void Server::connectWorld(bool withUPS) {
     AConnect acon;
     if (withUPS) {
         acon.set_worldid(worldID);
+    } else {
+        acon.set_worldid(1);
     }
     /*
     Initialize Warehouses, one on center, others evenly distributed on circle
@@ -96,6 +103,8 @@ void Server::connectWorld(bool withUPS) {
             whlist.push_back(Warehouse(i, x, y));
         }
     }
+    acon.set_isamazon(true);
+
     // send AConnect Command
     unique_ptr<proto_out> out(new proto_out(world_fd));
     if (sendMesgTo<AConnect>(acon, out.get()) == false) {
@@ -111,7 +120,8 @@ void Server::connectWorld(bool withUPS) {
 
     // Verify Aconnected Response
     if (aced.result() != "connected!") {
-        throw MyException("Connect to world failed.");
+        string description = "Connect to world failed " + aced.result();
+        throw MyException(description);
     }
     worldID = aced.worldid();
     cout << "Connect to world with world ID=" << worldID << " successfully."
