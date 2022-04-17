@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HOME</title>
+  </head>
+  <body>
+    <h1>Home Page</h1>
+      {% for p in products %}
+        <img src="/static/img/{{ p.name }}.jpg">
+        <a href="{% url 'amazon:view_product' p.p_id %}">{{ p.name }}</a></br>
+      {% endfor %}
+     <h3>Options</h3>
+      <a href="{% url 'amazon:search_by_cat'%}"> Search by category </a></br>
+      <a href="{% url 'amazon:goto_cart'%}"> Checkout </a></br>
+      <a href="{% url 'amazon:view_order'%}"> Orders </a></br>
+      <a href="{% url 'user:show_info'%}"> View your info </a></br>
+      <a href="{% url 'user:logout'%}"> log out </a></br>
+  </body>
+</html>

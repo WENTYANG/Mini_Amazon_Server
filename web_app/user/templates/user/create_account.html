@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Create Account</title>
+  </head>
+  <body>
+  <h1>Create Account</h1>
+  <!--
+  {% if existed_user %}
+    <p> Username already exist, please try again!</p>
+  {% endif %}-->
+    <form action={% url 'user:create_account' %} method="post">
+    {% csrf_token %}
+        <h3> Required Info </h3></br>
+          {{user_form.as_p}}
+        <!--
+        Username: {{user_form.username}}</br>
+        Email: {{user_form.email}}</br>
+        Enter Your Password: {{user_form.password1}}</br>
+        Enter Your Password Again: {{user_form.password2}}</br>
+        -->
+        <h3> Optional Info </h3></br>
+          {% if invalid_user %}
+            <p> <font color="red">You have submitted invalid information, please try again!</font></p>
+          {% endif %}
+        <!--  {{optional_form.as_p}} -->
+        Address (x, y): {{optional_form.loc_x}}, {{optional_form.loc_y}}</br></br>
+        Ups Account: {{optional_form.ups_account}}</br></br>
+        Credit Card Number: {{optional_form.card_number}}</br></br>
+        <input type="submit" value="Create">
+    </form>
+    <a href={% url 'user:login'%}>Already has an account?</a>
+  </body>
+</html>

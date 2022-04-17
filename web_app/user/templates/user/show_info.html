@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User Info</title>
+  </head>
+  <body>
+    <h1>View user info</h1>
+      {% if messages %}
+        {% for message in messages %}
+            <p> {{message}} </p>
+        {% endfor %}
+      {% endif %}
+      <h3>User info</h3>
+      Username: {{user.username}}</br>
+      Email: {{user.email}}</br></br>
+      Address (x, y): {{user.customer.loc_x}}, {{user.customer.loc_y}}</br></br>
+      Ups Account: {{user.customer.ups_account}}</br></br>
+      Credit Card Number: {{user.customer.card_number}}</br></br>
+    <a href="{% url 'user:change_info'%}"> Edit info </a></br>
+    </br><a href="{% url 'amazon:home'%}"> back </a>
+  </body>
+</html>
