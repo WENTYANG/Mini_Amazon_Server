@@ -15,12 +15,20 @@
 
 using namespace std;
 using namespace pqxx;
-using Warehouse = AInitWarehouse;
 /*
 int32_t id() const;
 int32_t x() const;
 int32_t y() const;
 */
+
+class Warehouse {
+   public:
+    int id;
+    int x;
+    int y;
+    Warehouse(int id, int x, int y) : id(id), x(x), y(y){};
+    ~Warehouse(){};
+};
 
 class Server {
    private:
@@ -31,19 +39,28 @@ class Server {
     string upsHostName;
     string upsPortNum;
     int num_wh;
+    int wh_distance;
     int worldID;
     vector<Warehouse> whlist;
     Threadpool threadPool;
     // global sequence number
     long seqNum;
+    int front_fd;
+    int ups_fd;
+    int world_fd;
     /*To do:
         A map of sequence number and timer(and info of package?) to handle ack
        and resend
     */
    public:
-    Server() : {}
-    ~Server() : {}
+    Server();
+    ~Server();
     void run();
-}
+    template <bool withUPS>
+    void connectWorld();
+    void connectUPS();
+    void connectWeb();
+    void connectDB();
+};
 
 #endif

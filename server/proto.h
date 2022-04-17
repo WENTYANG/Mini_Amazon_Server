@@ -1,6 +1,9 @@
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/io/zero_copy_stream_impl.h>
 
+typedef google::protobuf::io::FileOutputStream proto_out;
+typedef google::protobuf::io::FileInputStream proto_in;
+
 template <typename T>
 bool sendMesgTo(const T& message, google::protobuf::io::FileOutputStream* out) {
     {  // extra scope: make output go away before out->Flush()

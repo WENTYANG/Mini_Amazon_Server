@@ -1,12 +1,14 @@
 #include "socket.h"
 
+#include <vector>
+
 #include "exception.h"
 
 /*
-    create a socket run as a server. Listen to the portNum.
+    create a socket to run as a server. Listen to the portNum.
     return thee server socket. If it fails, it will throw exception.
 */
-int createServerSocket(const string& portNum) {
+int initializeServer(const string& portNum) {
     const char* hostname = NULL;  // default 0.0.0.0
     struct addrinfo host_info;
     struct addrinfo* host_info_list;
@@ -135,7 +137,7 @@ int getPortNum(int socketFd) {
   send msg to the given socket. If it fails, it will throw exception
   and close socket.
 */
-void sendMsg(int socket_fd, const void* buf, int len) {
+void socketSendMsg(int socket_fd, const void* buf, int len) {
     if (send(socket_fd, buf, len, 0) < 0) {
         close(socket_fd);
         throw MyException("fail to send msg.");
@@ -143,15 +145,20 @@ void sendMsg(int socket_fd, const void* buf, int len) {
 }
 
 /*
-  receive msg from the given socket. If it fails, it will throw exception
-  and close socket.
+  receive msg from the given socket. Function will return received message
+  directly. If it fails, it will throw exception and close socket.
 */
-void recvMsg(int socket_fd, void* buf, int& len) {
-    len = recv(socket_fd, buf, len, 0);
+string socketRecvMsg(int socket_fd) {
+    vector<char> buffer(MAX_LENGTH, 0);
+
+    int len = recv(socket_fd, &(buffer.data()[0]), MAX_LENGTH, 0);
     if (len <= 0) {
         close(socket_fd);
         std::cerr << "len: " << len << endl;
         std::cerr << "errno: " << errno << endl;
         throw MyException("fail to accept msg.");
     }
+
+    string msg(buffer.data(), len);
+    return msg;
 }

@@ -13,11 +13,13 @@
 
 using namespace std;
 
-int createServerSocket(const string & portNum);
-int serverAcceptConnection(int serverFd, string & clientIp);
-int clientRequestConnection(const string & hostName, const string & portNum);
+const int MAX_LENGTH = 65536;
+
+int initializeServer(const string& portNum);
+int serverAcceptConnection(int serverFd, string& clientIp);
+int clientRequestConnection(const string& hostName, const string& portNum);
 int getPortNum(int socketFd);
-void sendMsg(int socket_fd, const void * buf, int len);
-void recvMsg(int socket_fd, void * buf, int & len);
+void socketSendMsg(int socket_fd, const void* buf, int len);
+string socketRecvMsg(int socket_fd);
 
 #endif
