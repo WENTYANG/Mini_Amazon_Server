@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 
+#include "./protobuf/AUprotocolV3.pb.h"
 #include "./protobuf/world_amazon.pb.h"
 #include "exception.h"
 #include "threadpool.h"
@@ -38,11 +39,13 @@ class Server {
     string worldPortNum;
     string upsHostName;
     string upsPortNum;
+    int worldID;
+
+   public:
     int num_wh;
     int wh_distance;
-    int worldID;
     vector<Warehouse> whlist;
-    Threadpool threadPool;
+    Threadpool* threadPool;
     // global sequence number
     long seqNum;
     int ups_fd;
@@ -61,14 +64,28 @@ class Server {
         A map of sequence number and timer(and info of package?) to handle ack
        and resend
     */
-   public:
+
+   private:
     Server();
+
+   public:
     ~Server();
+    Server(const Server&) = delete;
+    Server& operator=(const Server) = delete;
+    static Server& get_instance() {
+        static Server instance;
+        return instance;
+    }
+
     void run();
     void connectWorld();
     void connectUPS();
     void acceptOrder();
     connection* connectDB();
+    void disConnectDB(connection* C);
+
+    void RecvFromUps();
+    void RecvFromWorld();
 
     // Developing & testing functions
     void setWh_circle(AConnect& acon);
