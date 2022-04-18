@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> HOME</title>
+    <title> Category</title>
     <style>
       img {
         width: 228px;
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   </head>
   <body>
-    <h1> Home Page</h1>
+    <h1> Category: {{ cat.name }}</h1>
       <div class="container">
         <div class="row align-items-start">
           {% for p in products %}
@@ -30,6 +30,7 @@
       </div>
      </br>
      <h3> Options</h3>
+      <a href="{% url 'amazon:home'%}"> home </a></br>
       <a href="{% url 'amazon:search_by_cat'%}">  Search by category </a></br>
       <a href="{% url 'amazon:goto_cart'%}">  Checkout </a></br>
       <a href="{% url 'amazon:view_order'%}">  Orders </a></br>
@@ -37,3 +38,4 @@
       <a href="{% url 'user:logout'%}">  log out </a></br>
   </body>
 </html>
+

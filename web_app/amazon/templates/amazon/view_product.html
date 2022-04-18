@@ -2,9 +2,22 @@
 <html>
   <head>
     <title>Buy</title>
+    <style>
+      img {
+        width: 300px;
+      }
+    </style>
   </head>
   <body>
-    <h1>{{ product.name }}</h1>
+    <h1>Buy {{ product.name }}</h1>
+    <img src="/static/img/{{ product.name }}.png"></br>
+    <h3> price: ${{ product.price }} </h3>
+    <form action={% url 'amazon:view_product' product.p_id %} method="post">
+    {% csrf_token %}
+      Quantity: <input type="number" min="1" name="count" value="1" required> </br>
+      <input type="submit" value="Add to Cart" name="add_to_cart">
+      <input type="submit" value="Buy Now" name="buy_now">
+    </form>
     <a href="{% url 'amazon:home' %}">back</a></p>
   </body>
 </html>

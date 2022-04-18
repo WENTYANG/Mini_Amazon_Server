@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Order detail</title>
+    <style type="text/css">
+      img {
+        width: 80px;
+      }
+      table {
+        border:solid 1px;
+        border-collapse:collapse;
+      }
+      tr,th {
+        border:solid 1px;
+        padding:3px 25px;
+      }
+      td {
+        padding:5px 10px;
+      }
+      .no_border table, .no_border tr, .no_border th {
+        border: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <h1></h1>
+    <!--View order-->
+    <h3>Order Details</h3>
+      {% load cal %}
+      <table border=solid cellspacing=10>
+      <tr>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Status</th>
+        <th>Tracking Number</th>
+      </tr>
+      {% for i in items %}
+        <tr>
+          <th>
+            <table class="no_border">
+              <td>
+                <img src="/static/img/{{ i.product.name }}.png">
+              </td>
+              <td>
+                <p><a href="{% url 'amazon:view_product' i.product.p_id %}">{{ i.product.name }}</a></p>
+              </td>
+            </table>
+          </th>
+          <th>{{ i.count }}</th>
+          <th>{{ i.count | multiply:i.product.price | floatformat:2}} </th>
+          {% if i.status == "new" %}
+            <th>created</th>
+          {% else %}
+            <th>{{ i.status }}</th>
+          {% endif %}
+          <th>{{ i.i_id }}</th>
+        </tr>
+      {% endfor %}
+      <tr>
+        <td colspan="5" align="right"><b>Total: {{ total | floatformat:2 }}</b></td>
+      </tr>
+      </table>
+    <!--More Info-->
+    <p>Deliver Address: ({{order.loc_x}}, {{order.loc_y}})</p>
+    <p>Credit Card Number: {{order.card_number}}</p>
+    <p>Ups Account: {{order.ups_account}}</p>
+    <p>Ordered Date: {{order.date_time.date}}</p>
+    </br><a href="{% url 'amazon:view_order' %}">back</a></p>
+  </body>
+</html>

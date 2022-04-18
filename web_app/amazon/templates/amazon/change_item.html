@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Modify</title>
+  </head>
+  <body>
+    <h3>Modify your order</h3>
+    <img width="200px" src="/static/img/{{ item.product.name }}.png">
+    <h3>{{ item.product.name }}</h3>
+    <form action={% url 'amazon:change_item' item.i_id %} method="post">  
+      {% csrf_token %}
+      {% if error_msg %}
+        <p> <font color="red">{{error_msg}}</font></p>
+      {% endif %}
+      Quantity: {{form.count}}</br>
+      <input type="checkbox" name="del"> Delete this item</br>
+      <input type="submit" value="Submit">
+    </form>
+    <a href="{% url 'amazon:checkout' item.order.o_id %}">back</a></p>
+  </body>
+</html>

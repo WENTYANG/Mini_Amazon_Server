@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Checkout</title>
+    <style type="text/css">
+      img {
+        width: 80px;
+      }
+      table {
+        border:solid 1px;
+        border-collapse:collapse;
+      }
+      tr,th {
+        border:solid 1px;
+        padding:3px 25px;
+      }
+      td {
+        padding:5px 10px;
+      }
+      .no_border table, .no_border tr, .no_border th {
+        border: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Checkout</h1>
+    <!--View order, probably change-->
+    <h3>View your Order</h3>
+      {% load cal %}
+      <table border=solid cellspacing=10>
+      <tr>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+      {% for i in items %}
+        <tr>
+          <th>
+            <table class="no_border">
+              <td>
+                <img src="/static/img/{{ i.product.name }}.png">
+              </td>
+              <td>
+                <p><a href="{% url 'amazon:view_product' i.product.p_id %}">{{ i.product.name }}</a></p>
+              </td>
+            </table>
+          </th>
+          <th>{{ i.count }}</th>
+          <th>{{ i.count | multiply:i.product.price | floatformat:2}} </th>
+          <th><a href="{% url 'amazon:change_item' i.i_id %}">modify</a></th>
+        </tr>
+      {% endfor %}
+      <tr>
+        <td colspan="3" align="right"><b>Total: {{ total | floatformat:2 }}</b></td>
+      </tr>
+      </table>
+    <!--Checkout Info-->
+    <h3>Please provide your info</h3>
+      {% if invalid %}
+        <p> <font color="red">You have submitted invalid information, please try again!</font></p>
+      {% endif %}
+      <form action={% url 'amazon:checkout' order.o_id %} method="post">
+      {% csrf_token %}
+        Address (x, y): {{form.loc_x}}, {{form.loc_y}}</br></br>
+        Credit Card Number: {{form.card_number}}</br></br>
+        Ups Account(optional): {{form.ups_account}}</br></br>
+        <input type="submit" value="Submit">
+      </form>
+    </br><a href="{% url 'amazon:home' %}">back</a></p>
+  </body>
+</html>
