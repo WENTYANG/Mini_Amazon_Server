@@ -1,13 +1,13 @@
 CC=g++
 CFLAGS=-g
-PROTO_CC = ./protobuf/world_amazon.pb.cc
-PROTO_H = ./protobuf/world_amazon.pb.h
+PROTO_CC = ./protobuf/world_amazon.pb.cc ./protobuf/AUprotocolV3.pb.cc
+PROTO_H = ./protobuf/world_amazon.pb.h ./protobuf/AUprotocolV3.pb.h
 GPB = `pkg-config --cflags --libs protobuf`
 VERSION = -std=c++11
 THREAD = -pthread
 PQXX = -lpqxx -lpq
-CPPFILES = main.cpp server.cpp socket.cpp threadpool.cpp
-HEADERS = server.h exception.h socket.h proto.h threadpool.h
+CPPFILES = main.cpp server.cpp socket.cpp threadpool.cpp sql_functions.cpp
+HEADERS = server.h exception.h socket.h proto.h threadpool.h sql_functions.h ThreadSafe_queue.h
 
 
 all: server

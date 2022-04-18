@@ -3,7 +3,6 @@
 #include <thread>
 #include "proto.h"
 #include "socket.h"
-#include "sql_functions.h"
 
 using namespace std;
 
@@ -54,8 +53,8 @@ void Server::run() {
         // new world
         connectWorld();
 
-        thread t_RecvFromUps(RecvFromUps, this);
-        thread t_RecvFromWorld(RecvFromWorld, this);
+        thread t_RecvFromUps(RecvFromUps);
+        thread t_RecvFromWorld(RecvFromWorld);
 
         t_RecvFromUps.detach();
         t_RecvFromWorld.detach();
@@ -67,6 +66,8 @@ void Server::run() {
     }
 }
 
+/*-----------------------------Server
+ * connect-----------------------------------*/
 /*
   Connect to UPS and receive worldID
 */
@@ -156,6 +157,8 @@ void Server::disConnectDB(connection* C) {
     C->disconnect();
 }
 
+/*--------------------------Interaction with
+ * world-----------------------------------*/
 /*
     Keep receiving connection from front end, and receive an int as order number
 */
@@ -203,8 +206,8 @@ void Server::setWh_circle(AConnect& acon) {
     }
 }
 
-void Server::RecvFromUps() {
-    unique_ptr<proto_in> ups_in(new proto_in(ups_fd));
+void RecvFromUps() {
+    unique_ptr<proto_in> ups_in(new proto_in(Server::get_instance().ups_fd));
     while (1) {
         try {
             AUResponse response;
@@ -219,8 +222,9 @@ void Server::RecvFromUps() {
     }
 }
 
-void Server::RecvFromWorld() {
-    unique_ptr<proto_in> world_in(new proto_in(world_fd));
+void RecvFromWorld() {
+    unique_ptr<proto_in> world_in(
+        new proto_in(Server::get_instance().world_fd));
     while (1) {
         try {
             AResponses response;

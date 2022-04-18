@@ -1,11 +1,11 @@
 #ifndef _SQL_FUNCTION_H
 #define _SQL_FUNCTION_H
 
-#include <exception.h>
 #include <fstream>
 #include <iostream>
 #include <pqxx/pqxx>
 #include <string>
+#include "exception.h"
 
 /*------------------Table Names-------------*/
 #define PRODUCT "amazon_product"
