@@ -1,0 +1,8 @@
+amazon/__pycache__/*
+amazon/migrations/00*
+amazon/migrations/__pycache__/*
+amazon/templatetags/__pycache__/*
+mysite/__pycache__/*
+user/__pycache__/*
+user/migrations/00*
+user/migrations/__pycache__/*
