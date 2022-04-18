@@ -1,8 +1,11 @@
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/io/zero_copy_stream_impl.h>
+#include <mutex>
 
 typedef google::protobuf::io::FileOutputStream proto_out;
 typedef google::protobuf::io::FileInputStream proto_in;
+
+static std::mutex lck;
 
 template <typename T>
 bool sendMesgTo(const T& message, google::protobuf::io::FileOutputStream* out) {
@@ -32,6 +35,7 @@ bool sendMesgTo(const T& message, google::protobuf::io::FileOutputStream* out) {
 
 template <typename T>
 bool recvMesgFrom(T& message, google::protobuf::io::FileInputStream* in) {
+    std::lock_guard<std::mutex> lock(lck);
     google::protobuf::io::CodedInputStream input(in);
     uint32_t size;
     if (!input.ReadVarint32(&size)) {

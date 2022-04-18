@@ -14,23 +14,10 @@
 #include "exception.h"
 #include "sql_functions.h"
 #include "threadpool.h"
+#include "warehouse.h"
 
 using namespace std;
 using namespace pqxx;
-/*
-int32_t id() const;
-int32_t x() const;
-int32_t y() const;
-*/
-
-class Warehouse {
-   public:
-    int id;
-    int x;
-    int y;
-    Warehouse(int id, int x, int y) : id(id), x(x), y(y){};
-    ~Warehouse(){};
-};
 
 class Server {
    private:
@@ -88,8 +75,5 @@ class Server {
     // Developing & testing functions
     void setWh_circle(AConnect& acon);
 };
-
-void RecvFromUps();
-void RecvFromWorld();
 
 #endif

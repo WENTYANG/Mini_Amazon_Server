@@ -65,8 +65,7 @@ void Server::run() {
     }
 }
 
-/*-----------------------------Server
- * connect-----------------------------------*/
+/*------------------------Server connect--------------------------------*/
 /*
   Connect to UPS and receive worldID
 */

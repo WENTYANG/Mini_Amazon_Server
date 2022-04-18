@@ -23,7 +23,7 @@ void RecvFromWorld() {
                 throw MyException(
                     "Error occured when receiving AUResponse from UPS");
             }
-            // Parse AResponses
+            // TO DO: Parse AResponses and handle
         } catch (const std::exception& e) {
             cerr << e.what() << endl;
         }
