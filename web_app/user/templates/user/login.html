@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Log In</title>
+  </head>
+  <body>
+  <h1>Log In</h1>
+    {% if messages %}
+        {% for message in messages %}
+            <p> {{message}} </p>
+        {% endfor %}
+    {% endif %}
+    {% if form.errors %}
+        <p> <font color='red'>Wrong username or Wrong password. Please try again.</font></p>
+    {% endif %}
+    {% if user.is_authenticated %}
+        <p> Already logged in!</p>
+        <a href="{% url 'amazon:home'%}"> Go to menu </a>
+    {% else %}
+        <form method="post" action="{%url 'user:login' %}">
+        {% csrf_token %}
+            Username: {{ form.username }}<br/>
+            Password: {{ form.password }}<br/>
+            <input type="submit" value="Login">
+        </form>
+        <a href={% url 'user:create_account'%}>Create a new account?</a>
+     {% endif %}
+  </body>
+</html>
