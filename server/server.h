@@ -12,6 +12,7 @@
 #include "./protobuf/AUprotocolV3.pb.h"
 #include "./protobuf/world_amazon.pb.h"
 #include "exception.h"
+#include "sql_functions.h"
 #include "threadpool.h"
 
 using namespace std;
@@ -84,11 +85,11 @@ class Server {
     connection* connectDB();
     void disConnectDB(connection* C);
 
-    void RecvFromUps();
-    void RecvFromWorld();
-
     // Developing & testing functions
     void setWh_circle(AConnect& acon);
 };
+
+void RecvFromUps();
+void RecvFromWorld();
 
 #endif

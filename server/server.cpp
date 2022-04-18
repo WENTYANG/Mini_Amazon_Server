@@ -1,16 +1,17 @@
 #include "server.h"
 #include <cmath>
 #include <thread>
+#include "UpsHandle.h"
+#include "WorldHandle.h"
 #include "proto.h"
 #include "socket.h"
-#include "sql_functions.h"
 
 using namespace std;
 
 /*-----------------------------Server constructor-----------------------------*/
 Server::Server()
     : frontHostName("0.0.0.0"),
-      frontPortNum("8888"),
+      frontPortNum("2104"),
       worldHostName("vcm-24273.vm.duke.edu"),
       worldPortNum("12345"),
       upsHostName("0.0.0.0"),
@@ -47,15 +48,12 @@ void Server::run() {
         // Connect to UPS, receive world ID
         // connectUPS();
 
-        // Read warehouse locations from DB
-        initFromDB();
-
         // Connect to world, when developing, set withUPS=false to initialize a
         // new world
         connectWorld();
 
-        thread t_RecvFromUps(RecvFromUps, this);
-        thread t_RecvFromWorld(RecvFromWorld, this);
+        thread t_RecvFromUps(RecvFromUps);
+        thread t_RecvFromWorld(RecvFromWorld);
 
         t_RecvFromUps.detach();
         t_RecvFromWorld.detach();
@@ -67,6 +65,8 @@ void Server::run() {
     }
 }
 
+/*-----------------------------Server
+ * connect-----------------------------------*/
 /*
   Connect to UPS and receive worldID
 */
@@ -156,6 +156,8 @@ void Server::disConnectDB(connection* C) {
     C->disconnect();
 }
 
+/*--------------------------Interaction with
+ * world-----------------------------------*/
 /*
     Keep receiving connection from front end, and receive an int as order number
 */
@@ -169,6 +171,7 @@ void Server::acceptOrder() {
         try {
             front_fd = serverAcceptConnection(server_fd, clientIP);
             string request = socketRecvMsg(front_fd);
+            // handle
             close(front_fd);
         } catch (const std::exception& e) {
             std::cerr << e.what() << endl;
@@ -199,38 +202,6 @@ void Server::setWh_circle(AConnect& acon) {
             wh->set_x(x);
             wh->set_y(y);
             whlist.push_back(Warehouse(i, x, y));
-        }
-    }
-}
-
-void Server::RecvFromUps() {
-    unique_ptr<proto_in> ups_in(new proto_in(ups_fd));
-    while (1) {
-        try {
-            AUResponse response;
-            if (recvMesgFrom<AUResponse>(response, ups_in.get()) == false) {
-                throw MyException(
-                    "Error occured when receiving AUResponse from UPS");
-            }
-            // Parse AUResponse
-        } catch (const std::exception& e) {
-            cerr << e.what() << endl;
-        }
-    }
-}
-
-void Server::RecvFromWorld() {
-    unique_ptr<proto_in> world_in(new proto_in(world_fd));
-    while (1) {
-        try {
-            AResponses response;
-            if (recvMesgFrom<AResponses>(response, world_in.get()) == false) {
-                throw MyException(
-                    "Error occured when receiving AUResponse from UPS");
-            }
-            // Parse AResponses
-        } catch (const std::exception& e) {
-            cerr << e.what() << endl;
         }
     }
 }
