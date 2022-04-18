@@ -1,6 +1,8 @@
 #include "server.h"
 #include <cmath>
 #include <thread>
+#include "UpsHandle.h"
+#include "WorldHandle.h"
 #include "proto.h"
 #include "socket.h"
 
@@ -200,39 +202,6 @@ void Server::setWh_circle(AConnect& acon) {
             wh->set_x(x);
             wh->set_y(y);
             whlist.push_back(Warehouse(i, x, y));
-        }
-    }
-}
-
-void RecvFromUps() {
-    unique_ptr<proto_in> ups_in(new proto_in(Server::get_instance().ups_fd));
-    while (1) {
-        try {
-            AUResponse response;
-            if (recvMesgFrom<AUResponse>(response, ups_in.get()) == false) {
-                throw MyException(
-                    "Error occured when receiving AUResponse from UPS");
-            }
-            // Parse AUResponse
-        } catch (const std::exception& e) {
-            cerr << e.what() << endl;
-        }
-    }
-}
-
-void RecvFromWorld() {
-    unique_ptr<proto_in> world_in(
-        new proto_in(Server::get_instance().world_fd));
-    while (1) {
-        try {
-            AResponses response;
-            if (recvMesgFrom<AResponses>(response, world_in.get()) == false) {
-                throw MyException(
-                    "Error occured when receiving AUResponse from UPS");
-            }
-            // Parse AResponses
-        } catch (const std::exception& e) {
-            cerr << e.what() << endl;
         }
     }
 }
