@@ -2,7 +2,6 @@
 #include <cmath>
 #include <thread>
 #include "proto.h"
-#include "responseHandler.h"
 #include "socket.h"
 
 using namespace std;
