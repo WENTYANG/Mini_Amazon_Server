@@ -7,7 +7,7 @@ VERSION = -std=c++11
 THREAD = -pthread
 PQXX = -lpqxx -lpq
 CPPFILES = main.cpp server.cpp socket.cpp threadpool.cpp sql_functions.cpp
-HEADERS = server.h exception.h socket.h proto.h threadpool.h sql_functions.h ThreadSafe_queue.h
+HEADERS = server.h exception.h socket.h proto.h threadpool.h sql_functions.h ThreadSafe_queue.h responseHandler.h
 
 
 all: server

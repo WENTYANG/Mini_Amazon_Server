@@ -2,6 +2,7 @@
 #include <cmath>
 #include <thread>
 #include "proto.h"
+#include "responseHandler.h"
 #include "socket.h"
 
 using namespace std;
@@ -9,7 +10,7 @@ using namespace std;
 /*-----------------------------Server constructor-----------------------------*/
 Server::Server()
     : frontHostName("0.0.0.0"),
-      frontPortNum("8888"),
+      frontPortNum("2104"),
       worldHostName("vcm-24273.vm.duke.edu"),
       worldPortNum("12345"),
       upsHostName("0.0.0.0"),
@@ -45,9 +46,6 @@ void Server::run() {
     try {
         // Connect to UPS, receive world ID
         // connectUPS();
-
-        // Read warehouse locations from DB
-        initFromDB();
 
         // Connect to world, when developing, set withUPS=false to initialize a
         // new world
@@ -172,6 +170,7 @@ void Server::acceptOrder() {
         try {
             front_fd = serverAcceptConnection(server_fd, clientIP);
             string request = socketRecvMsg(front_fd);
+            // handle
             close(front_fd);
         } catch (const std::exception& e) {
             std::cerr << e.what() << endl;
