@@ -63,14 +63,20 @@ def view_product(request, p_id):
         item = Item.objects.get(order=order, product=product, status='new')
       except Item.DoesNotExist:
         item = Item.objects.create(order=order, product=product, count=0)
-      item.count += int(request.POST['count'])
+      if item.count + int(request.POST['count']) > 100:
+        item.count = 100
+      else:
+        item.count += int(request.POST['count']) 
       item.save()
       return HttpResponseRedirect(reverse('amazon:home'))
     if 'buy_now' in request.POST:
       order = Order.objects.create(customer=request.user.customer, loc_x=request.user.customer.loc_x, \
           loc_y=request.user.customer.loc_y, card_number=request.user.customer.card_number,\
           ups_account=request.user.customer.ups_account, status='one_time')
-      Item.objects.create(order=order, product=product, count=request.POST['count'])
+      count = int(request.POST['count'])
+      if count > 100:
+        count = 100
+      Item.objects.create(order=order, product=product, count=count)
       return redirect('amazon:checkout', o_id=order.o_id)
     return HttpResponseRedirect(reverse('amazon:home'))
   else:

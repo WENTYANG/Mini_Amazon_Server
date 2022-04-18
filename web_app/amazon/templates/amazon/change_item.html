@@ -12,7 +12,7 @@
       {% if error_msg %}
         <p> <font color="red">{{error_msg}}</font></p>
       {% endif %}
-      Quantity: {{form.count}}</br>
+      Quantity: {{form.count}} (Maximum allowable quantity: 100)</br>
       <input type="checkbox" name="del"> Delete this item</br>
       <input type="submit" value="Submit">
     </form>

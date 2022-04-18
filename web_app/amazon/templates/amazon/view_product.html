@@ -14,7 +14,7 @@
     <h3> price: ${{ product.price }} </h3>
     <form action={% url 'amazon:view_product' product.p_id %} method="post">
     {% csrf_token %}
-      Quantity: <input type="number" min="1" name="count" value="1" required> </br>
+      Quantity: <input type="number" min="1" max="100"  name="count" value="1" required> (Maximum allowable quantity: 100) </br>
       <input type="submit" value="Add to Cart" name="add_to_cart">
       <input type="submit" value="Buy Now" name="buy_now">
     </form>

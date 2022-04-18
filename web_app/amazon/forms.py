@@ -12,7 +12,7 @@ class OrderInfoForm(ModelForm):
     fields = ['loc_x', 'loc_y', 'ups_account', 'card_number']
 
 class ItemAmountForm(ModelForm):
-  count = forms.IntegerField(min_value=1)
+  count = forms.IntegerField(min_value=1, max_value=100)
   class Meta:
     model = Item
     fields = ['count']
