@@ -2,9 +2,41 @@
 <html>
   <head>
     <title>Order</title>
+    <style type="text/css">
+      img {
+        width: 80px;
+      }
+      table {
+        border:solid 1px;
+        border-collapse:collapse;
+      }
+      tr,th {
+        border:solid 1px;
+        padding:3px 25px;
+      }
+    </style>
   </head>
   <body>
     <h1>All Orders</h1>
+      <table border=solid cellspacing=10>
+      <tr>
+        <th>Items</th>
+        <th>Date</th>
+        <th></th>
+      </tr>
+      {% for o in orders %}
+        <tr>
+          <th width="200px">
+            {% for i in o.items.all %}
+              {{ i.product.name }} &nbsp;&nbsp;
+            {% endfor %}
+          </th>
+          <th>{{ o.date_time.date }}</th>
+          <th><a href="{% url 'amazon:view_order_detail' o.o_id %}">details</th>
+        </tr>
+      {% endfor %}
+      </table></br>
+
     <a href="{% url 'amazon:home' %}">back</a></p>
   </body>
 </html>

@@ -5,6 +5,9 @@
   </head>
   <body>
     <h1>Category</h1>
-    <a href="{% url 'amazon:home' %}">back</a></p>
+    {% for c in cats %}
+      <h3><a href="{% url 'amazon:view_cat' c.c_id %}">{{ c.name }}</a></h3>
+    {% endfor %}
+    <br><a href="{% url 'amazon:home' %}">back</a></p>
   </body>
 </html>

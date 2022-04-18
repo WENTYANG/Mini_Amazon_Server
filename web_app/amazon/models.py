@@ -42,16 +42,16 @@ class Inventory(models.Model):
 class Order(models.Model):
   o_id = models.AutoField(primary_key=True)
   customer = models.ForeignKey(Customer, on_delete = models.CASCADE)
-  loc_x = models.IntegerField()
-  loc_y = models.IntegerField()
+  loc_x = models.IntegerField(blank=True, null=True)
+  loc_y = models.IntegerField(blank=True, null=True)
   ups_account = models.TextField(default="", blank=True);
-  card_number = models.DecimalField(max_digits=16, decimal_places=0)
+  card_number = models.DecimalField(max_digits=16, decimal_places=0, blank=True, null=True)
   status = models.CharField(default='open', choices=ORDER_STATUS, max_length=10)
-  date = models.DateField(auto_now=True)
+  date_time = models.DateTimeField(auto_now=True)
 
 class Item(models.Model):
   i_id = models.AutoField(primary_key=True)
-  order = models.ForeignKey(Order, on_delete = models.CASCADE)
+  order = models.ForeignKey(Order, on_delete = models.CASCADE, related_name='items')
   product = models.ForeignKey(Product, on_delete = models.CASCADE) # We should never delete products, could set inventory to 0 instead
   count = models.PositiveIntegerField()
   status = models.CharField(default='new', choices=ITEM_STATUS, max_length=12)
