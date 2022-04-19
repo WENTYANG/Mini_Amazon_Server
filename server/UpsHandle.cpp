@@ -13,12 +13,11 @@
 
 using namespace std;
 
-void RecvFromUps() {
-    unique_ptr<proto_in> ups_in(new proto_in(Server::get_instance().ups_fd));
+void RecvFromUps(proto_in * ups_in) {
     while (1) {
         try {
             AUResponse response;
-            if (recvMesgFrom<AUResponse>(response, ups_in.get()) == false) {
+            if (recvMesgFrom<AUResponse>(response, ups_in) == false) {
                 throw MyException(
                     "Error occured when receiving AUResponse from UPS");
             }

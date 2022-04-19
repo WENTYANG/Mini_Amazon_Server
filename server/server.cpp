@@ -44,9 +44,17 @@ Server::Server()
     } else {
         num_wh = 5;
     }
+    // Init frontend_fd
+    try {
+      frontend_fd = initializeServer(frontPortNum);
+      cout << "Listening for connections from front end." << endl;
+    } catch (const std::exception& e) {
+      std::cerr << "Fail to listen on front end because " << e.what() << endl;
+    }
 }
 
 Server::~Server() {
+    close(frontend_fd);
     close(ups_fd);
     close(world_fd);
 }
@@ -62,8 +70,8 @@ void Server::run() {
         connectWorld();
 
         // Spawn threads to receive responses from ups and world
-        thread t_RecvFromUps(RecvFromUps);
-        thread t_RecvFromWorld(RecvFromWorld);
+        thread t_RecvFromUps(RecvFromUps, ups_in);
+        thread t_RecvFromWorld(RecvFromWorld, world_in);
 
         t_RecvFromUps.detach();
         t_RecvFromWorld.detach();
@@ -172,15 +180,12 @@ void Server::disConnectDB(connection* C) {
     Keep receiving connection from front end, and receive an int as order number
 */
 void Server::acceptOrder() {
-    // Listen on port for front end connection
-    int server_fd = initializeServer(frontPortNum);
-    cout << "Ready to receive order from front end." << endl;
     // Continuously receiving connection from front end
     while (1) {
         int front_fd;
         string clientIP;
         try {
-            front_fd = serverAcceptConnection(server_fd, clientIP);
+            front_fd = serverAcceptConnection(frontend_fd, clientIP);
             string request = socketRecvMsg(front_fd);
             int order_id = stoi(request);
             // handle

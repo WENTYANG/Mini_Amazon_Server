@@ -1,6 +1,7 @@
 #ifndef _WORLDHANDLE_H
 #define _WORLDHANDLE_H
 
-void RecvFromWorld()
+bool sendAck(AResponses& response);
+void RecvFromWorld(proto_in* world_in);
 
 #endif

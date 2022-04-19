@@ -95,3 +95,17 @@ void readOrder(int o_id, Product& product, int& purchase_amount) {
     product.name = R[0][1].as<string>();
     purchase_amount = R[0][2].as<int>();
 }
+
+// add inventory to specific warehouse
+void add_inventory(int w_id, int p_id, int count) {
+}
+
+// change order status to packed and return if ups truck has arrived
+// throw if current order status is not open
+bool packed_and_check_ups_truck(int i_id) {
+}
+
+// change order status to delivering
+// throw if current order status is not packed
+void change_status_to_delivering(int i_id) {
+}
