@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 
+#include <mutex>
 #include "./protobuf/AUprotocolV3.pb.h"
 #include "./protobuf/world_amazon.pb.h"
 #include "exception.h"
@@ -29,18 +30,20 @@ class Server {
     string upsHostName;
     string upsPortNum;
     int worldID;
+    // global sequence number
+    long seqNum;
+    std::mutex mtx;
 
    public:
     int num_wh;
-    int wh_distance;
     vector<Warehouse> whlist;
     vector<Product> productList;
 
     Threadpool* threadPool;
-    // global sequence number
-    long seqNum;
+
     int ups_fd;
     int world_fd;
+    int front_fd;
     proto_in* world_in;
     proto_out* world_out;
     proto_in* ups_in;
@@ -81,6 +84,11 @@ class Server {
 
     // Developing & testing functions
     void setWh_circle(AConnect& acon);
+
+    int getSeqNum() {
+        std::lock_guard<std::mutex> server_lk(mtx);
+        return ++seqNum;
+    }
 };
 
 #endif

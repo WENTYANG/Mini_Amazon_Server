@@ -16,7 +16,6 @@ Server::Server()
       worldPortNum("12345"),
       upsHostName("0.0.0.0"),
       upsPortNum("8888"),
-      wh_distance(100),
       seqNum(0),
       dbName("MINI_AMAZON"),
       userName("postgres"),
@@ -209,6 +208,7 @@ void Server::setWh_circle(AConnect& acon) {
             whlist.push_back(Warehouse(i, 0, 0));
         } else {
             double theta = (2 * 3.14159 / num_wh) * i;
+            int wh_distance = 10;
             int x = wh_distance * sin(theta);
             int y = wh_distance * cos(theta);
             wh->set_x(x);

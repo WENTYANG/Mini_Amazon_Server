@@ -58,7 +58,8 @@ bool checkInventory(int w_id, int p_id, int purchase_amount) {
     sql << "UPDATE " << INVENTORY << "," << PRODUCT << "," << WAREHOUSE
         << " SET count=" << INVENTORY << ".count-" << purchase_amount
         << " WHERE " << INVENTORY << ".product=" << PRODUCT << ".p_id AND "
-        << INVENTORY << ".warehouse=" << WAREHOUSE << ".w_id AND" << INVENTORY
+        << INVENTORY << ".warehouse=" << WAREHOUSE << ".w_id AND " << WAREHOUSE
+        << ".w_id=" << w_id << " AND " << INVENTORY
         << ".count>=" << purchase_amount;
 
     result R(W.exec(sql.str()));
@@ -71,7 +72,9 @@ bool checkInventory(int w_id, int p_id, int purchase_amount) {
 }
 
 /*
-    Given an order id, read the order info from DB
+    Given an order id, read the order info from DB --> Separate to multiple
+   items, then push them into the purchaseQueue
+   single thread: no synchronization issues
 */
 void readOrder(int o_id, Product& product, int& purchase_amount) {
     Server& s = Server::get_instance();
@@ -80,18 +83,36 @@ void readOrder(int o_id, Product& product, int& purchase_amount) {
     nontransaction N(*C.get());
     stringstream sql;
 
-    sql << "SELECT p_id, name, count FROM " << ITEM << ", " << PRODUCT
-        << " WHERE " << ITEM << ".i_id=" << o_id << " AND " << ITEM
-        << ".PRODUCT=" << PRODUCT << "."
-        << "p_id"
-        << ";";
-    result R(N.exec(sql.str()));
+    sql << "SELECT i_id, p_id, name, count, loc_x, loc_y FROM " << ITEM << ", "
+        << PRODUCT << ", " << ORDER << " WHERE " << ITEM << ".order=" << o_id
+        << " AND " << ITEM << ".PRODUCT=" << PRODUCT << "."
+        << "p_id AND " << ORDER << ".o_id=" << o_id << ";";
+    result order(N.exec(sql.str()));
 
-    if (R.capacity() == 0) {
-        throw MyException("Order id (item id) does not exist in database.");
+    if (order.capacity() == 0) {
+        throw MyException("Order id does not exist in database.");
     }
 
-    product.p_id = R[0][0].as<int>();
-    product.name = R[0][1].as<string>();
-    purchase_amount = R[0][2].as<int>();
+    int wh_index = -1;
+
+    for (auto const& item : order) {
+        int i_id = item[0].as<int>();
+        int p_id = item[1].as<int>();
+        string name = item[2].as<string>();
+        int purchase_amount = item[3].as<int>();
+        int loc_x = item[4].as<int>();
+        int loc_y = item[5].as<int>();
+
+        // Select warehouse --> all the items in the same order are assigned to
+        // the same wh
+        if (wh_index == -1) {
+            wh_index = selectWarehouse(loc_x, loc_y);
+        }
+
+        // Construct SubOrder Object
+        SubOrder* order(
+            new SubOrder(i_id, p_id, name, purchase_amount, loc_x, loc_y));
+        // Push in queue
+        pushInQueue(wh_index, order);
+    }
 }

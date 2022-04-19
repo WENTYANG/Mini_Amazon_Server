@@ -8,8 +8,7 @@
 #include "sql_functions.h"
 
 using namespace std;
-typedef int o_id_t;
-typedef queue<o_id_t> purchaseQueue;
+typedef queue<SubOrder*> purchaseQueue;
 typedef int p_id_t;
 
 /*
@@ -28,15 +27,24 @@ class Product {
     ~Product() {}
 };
 
-class Order {
+/*SubOrder对应数据库里的ITEM*/
+class SubOrder {
    public:
     int o_id;
     Product product;
     int purchase_amount;
+    int loc_x;
+    int loc_y;
 
    public:
-    Order(int o_id) : o_id(o_id) { readOrder(o_id, product, purchase_amount); }
-    ~Order() {}
+    SubOrder() {}
+    SubOrder(int o_id, int p_id, string name, int purchase_amount, int x, int y)
+        : o_id(o_id),
+          product(Product(p_id, name)),
+          purchase_amount(purchase_amount),
+          loc_x(x),
+          loc_y(y) {}
+    ~SubOrder() {}
 };
 
 class Warehouse {
@@ -52,7 +60,7 @@ class Warehouse {
     Warehouse(int id, int x, int y) : w_id(id), x(x), y(y) {
         // Initialize product queues for every warehouse
         for (auto& p : Server::get_instance().productList) {
-            purchaseQueue* q = new queue<int>();
+            purchaseQueue* q = new queue<SubOrder*>();
             productMap[p.p_id] = q;
         }
     };
@@ -61,5 +69,7 @@ class Warehouse {
 
 void checkOrder(int w_id);
 void purchaseMore(int w_id, int p_id, int amount);
+int selectWarehouse(int loc_x, int loc_y);
+void pushInQueue(int wh_index, SubOrder* order);
 
 #endif

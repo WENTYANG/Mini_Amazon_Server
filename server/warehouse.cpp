@@ -1,4 +1,5 @@
 #include "warehouse.h"
+#include <cmath>
 #include "server.h"
 #include "sql_functions.h"
 
@@ -21,9 +22,8 @@ void checkOrder(int w_id) {
                     break;
                 }
                 // Check inventory in DB
-                int o_id = q->front();
-                Order order(o_id);
-                if (checkInventory(p_id, w_id, order.purchase_amount)) {
+                SubOrder* order = q->front();
+                if (checkInventory(w_id, p_id, order->purchase_amount)) {
                     // Sufficient, if just purchased, update ispurchasing flag
                     isPurchasing[p_id] = false;
                     // Spawn a task to pack
@@ -32,7 +32,7 @@ void checkOrder(int w_id) {
                     // Insufficient
                     if (!isPurchasing[p_id]) {
                         // Send purchaseMore to world
-                        purchaseMore(w_id, p_id, order.purchase_amount);
+                        purchaseMore(w_id, p_id, order->purchase_amount);
                         isPurchasing[p_id] = true;
                     }
                     //库存不够，刚刚发送了purchase，去下一个queue
@@ -47,3 +47,33 @@ void checkOrder(int w_id) {
     Send APurchaseMore Command to World
 */
 void purchaseMore(int w_id, int p_id, int amount) {}
+
+/*
+    Given a location of order, select the nearest warehouse, return the index of
+   wh in whlist
+*/
+int selectWarehouse(int loc_x, int loc_y) {
+    int min_dist = INT_MAX;
+    int index = -1;
+    int i = 0;
+    for (auto const& w : Server::get_instance().whlist) {
+        int dist = pow(w.x - loc_x, 2) + pow(w.y - loc_y, 2);
+        if (min_dist > dist) {
+            min_dist = dist;
+            index = i;
+        }
+        i++;
+    }
+    return index;
+}
+
+/*
+    Given a warehouse index in the whlist, push the order into the corresponding
+   purchaseQueue
+*/
+void pushInQueue(int wh_index, SubOrder* order) {
+    Server s = Server::get_instance();
+    Warehouse& wh = s.whlist[wh_index];
+    purchaseQueue* q = wh.productMap[order->product.p_id];
+    q.push(order);
+}
