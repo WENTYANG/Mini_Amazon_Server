@@ -76,7 +76,7 @@ bool checkInventory(int w_id, int p_id, int purchase_amount) {
    items, then push them into the purchaseQueue
    single thread: no synchronization issues
 */
-void readOrder(int o_id, Product& product, int& purchase_amount) {
+void readOrder(int o_id) {
     Server& s = Server::get_instance();
     unique_ptr<connection> C(s.connectDB());
 

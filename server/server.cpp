@@ -176,14 +176,14 @@ void Server::acceptOrder() {
     cout << "Ready to receive order from front end." << endl;
     // Continuously receiving connection from front end
     while (1) {
-        int front_fd;
         string clientIP;
         try {
             front_fd = serverAcceptConnection(server_fd, clientIP);
             string request = socketRecvMsg(front_fd);
+            close(front_fd);
             int order_id = stoi(request);
             // handle
-            close(front_fd);
+            readOrder(order_id);
         } catch (const std::exception& e) {
             std::cerr << e.what() << endl;
             continue;
