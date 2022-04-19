@@ -187,6 +187,7 @@ void Server::acceptOrder() {
             string request = socketRecvMsg(frontend_fd);
             close(frontend_fd);
             int order_id = stoi(request);
+            cout << "Received an incomming order from front end, o_id=" << order_id << endl;
             // handle
             readOrder(order_id);
         } catch (const std::exception& e) {
