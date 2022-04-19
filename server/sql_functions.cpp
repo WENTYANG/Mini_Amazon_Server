@@ -59,7 +59,7 @@ bool checkInventory(int w_id, int p_id, int purchase_amount) {
         << " SET count=" << INVENTORY << ".count-" << purchase_amount
         << " WHERE " << INVENTORY << ".product=" << PRODUCT << ".p_id AND "
         << INVENTORY << ".warehouse=" << WAREHOUSE << ".w_id AND " << WAREHOUSE
-        << ".w_id=" << w_id << " AND " << INVENTORY
+        << ".w_id=" << w_id << " AND " << PRODUCT << ".p_id=" << p_id << " AND " << INVENTORY
         << ".count>=" << purchase_amount;
 
     result R(W.exec(sql.str()));

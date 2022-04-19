@@ -8,6 +8,7 @@
 #include "sql_functions.h"
 
 using namespace std;
+class SubOrder;
 typedef queue<SubOrder*> purchaseQueue;
 typedef int p_id_t;
 
