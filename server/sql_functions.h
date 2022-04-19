@@ -18,8 +18,6 @@
 using namespace std;
 using namespace pqxx;
 
-class Product;
-
 void initFromDB();
 bool checkInventory(int w_id, int p_id, int purchase_amount);
 void readOrder(int o_id);

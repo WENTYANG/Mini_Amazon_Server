@@ -1,8 +1,19 @@
 #include "warehouse.h"
 #include <cmath>
 #include "sql_functions.h"
+#include "server.h"
 
 #define QUANTUM 5
+
+
+Warehouse::Warehouse(int id, int x, int y) : w_id(id), x(x), y(y) {
+  // Initialize product queues for every warehouse
+  Server& s = Server::get_instance();
+  for (auto& p : s.productList) {
+    purchaseQueue* q = new queue<SubOrder*>();
+    productMap[p.p_id] = q;
+  }
+}
 
 void checkOrder(int w_id) {
     Server& s = Server::get_instance();

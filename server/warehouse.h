@@ -4,7 +4,6 @@
 #include <queue>
 #include <unordered_map>
 #include <vector>
-#include "server.h"
 #include "sql_functions.h"
 
 class SubOrder;
@@ -59,14 +58,7 @@ class Warehouse {
 
     // purchaseQueue
 
-    Warehouse(int id, int x, int y) : w_id(id), x(x), y(y) {
-        // Initialize product queues for every warehouse
-        Server& s = Server::get_instance();
-        for (auto& p : s.productList) {
-            purchaseQueue* q = new queue<SubOrder*>();
-            productMap[p.p_id] = q;
-        }
-    };
+    Warehouse(int id, int x, int y);
     ~Warehouse(){};
 };
 

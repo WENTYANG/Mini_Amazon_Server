@@ -5,10 +5,8 @@
 #include <string>
 #include <vector>
 
-#include "./protobuf/AUprotocolV3.pb.h"
 #include "./protobuf/world_amazon.pb.h"
 #include "exception.h"
-#include "proto.h"
 #include "server.h"
 
 using namespace std;
