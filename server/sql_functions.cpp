@@ -1,14 +1,28 @@
 #include "sql_functions.h"
 #include "server.h"
+#include "warehouse.h"
 
 /*
-    Connect to Database and read warehouse amount and locations from Database
+    1) read product from Database, store in Warehouse::productList
+    2) read warehouse amount and locations from Database
+
 */
 void initFromDB() {
     Server& s = Server::get_instance();
     unique_ptr<connection> C(s.connectDB());
     nontransaction N(*C.get());
     stringstream sql;
+
+    // initialize Warehouse::productList
+    sql << "SELECT p_id, name FROM " << PRODUCT << ";";
+    result products(N.exec(sql.str()));
+    if (products.empty()) {
+        throw MyException("No products in database");
+    }
+
+    sql.clear();
+    sql.str("");
+
     sql << "SELECT w_id, loc_x, loc_y FROM " << WAREHOUSE << ";";
     result warehouses(N.exec(sql.str()));
     if (warehouses.empty()) {

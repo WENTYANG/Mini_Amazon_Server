@@ -12,6 +12,7 @@
 #include "./protobuf/AUprotocolV3.pb.h"
 #include "./protobuf/world_amazon.pb.h"
 #include "exception.h"
+#include "proto.h"
 #include "sql_functions.h"
 #include "threadpool.h"
 #include "warehouse.h"
@@ -38,6 +39,10 @@ class Server {
     long seqNum;
     int ups_fd;
     int world_fd;
+    proto_in* world_in;
+    proto_out* world_out;
+    proto_in* ups_in;
+    proto_out* ups_out;
 
     // db configure
     string dbName;

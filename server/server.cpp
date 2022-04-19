@@ -65,15 +65,12 @@ void Server::run() {
     }
 }
 
-/*------------------------Server connect--------------------------------*/
+/*--------------------------Server connect----------------------------------*/
 /*
   Connect to UPS and receive worldID
 */
 void Server::connectUPS() {
     ups_fd = clientRequestConnection(upsHostName, upsPortNum);
-    /*
-        To be modified
-    */
     string world_id = socketRecvMsg(ups_fd);
 
     worldID = stoi(world_id);
@@ -111,15 +108,15 @@ void Server::connectWorld() {
     acon.set_isamazon(true);
 
     // send AConnect Command
-    unique_ptr<proto_out> out(new proto_out(world_fd));
-    if (sendMesgTo<AConnect>(acon, out.get()) == false) {
+    world_out = new proto_out(world_fd);
+    if (sendMesgTo<AConnect>(acon, world_out) == false) {
         throw MyException("Send AConnect failed.");
     }
 
     // Receive Aconnected Response
     AConnected aced;
-    unique_ptr<proto_in> in(new proto_in(world_fd));
-    if (recvMesgFrom<AConnected>(aced, in.get()) == false) {
+    world_in = new proto_in(world_fd);
+    if (recvMesgFrom<AConnected>(aced, world_in) == false) {
         throw MyException("Receive AConnected failed.");
     }
 
@@ -155,8 +152,7 @@ void Server::disConnectDB(connection* C) {
     C->disconnect();
 }
 
-/*--------------------------Interaction with
- * world-----------------------------------*/
+/*---------------------Interaction with world--------------------------*/
 /*
     Keep receiving connection from front end, and receive an int as order number
 */
@@ -170,6 +166,7 @@ void Server::acceptOrder() {
         try {
             front_fd = serverAcceptConnection(server_fd, clientIP);
             string request = socketRecvMsg(front_fd);
+            int order_id = stoi(request);
             // handle
             close(front_fd);
         } catch (const std::exception& e) {

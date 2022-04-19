@@ -4,7 +4,7 @@
 
 using namespace std;
 typedef queue<int> purchaseQueue;
-// typedef string name;
+typedef int p_id;
 
 /*
 int32_t id() const;
@@ -12,23 +12,32 @@ int32_t x() const;
 int32_t y() const;
 */
 
+class Product {
+   public:
+    int id;
+    string name;
+
+    Product(int id, string name) : id(id), name(name) {}
+    ~Product() {}
+};
+
 class Warehouse {
    public:
     int id;
     int x;
     int y;
 
-    static vector<string> productList;
+    static vector<Product> productList;
 
-    unordered_map<string, purchase_queue*> productMap;
+    unordered_map<p_id, purchaseQueue*> productMap;
 
     // purchaseQueue
 
     Warehouse(int id, int x, int y) : id(id), x(x), y(y) {
         // Initialize product queues for every warehouse
-        for (auto& productName : productList) {
+        for (auto& p : productList) {
             purchaseQueue* q = new queue<int>;
-            productMap[productName] = q;
+            productMap[p.id] = q;
         }
     };
     ~Warehouse(){};
