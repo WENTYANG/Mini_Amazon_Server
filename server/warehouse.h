@@ -7,6 +7,7 @@
 #include "server.h"
 #include "sql_functions.h"
 
+class SubOrder;
 using namespace std;
 class SubOrder;
 typedef queue<SubOrder*> purchaseQueue;
@@ -60,7 +61,8 @@ class Warehouse {
 
     Warehouse(int id, int x, int y) : w_id(id), x(x), y(y) {
         // Initialize product queues for every warehouse
-        for (auto& p : Server::get_instance().productList) {
+        Server& s = Server::get_instance();
+        for (auto& p : s.productList) {
             purchaseQueue* q = new queue<SubOrder*>();
             productMap[p.p_id] = q;
         }

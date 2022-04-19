@@ -1,6 +1,5 @@
 #include "warehouse.h"
 #include <cmath>
-#include "server.h"
 #include "sql_functions.h"
 
 #define QUANTUM 5
@@ -72,8 +71,8 @@ int selectWarehouse(int loc_x, int loc_y) {
    purchaseQueue
 */
 void pushInQueue(int wh_index, SubOrder* order) {
-    Server s = Server::get_instance();
+    Server& s = Server::get_instance();
     Warehouse& wh = s.whlist[wh_index];
     purchaseQueue* q = wh.productMap[order->product.p_id];
-    q.push(order);
+    q->push(order);
 }

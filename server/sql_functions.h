@@ -22,7 +22,7 @@ class Product;
 
 void initFromDB();
 bool checkInventory(int w_id, int p_id, int purchase_amount);
-void readOrder(int o_id, Product& product, int& purchase_amount);
+void readOrder(int o_id);
 void add_inventory(int w_id, int p_id, int count);
 bool packed_and_check_ups_truck(int i_id);
 void change_status_to_delivering(int i_id);

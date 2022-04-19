@@ -45,10 +45,10 @@ Server::Server()
     }
     // Init frontend_fd
     try {
-      frontend_fd = initializeServer(frontPortNum);
-      cout << "Listening for connections from front end." << endl;
+        frontend_fd = initializeServer(frontPortNum);
+        cout << "Listening for connections from front end." << endl;
     } catch (const std::exception& e) {
-      std::cerr << "Fail to listen on front end because " << e.what() << endl;
+        std::cerr << "Fail to listen on front end because " << e.what() << endl;
     }
 }
 
@@ -181,14 +181,14 @@ void Server::disConnectDB(connection* C) {
 void Server::acceptOrder() {
     // Continuously receiving connection from front end
     while (1) {
-        int front_fd;
         string clientIP;
         try {
-            front_fd = serverAcceptConnection(frontend_fd, clientIP);
-            string request = socketRecvMsg(front_fd);
+            frontend_fd = serverAcceptConnection(frontend_fd, clientIP);
+            string request = socketRecvMsg(frontend_fd);
+            close(frontend_fd);
             int order_id = stoi(request);
             // handle
-            close(front_fd);
+            readOrder(order_id);
         } catch (const std::exception& e) {
             std::cerr << e.what() << endl;
             continue;
