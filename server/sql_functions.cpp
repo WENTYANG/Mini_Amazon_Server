@@ -116,3 +116,17 @@ void readOrder(int o_id) {
         pushInQueue(wh_index, order);
     }
 }
+
+// add inventory to specific warehouse
+void add_inventory(int w_id, int p_id, int count) {
+}
+
+// change order status to packed and return if ups truck has arrived
+// throw if current order status is not open
+bool packed_and_check_ups_truck(int i_id) {
+}
+
+// change order status to delivering
+// throw if current order status is not packed
+void change_status_to_delivering(int i_id) {
+}

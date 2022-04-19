@@ -43,7 +43,7 @@ class Server {
 
     int ups_fd;
     int world_fd;
-    int front_fd;
+    int frontend_fd;
     proto_in* world_in;
     proto_out* world_out;
     proto_in* ups_in;

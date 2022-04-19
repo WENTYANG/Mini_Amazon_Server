@@ -6,9 +6,16 @@ from django.contrib.auth.decorators import login_required
 from amazon.models import Category, Product, Order, Item
 from .forms import OrderInfoForm, ItemAmountForm 
 
+import socket
+
 # send a signal to backend when received a order
-def send_signal():
-  pass
+def send_signal(o_id):
+  HOST = "127.0.0.1"  # The server's hostname or IP address
+  PORT = 2104
+  with socket.socket(socket.AF_UNSPEC, socket.SOCK_STREAM) as s:
+    s.connect((HOST, PORT))
+    s.sendall(str(o_id))
+    s.close()
 
 # Create your views here.
 @login_required
@@ -100,7 +107,7 @@ def checkout(request, o_id):
       form.save()
       order.status='closed'
       order.save()
-      send_signal()
+      send_signal(order.o_id)
       return render(request, 'amazon/success.html')
     else:
       return render(request, 'amazon/checkout.html', {'invalid': True, 'order': order, 'items': items, 'form': form, 'total': tatal})
