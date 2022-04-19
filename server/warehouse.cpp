@@ -10,7 +10,7 @@ Warehouse::Warehouse(int id, int x, int y) : w_id(id), x(x), y(y) {
   // Initialize product queues for every warehouse
   Server& s = Server::get_instance();
   for (auto& p : s.productList) {
-    purchaseQueue* q = new queue<SubOrder*>();
+    purchaseQueue* q = new queue<shared_ptr<SubOrder>>();
     productMap[p.p_id] = q;
   }
 }
@@ -32,10 +32,11 @@ void checkOrder(int w_id) {
                     break;
                 }
                 // Check inventory in DB
-                SubOrder* order = q->front();
+                shared_ptr<SubOrder> order = q->front();
                 if (checkInventory(w_id, p_id, order->purchase_amount)) {
                     // Sufficient, if just purchased, update ispurchasing flag
                     isPurchasing[p_id] = false;
+                    q->pop();
                     // Spawn a task to pack
                     //  s.threadPool->assign_task(bind(pack, ...args));
                 } else {
@@ -81,7 +82,7 @@ int selectWarehouse(int loc_x, int loc_y) {
     Given a warehouse index in the whlist, push the order into the corresponding
    purchaseQueue
 */
-void pushInQueue(int wh_index, SubOrder* order) {
+void pushInQueue(int wh_index, shared_ptr<SubOrder> order) {
     Server& s = Server::get_instance();
     Warehouse& wh = s.whlist[wh_index];
     purchaseQueue* q = wh.productMap[order->product.p_id];

@@ -4,12 +4,13 @@
 #include <queue>
 #include <unordered_map>
 #include <vector>
+#include <memory>
 #include "sql_functions.h"
 
 class SubOrder;
 using namespace std;
 class SubOrder;
-typedef queue<SubOrder*> purchaseQueue;
+typedef queue<shared_ptr<SubOrder>> purchaseQueue;
 typedef int p_id_t;
 
 /*
@@ -59,12 +60,17 @@ class Warehouse {
     // purchaseQueue
 
     Warehouse(int id, int x, int y);
-    ~Warehouse(){};
+    ~Warehouse(){
+      for (auto i = productMap.begin(); i != productMap.end(); ++i) {
+        delete(i->second);
+      }
+    };
 };
 
 void checkOrder(int w_id);
 void purchaseMore(int w_id, int p_id, int amount);
 int selectWarehouse(int loc_x, int loc_y);
-void pushInQueue(int wh_index, SubOrder* order);
+void pushInQueue(int wh_index, shared_ptr<SubOrder> order);
+
 
 #endif

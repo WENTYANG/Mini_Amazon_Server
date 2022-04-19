@@ -90,7 +90,7 @@ void readOrder(int o_id) {
     result order(N.exec(sql.str()));
 
     if (order.capacity() == 0) {
-        throw MyException("Order id does not exist in database.");
+        throw MyException("Order id does not exist in database or order dose not conatains any items.");
     }
 
     int wh_index = -1;
@@ -110,7 +110,7 @@ void readOrder(int o_id) {
         }
 
         // Construct SubOrder Object
-        SubOrder* order(
+        shared_ptr<SubOrder> order(
             new SubOrder(i_id, p_id, name, purchase_amount, loc_x, loc_y));
         // Push in queue
         pushInQueue(wh_index, order);
