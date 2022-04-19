@@ -44,7 +44,7 @@ class Order(models.Model):
   customer = models.ForeignKey(Customer, on_delete = models.CASCADE)
   loc_x = models.IntegerField(blank=True, null=True)
   loc_y = models.IntegerField(blank=True, null=True)
-  ups_account = models.TextField(default="", blank=True);
+  ups_account = models.TextField(default="", blank=True)
   card_number = models.DecimalField(max_digits=16, decimal_places=0, blank=True, null=True)
   status = models.CharField(default='open', choices=ORDER_STATUS, max_length=10)
   date_time = models.DateTimeField(auto_now=True)

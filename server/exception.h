@@ -6,28 +6,41 @@
 
 using namespace std;
 
+class Uninitialize : public exception {
+   public:
+    Uninitialize() : message("Uninitialized.") {}
+    Uninitialize(string str) : message(str) {}
+    ~Uninitialize() throw() {}
+
+    virtual const char* what() const throw() { return message.c_str(); }
+
+   private:
+    string message;
+};
+
 class MyException : public exception {
- public:
-  MyException() : message("Error.") {}
-  MyException(string str) : message("Error : " + str) {}
-  ~MyException() throw() {}
+   public:
+    MyException() : message("Error.") {}
+    MyException(string str) : message(str) {}
+    ~MyException() throw() {}
 
-  virtual const char * what() const throw() { return message.c_str(); }
+    virtual const char* what() const throw() { return message.c_str(); }
 
- private:
-  string message;
+   private:
+    string message;
 };
 
 class VersionErrorException : public exception {
- public:
-  VersionErrorException() : message("Sql transaction fail. Beacuse:  ") {}
-  VersionErrorException(string str) : message("Sql transaction fail. Beacuse:  " + str) {}
-  ~VersionErrorException() throw() {}
+   public:
+    VersionErrorException() : message("Sql transaction fail. Beacuse:  ") {}
+    VersionErrorException(string str)
+        : message("Sql transaction fail. Beacuse:  " + str) {}
+    ~VersionErrorException() throw() {}
 
-  virtual const char * what() const throw() { return message.c_str(); }
+    virtual const char* what() const throw() { return message.c_str(); }
 
- private:
-  string message;
+   private:
+    string message;
 };
 
 #endif

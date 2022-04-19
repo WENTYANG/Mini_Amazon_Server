@@ -6,6 +6,7 @@
 #include <pqxx/pqxx>
 #include <string>
 #include "exception.h"
+#include "warehouse.h"
 
 /*------------------Table Names-------------*/
 #define PRODUCT "amazon_product"
@@ -19,5 +20,7 @@ using namespace std;
 using namespace pqxx;
 
 void initFromDB();
+bool checkInventory(int w_id, int p_id, int purchase_amount);
+void readOrder(int o_id, Product& product, int& purchase_amount);
 
 #endif

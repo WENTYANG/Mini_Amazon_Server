@@ -28,10 +28,19 @@ Server::Server()
     // Initialize threadpool
     Threadpool thread_pool;
     threadPool = thread_pool.get_pool();
-
     if (withFrontEnd) {
-        // Get warehouse amount and list
-        initFromDB();
+        while (1) {
+            try {
+                initFromDB();
+                break;
+            } catch (Uninitialize& e) {
+                cout << e.what() << endl;
+                continue;
+            } catch (std::exception& e) {
+                cerr << e.what() << endl;
+                return;
+            }
+        }
     } else {
         num_wh = 5;
     }
@@ -52,11 +61,17 @@ void Server::run() {
         // new world
         connectWorld();
 
+        // Spawn threads to receive responses from ups and world
         thread t_RecvFromUps(RecvFromUps);
         thread t_RecvFromWorld(RecvFromWorld);
 
         t_RecvFromUps.detach();
         t_RecvFromWorld.detach();
+
+        // Spawn a thread for each warehouse to process incoming orders
+        for (int i = 0; i < num_wh; i++) {
+            threadPool->assign_task(bind(checkOrder, whlist[i].w_id));
+        }
 
         // Accept order from front end
         acceptOrder();
@@ -159,6 +174,7 @@ void Server::disConnectDB(connection* C) {
 void Server::acceptOrder() {
     // Listen on port for front end connection
     int server_fd = initializeServer(frontPortNum);
+    cout << "Ready to receive order from front end." << endl;
     // Continuously receiving connection from front end
     while (1) {
         int front_fd;

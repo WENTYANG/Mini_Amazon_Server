@@ -34,6 +34,8 @@ class Server {
     int num_wh;
     int wh_distance;
     vector<Warehouse> whlist;
+    vector<Product> productList;
+
     Threadpool* threadPool;
     // global sequence number
     long seqNum;
