@@ -47,25 +47,25 @@ Server::~Server() {
 /*-----------------------------Server run-----------------------------------*/
 void Server::run() {
     try {
-      // init from DB
-      if (withFrontEnd) {
-        cout << "WithFrontEnd==True.\n";
-        while (1) {
-          try {
-            initFromDB();
-            cout << "Initialized from DB.\n";
-            break;
-          } catch (Uninitialize& e) {
-            cout << e.what() << endl;
-            continue;
-          } catch (std::exception& e) {
-            cerr << e.what() << endl;
-            return;
-          }
+        // init from DB
+        if (withFrontEnd) {
+            cout << "WithFrontEnd==True.\n";
+            while (1) {
+                try {
+                    initFromDB();
+                    cout << "Initialized from DB.\n";
+                    break;
+                } catch (Uninitialize& e) {
+                    cout << e.what() << endl;
+                    continue;
+                } catch (std::exception& e) {
+                    cerr << e.what() << endl;
+                    return;
+                }
+            }
+        } else {
+            num_wh = 5;
         }
-      } else {
-        num_wh = 5;
-      }
         // Connect to UPS, receive world ID
         // connectUPS();
 
@@ -74,15 +74,15 @@ void Server::run() {
         connectWorld();
 
         // Spawn threads to receive responses from ups and world
-        //thread t_RecvFromUps(RecvFromUps, ups_in);
+        // thread t_RecvFromUps(RecvFromUps, ups_in);
         thread t_RecvFromWorld(RecvFromWorld, world_in);
 
-        //t_RecvFromUps.detach();
+        // t_RecvFromUps.detach();
         t_RecvFromWorld.detach();
 
         // Spawn a thread for each warehouse to process incoming orders
         for (int i = 0; i < num_wh; i++) {
-            threadPool->assign_task(bind(checkOrder, whlist[i].w_id));
+            threadPool->assign_task(bind(checkOrder, whlist[i]->w_id));
         }
 
         // Accept order from front end
@@ -192,7 +192,8 @@ void Server::acceptOrder() {
             string request = socketRecvMsg(frontend_fd);
             close(frontend_fd);
             int order_id = stoi(request);
-            cout << "Received an incomming order from front end, o_id=" << order_id << endl;
+            cout << "Received an incomming order from front end, o_id="
+                 << order_id << endl;
             // handle
             readOrder(order_id);
         } catch (const std::exception& e) {
@@ -209,22 +210,22 @@ void Server::acceptOrder() {
       x = r*sin(theta)
       y = r*cos(theta)
 */
-void Server::setWh_circle(AConnect& acon) {
-    for (int i = 0; i < num_wh; i++) {
-        AInitWarehouse* wh = acon.add_initwh();
-        wh->set_id(i);
-        if (i == 0) {
-            wh->set_x(0);
-            wh->set_y(0);
-            whlist.push_back(Warehouse(i, 0, 0));
-        } else {
-            double theta = (2 * 3.14159 / num_wh) * i;
-            int wh_distance = 10;
-            int x = wh_distance * sin(theta);
-            int y = wh_distance * cos(theta);
-            wh->set_x(x);
-            wh->set_y(y);
-            whlist.push_back(Warehouse(i, x, y));
-        }
-    }
-}
+// void Server::setWh_circle(AConnect& acon) {
+//     for (int i = 0; i < num_wh; i++) {
+//         AInitWarehouse* wh = acon.add_initwh();
+//         wh->set_id(i);
+//         if (i == 0) {
+//             wh->set_x(0);
+//             wh->set_y(0);
+//             whlist.push_back(Warehouse(i, 0, 0));
+//         } else {
+//             double theta = (2 * 3.14159 / num_wh) * i;
+//             int wh_distance = 10;
+//             int x = wh_distance * sin(theta);
+//             int y = wh_distance * cos(theta);
+//             wh->set_x(x);
+//             wh->set_y(y);
+//             whlist.push_back(Warehouse(i, x, y));
+//         }
+//     }
+// }
