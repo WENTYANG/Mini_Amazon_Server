@@ -8,11 +8,15 @@
     If any of them is initialized(db empty), throw Uninitialize exception
 */
 void initFromDB() {
+    cout << "Start to initfromDB.\n";
     Server& s = Server::get_instance();
+    cout << "get_instance success.\n";
     unique_ptr<connection> C(s.connectDB());
+    cout << "connectDB success.\n";
     nontransaction N(*C.get());
+    cout << "C.get success.\n";
     stringstream sql;
-
+    cout << "Start to initfromDB.\n";
     // Initialize Server.productList
     sql << "SELECT p_id, name FROM " << PRODUCT << ";";
     result products(N.exec(sql.str()));
@@ -24,8 +28,8 @@ void initFromDB() {
         string p_name = p[1].as<string>();
         Server::get_instance().productList.push_back(Product(p_id, p_name));
     }
-
-    sql.clear();
+    cout << "Initialized Product list.\n";
+    //sql.clear();
     sql.str("");
 
     // Initialize Server.whlist
@@ -42,6 +46,7 @@ void initFromDB() {
         int loc_y = wh[2].as<int>();
         s.whlist.push_back(Warehouse(w_id, loc_x, loc_y));
     }
+    cout << "Initialized Warehouse list.\n";
 }
 
 /*
@@ -61,8 +66,14 @@ bool checkInventory(int w_id, int p_id, int purchase_amount) {
         << INVENTORY << ".warehouse=" << WAREHOUSE << ".w_id AND " << WAREHOUSE
         << ".w_id=" << w_id << " AND " << PRODUCT << ".p_id=" << p_id << " AND " << INVENTORY
         << ".count>=" << purchase_amount;
-
-    result R(W.exec(sql.str()));
+    try {
+      result R(W.exec(sql.str()));
+      W.commit()
+    }
+    catch (const pqxx::pqxx_exception & e) {
+      W.abort();
+      std::cerr << "Database Error in check_inventory: " << e.base().what() << std::endl;
+    }
     s.disConnectDB(C.get());
     result::size_type rows = R.affected_rows();
     if (rows == 0) {

@@ -21,28 +21,14 @@ Server::Server()
       userName("postgres"),
       password("passw0rd"),
       withUPS(false),
-      withFrontEnd(false) {
+      withFrontEnd(true) {
     cout << "Initializing server configuration...." << endl;
 
     // Initialize threadpool
     Threadpool thread_pool;
     threadPool = thread_pool.get_pool();
-    if (withFrontEnd) {
-        while (1) {
-            try {
-                initFromDB();
-                break;
-            } catch (Uninitialize& e) {
-                cout << e.what() << endl;
-                continue;
-            } catch (std::exception& e) {
-                cerr << e.what() << endl;
-                return;
-            }
-        }
-    } else {
-        num_wh = 5;
-    }
+    cout << "Initialized thread pool\n";
+
     // Init frontend_fd
     try {
         frontend_fd = initializeServer(frontPortNum);
@@ -61,6 +47,25 @@ Server::~Server() {
 /*-----------------------------Server run-----------------------------------*/
 void Server::run() {
     try {
+      // init from DB
+      if (withFrontEnd) {
+        cout << "WithFrontEnd==True.\n";
+        while (1) {
+          try {
+            initFromDB();
+            cout << "Initialized from DB.\n";
+            break;
+          } catch (Uninitialize& e) {
+            cout << e.what() << endl;
+            continue;
+          } catch (std::exception& e) {
+            cerr << e.what() << endl;
+            return;
+          }
+        }
+      } else {
+        num_wh = 5;
+      }
         // Connect to UPS, receive world ID
         // connectUPS();
 
@@ -69,10 +74,10 @@ void Server::run() {
         connectWorld();
 
         // Spawn threads to receive responses from ups and world
-        thread t_RecvFromUps(RecvFromUps, ups_in);
+        //thread t_RecvFromUps(RecvFromUps, ups_in);
         thread t_RecvFromWorld(RecvFromWorld, world_in);
 
-        t_RecvFromUps.detach();
+        //t_RecvFromUps.detach();
         t_RecvFromWorld.detach();
 
         // Spawn a thread for each warehouse to process incoming orders
@@ -118,7 +123,7 @@ void Server::connectWorld() {
     if (withUPS) {
         acon.set_worldid(worldID);
     } else {
-        // acon.set_worldid(1);
+        acon.set_worldid(1);
     }
 
     // Initialize warehouses
@@ -157,7 +162,7 @@ void Server::connectWorld() {
 */
 connection* Server::connectDB() {
     connection* C =
-        new connection("host=db port=5432 dbname=" + dbName +
+        new connection("host=127.0.0.1 port=5432 dbname=" + dbName +
                        " user=" + userName + " password=" + password);
     if (C->is_open()) {
         cout << "Opened database successfully: " << C->dbname() << endl;
