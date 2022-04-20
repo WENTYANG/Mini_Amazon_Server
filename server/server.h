@@ -12,6 +12,7 @@
 #include <mutex>
 #include "./protobuf/AUprotocolV3.pb.h"
 #include "./protobuf/world_amazon.pb.h"
+#include "ThreadSafe_queue.h"
 #include "exception.h"
 #include "proto.h"
 #include "sql_functions.h"
@@ -32,7 +33,7 @@ class Server {
     int worldID;
     // global sequence number
     long seqNum;
-    std::mutex mtx;
+    std::mutex seqnum_mtx;
 
    public:
     int num_wh;
@@ -47,10 +48,11 @@ class Server {
     int frontend_fd;
     proto_in* world_in;
     proto_out* world_out;
-    mutex world_out_mtx;
     proto_in* ups_in;
     proto_out* ups_out;
-    mutex ups_out_mtx;
+
+    ThreadSafe_queue<ACommands> world_output_queue;
+    ThreadSafe_queue<ACommands> ups_output_queue;
 
     // db configure
     string dbName;
@@ -89,7 +91,7 @@ class Server {
     void setWh_circle(AConnect& acon);
 
     int getSeqNum() {
-        std::lock_guard<std::mutex> server_lk(mtx);
+        std::lock_guard<std::mutex> server_lk(seqnum_mtx);
         return ++seqNum;
     }
 };

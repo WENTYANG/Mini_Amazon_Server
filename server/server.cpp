@@ -188,7 +188,7 @@ void Server::connectWorld() {
         }
     }
     // Send initialize Product command
-    if (sendMesgTo<AConnect>(acon, world_out) == false) {
+    if (sendMesgTo<ACommands>(acommand, world_out) == false) {
         throw MyException("Send initialize product command failed.");
     }
 

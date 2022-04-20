@@ -1,10 +1,10 @@
 #ifndef _WAREHOUSE_H
 #define _WAREHOUSE_H
 
+#include <memory>
 #include <queue>
 #include <unordered_map>
 #include <vector>
-#include <memory>
 #include "sql_functions.h"
 
 class SubOrder;
@@ -60,17 +60,16 @@ class Warehouse {
     // purchaseQueue
 
     Warehouse(int id, int x, int y);
-    ~Warehouse(){
-      for (auto i = productMap.begin(); i != productMap.end(); ++i) {
-        delete(i->second);
-      }
+    ~Warehouse() {
+        for (auto i = productMap.begin(); i != productMap.end(); ++i) {
+            delete (i->second);
+        }
     };
 };
 
 void checkOrder(int w_id);
-void purchaseMore(int w_id, int p_id, int amount);
+void purchaseMore(int w_id, int p_id, string name, int amount);
 int selectWarehouse(int loc_x, int loc_y);
 void pushInQueue(int wh_index, shared_ptr<SubOrder> order);
-
 
 #endif
