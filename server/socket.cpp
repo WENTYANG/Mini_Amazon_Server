@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "exception.h"
+#include <errno.h>
 
 /*
     create a socket to run as a server. Listen to the portNum.
@@ -75,6 +76,7 @@ int serverAcceptConnection(int serverFd, string& clientIp) {
         accept(serverFd, (struct sockaddr*)&socket_addr,
                &socket_addr_len);  // block until connection build
     if (client_connection_fd == -1) {
+        printf("%s\n", strerror(errno));
         throw MyException("Error: cannot accept connection on socket.");
     }
 

@@ -39,6 +39,7 @@ class Server {
     vector<unique_ptr<Warehouse>> whlist;
     vector<Product> productList;
 
+    Threadpool threadPoolObj;
     Threadpool* threadPool;
 
     int ups_fd;
@@ -46,8 +47,10 @@ class Server {
     int frontend_fd;
     proto_in* world_in;
     proto_out* world_out;
+    mutex world_out_mtx;
     proto_in* ups_in;
     proto_out* ups_out;
+    mutex ups_out_mtx;
 
     // db configure
     string dbName;

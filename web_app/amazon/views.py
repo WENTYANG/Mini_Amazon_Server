@@ -12,9 +12,9 @@ import socket
 def send_signal(o_id):
   HOST = "127.0.0.1"  # The server's hostname or IP address
   PORT = 2104
-  with socket.socket(socket.AF_UNSPEC, socket.SOCK_STREAM) as s:
+  with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.connect((HOST, PORT))
-    s.sendall(str(o_id))
+    s.sendall(str(o_id).encode())
     s.close()
 
 # Create your views here.

@@ -27,8 +27,7 @@ Server::Server()
     cout << "Initializing server configuration...." << endl;
 
     // Initialize threadpool
-    Threadpool thread_pool;
-    threadPool = thread_pool.get_pool();
+    threadPool = threadPoolObj.get_pool();
     cout << "Initialized thread pool\n";
 
     // Init frontend_fd
@@ -74,20 +73,28 @@ void Server::run() {
         // Connect to world, when developing, set withUPS=false to initialize a
         // new world
         connectWorld();
-
+        cout << "World connected\n";
         // Spawn threads to receive responses from ups and world
         // thread t_RecvFromUps(RecvFromUps, ups_in);
         thread t_RecvFromWorld(RecvFromWorld, world_in);
-
+        cout << "Thread RecvFromWorld created\n";
         // t_RecvFromUps.detach();
         t_RecvFromWorld.detach();
+        cout << "Thread RecvFromWorld detached\n";
 
         // Spawn a thread for each warehouse to process incoming orders
         for (int i = 0; i < num_wh; i++) {
-            threadPool->assign_task(bind(checkOrder, whlist[i]->w_id));
+            cout << "the " << i << " warehouse of " << num_wh << endl;
+            cout << "whlist[i] = " << whlist[i]->w_id << endl;
+            bool res = threadPool->assign_task(bind(checkOrder, i));
+            if (!res) {
+                cerr << "Can not assign more task!\n";
+            }
+            cout << "assigned one task\n";
         }
-
+        cout << "CheckOrder thread assigned\n";
         // Accept order from front end
+        cout << "Starting to acceptOrder.\n";
         acceptOrder();
     } catch (const std::exception& e) {
         std::cerr << e.what() << endl;
@@ -220,7 +227,9 @@ void Server::acceptOrder() {
         string clientIP;
         try {
             int client_fd = serverAcceptConnection(frontend_fd, clientIP);
+            cout << "accept a connection\n";
             string request = socketRecvMsg(client_fd);
+            cout << "received a request\n";
             close(client_fd);
             int order_id = stoi(request);
             cout << "Received an incomming order from front end, o_id="
