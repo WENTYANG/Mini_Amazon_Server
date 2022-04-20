@@ -129,7 +129,7 @@ void Server::connectWorld() {
     // Initialize warehouses
     if (withFrontEnd) {
     } else {
-        setWh_circle(acon);
+        // setWh_circle(acon);
     }
 
     acon.set_isamazon(true);
