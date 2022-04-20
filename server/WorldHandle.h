@@ -4,7 +4,6 @@
 #include "./protobuf/world_amazon.pb.h"
 #include "proto.h"
 
-bool sendAck(AResponses& response);
 void RecvFromWorld(proto_in* world_in);
 
 #endif

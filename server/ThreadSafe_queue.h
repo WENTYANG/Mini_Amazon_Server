@@ -61,7 +61,7 @@ class ThreadSafe_queue {
         return data_queue.empty();
     }
 
-    size_t size() const() {
+    size_t size() const {
         lock_guard<mutex> lock(mtx);
         return data_queue.size();
     }
