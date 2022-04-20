@@ -45,7 +45,7 @@ void initFromDB() {
         int loc_x = wh[1].as<int>();
         int loc_y = wh[2].as<int>();
         unique_ptr<Warehouse> warehouse(new Warehouse(w_id, loc_x, loc_y));
-        s.whlist.push_back(warehouse);
+        s.whlist.push_back(move(warehouse));
     }
     cout << "Initialized Warehouse list.\n";
 }
