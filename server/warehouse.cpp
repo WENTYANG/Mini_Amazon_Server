@@ -1,23 +1,23 @@
 #include "warehouse.h"
 #include <cmath>
-#include "sql_functions.h"
 #include "server.h"
+#include "sql_functions.h"
 
 #define QUANTUM 5
-
+using namespace std;
 
 Warehouse::Warehouse(int id, int x, int y) : w_id(id), x(x), y(y) {
-  // Initialize product queues for every warehouse
-  Server& s = Server::get_instance();
-  for (auto& p : s.productList) {
-    purchaseQueue* q = new queue<shared_ptr<SubOrder>>();
-    productMap[p.p_id] = q;
-  }
+    // Initialize product queues for every warehouse
+    Server& s = Server::get_instance();
+    for (auto& p : s.productList) {
+        purchaseQueue* q = new queue<shared_ptr<SubOrder>>();
+        productMap[p.p_id] = q;
+    }
 }
 
 void checkOrder(int w_id) {
     Server& s = Server::get_instance();
-    Warehouse& w = s.whlist[w_id];
+    unique_ptr<Warehouse>& w = s.whlist[w_id];
     int num_product = s.productList.size();
     vector<bool> isPurchasing(num_product, false);
 
@@ -26,7 +26,7 @@ void checkOrder(int w_id) {
         for (int i = 0; i < num_product; i++) {
             for (int time = 0; time < QUANTUM; time++) {
                 int p_id = s.productList[i].p_id;
-                purchaseQueue* q = w.productMap[p_id];
+                purchaseQueue* q = w->productMap[p_id];
                 if (q->empty()) {
                     //当前没有order，去下一个queue
                     break;
@@ -68,7 +68,7 @@ int selectWarehouse(int loc_x, int loc_y) {
     int index = -1;
     int i = 0;
     for (auto const& w : Server::get_instance().whlist) {
-        int dist = pow(w.x - loc_x, 2) + pow(w.y - loc_y, 2);
+        int dist = pow(w->x - loc_x, 2) + pow(w->y - loc_y, 2);
         if (min_dist > dist) {
             min_dist = dist;
             index = i;
@@ -84,7 +84,7 @@ int selectWarehouse(int loc_x, int loc_y) {
 */
 void pushInQueue(int wh_index, shared_ptr<SubOrder> order) {
     Server& s = Server::get_instance();
-    Warehouse& wh = s.whlist[wh_index];
-    purchaseQueue* q = wh.productMap[order->product.p_id];
+    unique_ptr<Warehouse>& wh = s.whlist[wh_index];
+    purchaseQueue* q = wh->productMap[order->product.p_id];
     q->push(order);
 }
