@@ -39,6 +39,7 @@ class Server {
     vector<unique_ptr<Warehouse>> whlist;
     vector<Product> productList;
 
+    Threadpool threadPoolObj;
     Threadpool* threadPool;
 
     int ups_fd;

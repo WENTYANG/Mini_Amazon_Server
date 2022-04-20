@@ -24,7 +24,7 @@ void RecvFromWorld(proto_in* world_in) {
             AResponses response;
             if (recvMesgFrom<AResponses>(response, world_in) == false) {
                 throw MyException(
-                    "Error occured when receiving AUResponse from UPS");
+                    "Error occured when receiving AResponse from World");
             }
             // TO DO: Parse AResponses and handle
             cout << "Received from world: " << response.DebugString() << std::endl;

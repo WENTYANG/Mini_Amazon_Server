@@ -15,9 +15,10 @@ Warehouse::Warehouse(int id, int x, int y) : w_id(id), x(x), y(y) {
     }
 }
 
-void checkOrder(int w_id) {
+void checkOrder(int w_idx) {
     Server& s = Server::get_instance();
-    unique_ptr<Warehouse>& w = s.whlist[w_id];
+    unique_ptr<Warehouse>& w = s.whlist[w_idx];
+    int w_id = s.whlist[w_idx]->w_id;
     int num_product = s.productList.size();
     vector<bool> isPurchasing(num_product, false);
 
