@@ -29,7 +29,7 @@ void initFromDB() {
         Server::get_instance().productList.push_back(Product(p_id, p_name));
     }
     cout << "Initialized Product list.\n";
-    //sql.clear();
+    // sql.clear();
     sql.str("");
 
     // Initialize Server.whlist
@@ -44,7 +44,8 @@ void initFromDB() {
         int w_id = wh[0].as<int>();
         int loc_x = wh[1].as<int>();
         int loc_y = wh[2].as<int>();
-        s.whlist.push_back(Warehouse(w_id, loc_x, loc_y));
+        unique_ptr<Warehouse> warehouse(new Warehouse(w_id, loc_x, loc_y));
+        s.whlist.push_back(warehouse);
     }
     cout << "Initialized Warehouse list.\n";
 }
@@ -64,15 +65,16 @@ bool checkInventory(int w_id, int p_id, int purchase_amount) {
         << " SET count=" << INVENTORY << ".count-" << purchase_amount
         << " WHERE " << INVENTORY << ".product=" << PRODUCT << ".p_id AND "
         << INVENTORY << ".warehouse=" << WAREHOUSE << ".w_id AND " << WAREHOUSE
-        << ".w_id=" << w_id << " AND " << PRODUCT << ".p_id=" << p_id << " AND " << INVENTORY
-        << ".count>=" << purchase_amount;
+        << ".w_id=" << w_id << " AND " << PRODUCT << ".p_id=" << p_id << " AND "
+        << INVENTORY << ".count>=" << purchase_amount;
+    result R;
     try {
-      result R(W.exec(sql.str()));
-      W.commit()
-    }
-    catch (const pqxx::pqxx_exception & e) {
-      W.abort();
-      std::cerr << "Database Error in check_inventory: " << e.base().what() << std::endl;
+        R = W.exec(sql.str());
+        W.commit();
+    } catch (const pqxx::pqxx_exception& e) {
+        W.abort();
+        std::cerr << "Database Error in check_inventory: " << e.base().what()
+                  << std::endl;
     }
     s.disConnectDB(C.get());
     result::size_type rows = R.affected_rows();
@@ -101,7 +103,9 @@ void readOrder(int o_id) {
     result order(N.exec(sql.str()));
 
     if (order.capacity() == 0) {
-        throw MyException("Order id does not exist in database or order dose not conatains any items.");
+        throw MyException(
+            "Order id does not exist in database or order dose not conatains "
+            "any items.");
     }
 
     int wh_index = -1;
@@ -129,15 +133,12 @@ void readOrder(int o_id) {
 }
 
 // add inventory to specific warehouse
-void add_inventory(int w_id, int p_id, int count) {
-}
+void add_inventory(int w_id, int p_id, int count) {}
 
 // change order status to packed and return if ups truck has arrived
 // throw if current order status is not open
-bool packed_and_check_ups_truck(int i_id) {
-}
+bool packed_and_check_ups_truck(int i_id) {}
 
 // change order status to delivering
 // throw if current order status is not packed
-void change_status_to_delivering(int i_id) {
-}
+void change_status_to_delivering(int i_id) {}

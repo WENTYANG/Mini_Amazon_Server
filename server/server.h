@@ -36,7 +36,7 @@ class Server {
 
    public:
     int num_wh;
-    vector<Warehouse> whlist;
+    vector<unique_ptr<Warehouse>> whlist;
     vector<Product> productList;
 
     Threadpool* threadPool;
