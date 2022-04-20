@@ -66,9 +66,10 @@ bool checkInventory(int w_id, int p_id, int purchase_amount) {
         << INVENTORY << ".warehouse=" << WAREHOUSE << ".w_id AND " << WAREHOUSE
         << ".w_id=" << w_id << " AND " << PRODUCT << ".p_id=" << p_id << " AND " << INVENTORY
         << ".count>=" << purchase_amount;
+    result R;
     try {
-      result R(W.exec(sql.str()));
-      W.commit()
+      R = W.exec(sql.str());
+      W.commit();
     }
     catch (const pqxx::pqxx_exception & e) {
       W.abort();
