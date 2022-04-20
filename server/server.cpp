@@ -6,6 +6,8 @@
 #include "proto.h"
 #include "socket.h"
 
+#define PRODUCT_INITIAL_AMOUNT 10
+
 using namespace std;
 
 /*-----------------------------Server constructor-----------------------------*/
@@ -102,6 +104,9 @@ void Server::connectUPS() {
 
     worldID = stoi(world_id);
     cout << "Receiving world id = " << worldID << " from UPS" << endl;
+
+    ups_in = new proto_in(ups_fd);
+    ups_out = new proto_out(ups_fd);
 }
 
 /*
@@ -128,6 +133,12 @@ void Server::connectWorld() {
 
     // Initialize warehouses
     if (withFrontEnd) {
+        AInitWarehouse* initWarehouse = acon.add_initwh();
+        for (auto const& warehouse : whlist) {
+            initWarehouse->set_id(warehouse.get()->w_id);
+            initWarehouse->set_x(warehouse.get()->x);
+            initWarehouse->set_y(warehouse.get()->y);
+        }
     } else {
         // setWh_circle(acon);
     }
@@ -155,6 +166,26 @@ void Server::connectWorld() {
     worldID = aced.worldid();
     cout << "Connect to world with world ID=" << worldID << " successfully."
          << endl;
+
+    // Initialize Products
+    ACommands acommand;
+    for (auto const& warehouse : whlist) {
+        APurchaseMore* purchaseMore = acommand.add_buy();
+        purchaseMore->set_whnum(warehouse.get()->w_id);
+        purchaseMore->set_seqnum(getSeqNum());
+        for (auto const& product : productList) {
+            AProduct* initProduct = purchaseMore->add_things();
+            initProduct->set_id(product.p_id);
+            initProduct->set_description(product.name);
+            initProduct->set_count(PRODUCT_INITIAL_AMOUNT);
+        }
+    }
+    // Send initialize Product command
+    if (sendMesgTo<AConnect>(acon, world_out) == false) {
+        throw MyException("Send initialize product command failed.");
+    }
+
+    // Receive ack & arrived
 }
 
 /*
@@ -188,9 +219,9 @@ void Server::acceptOrder() {
     while (1) {
         string clientIP;
         try {
-            frontend_fd = serverAcceptConnection(frontend_fd, clientIP);
-            string request = socketRecvMsg(frontend_fd);
-            close(frontend_fd);
+            int client_fd = serverAcceptConnection(frontend_fd, clientIP);
+            string request = socketRecvMsg(client_fd);
+            close(client_fd);
             int order_id = stoi(request);
             cout << "Received an incomming order from front end, o_id="
                  << order_id << endl;

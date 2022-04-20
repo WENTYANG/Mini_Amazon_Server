@@ -4,6 +4,7 @@
 #include "sql_functions.h"
 
 #define QUANTUM 5
+#define IS_PURCHASING true
 using namespace std;
 
 Warehouse::Warehouse(int id, int x, int y) : w_id(id), x(x), y(y) {
@@ -19,7 +20,7 @@ void checkOrder(int w_id) {
     Server& s = Server::get_instance();
     unique_ptr<Warehouse>& w = s.whlist[w_id];
     int num_product = s.productList.size();
-    vector<bool> isPurchasing(num_product, false);
+    vector<bool> isPurchasing(num_product, IS_PURCHASING);
 
     // Round Robin between every product in the warehouse
     while (1) {
