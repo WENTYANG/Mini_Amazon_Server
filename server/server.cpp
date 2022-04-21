@@ -99,11 +99,9 @@ void Server::run() {
         for (int i = 0; i < num_wh; i++) {
             cout << "the " << i << " warehouse of " << num_wh << endl;
             cout << "whlist[i] = " << whlist[i]->w_id << endl;
-            bool res = threadPool->assign_task(bind(checkOrder, i));
-            if (!res) {
-                cerr << "Can not assign more task!\n";
-            }
-            cout << "assigned one task\n";
+            thread t_checkOrder(checkOrder, i);
+            t_checkOrder.detach();
+            cout << "Spawned one thread to checkOrder\n";
         }
         cout << "CheckOrder thread assigned\n";
         // Accept order from front end
