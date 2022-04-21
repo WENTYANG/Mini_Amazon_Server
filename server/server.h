@@ -52,7 +52,7 @@ class Server {
     proto_out* ups_out;
 
     ThreadSafe_queue<ACommands> world_output_queue;
-    ThreadSafe_queue<ACommands> ups_output_queue;
+    ThreadSafe_queue<AUCommand> ups_output_queue;
 
     // db configure
     string dbName;

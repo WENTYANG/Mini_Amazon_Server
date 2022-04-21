@@ -6,5 +6,6 @@
 
 bool sendAck(AResponses& response);
 void RecvFromWorld(proto_in* world_in);
+void sendToWorld();
 
 #endif

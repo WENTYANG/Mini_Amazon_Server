@@ -50,8 +50,7 @@ void checkOrder(int w_idx) {
                     // Insufficient
                     if (!isPurchasing[p_id]) {
                         // Send purchaseMore to world
-                        purchaseMore(w_id, p_id, string name,
-                                     order->purchase_amount);
+                        purchaseMore(w_id, p_id, name, order->purchase_amount);
                         isPurchasing[p_id] = true;
                     }
                     //库存不够，刚刚发送了purchase，去下一个queue
@@ -78,17 +77,9 @@ void purchaseMore(int w_id, int p_id, string name, int amount) {
     initProduct->set_count(REGULAR_PURCHASE_AMOUNT);
 
     // Send initialize Product command
-    lock_guard<std::mutex> world_out_lk(s.world_out_mtx);
-    if (sendMesgTo<ACommands>(acommand, s.world_out) == false) {
-        throw MyException("Send purchase product command failed.");
-    }
+
     // receive ack & arrived response
 }
-
-/*
-    For an order that is ready(enough inventory), send APack command to world
-*/
-void pack() {}
 
 /*
     Given a location of order, select the nearest warehouse, return the
