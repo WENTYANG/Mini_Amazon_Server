@@ -22,7 +22,6 @@ using namespace std;
 unordered_set<int64_t> seq_nums;
 
 // send an ack for every message with an seqnum
-<<<<<<< HEAD
 bool sendAck(AResponses& response) {
     ACommands cmd;
     for (int i = 0; i < response.arrived_size(); ++i) {
@@ -49,8 +48,6 @@ bool sendAck(AResponses& response) {
     s.world_output_queue.push(cmd);
     return true;
 }
-=======
->>>>>>> be208320dec1ee056067f65d6be3d953980314f1
 
 void RecvFromWorld(proto_in* world_in) {
     while (1) {
@@ -64,8 +61,7 @@ void RecvFromWorld(proto_in* world_in) {
             cout << "Received from world: " << response.DebugString()
                  << std::endl;
             Server& s = Server::get_instance();
-<<<<<<< HEAD
-            sendAck(response);
+            s.threadPool->assign_task(bind(sendAck, response));
             for (int i = 0; i < response.arrived_size(); ++i) {
                 // update database, add more inventory
                 const APurchaseMore& apm = response.arrived(i);
@@ -75,11 +71,7 @@ void RecvFromWorld(proto_in* world_in) {
                 } else {
                     seq_nums.insert(seq);
                 }
-                int whnum = apm.whnum();
-                for (int j = 0; j < apm.things_size(); ++j) {
-                    const AProduct& product = apm.things(j);
-                    add_inventory(whnum, (int)product.id(), product.count());
-                }
+                s.threadPool->assign_task(bind(purchase_more, apm));
             }
             for (int i = 0; i < response.ready_size(); ++i) {
                 // updata database and check if ups truck also arrived, if
@@ -91,17 +83,7 @@ void RecvFromWorld(proto_in* world_in) {
                 } else {
                     seq_nums.insert(seq);
                 }
-                bool truck_arrived = false;
-                try {
-                    truck_arrived = packed_and_check_ups_truck(aped.shipid());
-                } catch (MyException& e) {
-                    cout << e.what() << endl;
-                    continue;
-                }
-                if (truck_arrived) {
-                    int i_id = aped.shipid();
-                    s.threadPool->assign_task(bind(load, i_id));
-                }
+                s.threadPool->assign_task(bind(load, aped));
             }
             for (int i = 0; i < response.loaded_size(); ++i) {
                 // update database and spwan ready to deliver thread
@@ -112,49 +94,7 @@ void RecvFromWorld(proto_in* world_in) {
                 } else {
                     seq_nums.insert(seq);
                 }
-                try {
-                    change_status_to_delivering(aled.shipid());
-                } catch (MyException& e) {
-                    cout << e.what() << endl;
-                    continue;
-                }
-                int i_id = aled.shipid();
-                s.threadPool->assign_task(bind(ready_to_deliver, i_id));
-=======
-            s.threadPool->assign_task(bind(sendAck, response));
-            for (int i = 0; i < response.arrived_size(); ++i) {
-              // update database, add more inventory
-              const APurchaseMore& apm = response.arrived(i);
-              int64_t seq = apm.seqnum();
-              if (seq_nums.find(seq) != seq_nums.end()) {
-                continue;
-              } else {
-                seq_nums.insert(seq);
-              }
-              s.threadPool->assign_task(bind(purchase_more, apm));
-            }
-            for (int i = 0; i < response.ready_size(); ++i) {
-              // updata database and check if ups truck also arrived, if arrived, spawn load thread
-              const APacked& aped = response.ready(i);
-              int64_t seq = aped.seqnum();
-              if (seq_nums.find(seq) != seq_nums.end()) {
-                continue;
-              } else {
-                seq_nums.insert(seq);
-              }
-              s.threadPool->assign_task(bind(load, aped));
-            }
-            for (int i = 0; i < response.loaded_size(); ++i) {
-              // update database and spwan ready to deliver thread
-              const ALoaded& aled = response.loaded(i);
-              int64_t seq = aled.seqnum();
-              if (seq_nums.find(seq) != seq_nums.end()) {
-                continue;
-              } else {
-                seq_nums.insert(seq);
-              }
-              s.threadPool->assign_task(bind(ready_to_deliver, aled));
->>>>>>> be208320dec1ee056067f65d6be3d953980314f1
+                s.threadPool->assign_task(bind(ready_to_deliver, aled));
             }
             if (response.has_finished()) {
                 // TODO: exit?
@@ -168,13 +108,8 @@ void RecvFromWorld(proto_in* world_in) {
                      << " msg: " << aerr.err() << endl;
             }
             for (int i = 0; i < response.acks_size(); ++i) {
-<<<<<<< HEAD
                 int64_t ack = response.acks(i);
-                // TODO: update ack,Timer map
-=======
-              int64_t ack = response.acks(i);
-              // TODO: update ack, Timer map
->>>>>>> be208320dec1ee056067f65d6be3d953980314f1
+                // TODO: update ack, Timer map
             }
             for (int i = 0; i < response.packagestatus_size(); ++i) {
                 // TODO:Currently just printing out info
