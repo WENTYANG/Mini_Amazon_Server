@@ -21,34 +21,6 @@ using namespace std;
 // Guarantee an idiompotent behaviour
 unordered_set<int64_t> seq_nums;
 
-// send an ack for every message with an seqnum
-bool sendAck(AResponses& response) {
-    ACommands cmd;
-    for (int i = 0; i < response.arrived_size(); ++i) {
-        int64_t seq = response.arrived(i).seqnum();
-        cmd.add_acks(seq);
-    }
-    for (int i = 0; i < response.ready_size(); ++i) {
-        int64_t seq = response.ready(i).seqnum();
-        cmd.add_acks(seq);
-    }
-    for (int i = 0; i < response.loaded_size(); ++i) {
-        int64_t seq = response.loaded(i).seqnum();
-        cmd.add_acks(seq);
-    }
-    for (int i = 0; i < response.error_size(); ++i) {
-        int64_t seq = response.error(i).seqnum();
-        cmd.add_acks(seq);
-    }
-    for (int i = 0; i < response.packagestatus_size(); ++i) {
-        int64_t seq = response.packagestatus(i).seqnum();
-        cmd.add_acks(seq);
-    }
-    Server& s = Server::get_instance();
-    s.world_output_queue.push(cmd);
-    return true;
-}
-
 void RecvFromWorld(proto_in* world_in) {
     while (1) {
         try {

@@ -67,8 +67,8 @@ void checkOrder(int w_idx) {
 void purchaseMore(int w_id, int p_id, string name, int amount) {
     // Initialize Products
     Server& s = Server::get_instance();
-    ACommands acommand;
-    APurchaseMore* purchaseMore = acommand.add_buy();
+    ACommands cmd;
+    APurchaseMore* purchaseMore = cmd.add_buy();
     purchaseMore->set_whnum(w_id);
     purchaseMore->set_seqnum(s.getSeqNum());
     AProduct* initProduct = purchaseMore->add_things();
@@ -76,9 +76,8 @@ void purchaseMore(int w_id, int p_id, string name, int amount) {
     initProduct->set_description(name);
     initProduct->set_count(REGULAR_PURCHASE_AMOUNT);
 
-    // Send initialize Product command
-
-    // receive ack & arrived response
+    // Send initialize Product command-->push into world queue
+    s.world_output_queue.push(cmd);
 }
 
 /*
