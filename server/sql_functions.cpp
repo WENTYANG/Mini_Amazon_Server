@@ -151,14 +151,14 @@ void add_inventory(int w_id, int p_id, int count) {
 
 // change order status to packed and return if ups truck has arrived
 // throw if current order status is not open
-bool packed_and_check_ups_truck(int i_id) {
+tuple<bool, int, int> packed_and_check_ups_truck(int i_id) {
     Server& s = Server::get_instance();
     unique_ptr<connection> C(s.connectDB());
     cout << "connectDB success in packed_and_check_ups_truck.\n";
     work W(*C.get());
     stringstream sql;
     sql << "UPDATE " << ITEM << " SET status='packed' WHERE " << ITEM << ".i_id=" << i_id 
-        << " AND status='new' RETURNING ups_truckid;";
+        << " AND status='new' RETURNING ups_truckid, warehouse_id;";
     result R;
     try {
       R = W.exec(sql.str());
@@ -173,8 +173,19 @@ bool packed_and_check_ups_truck(int i_id) {
       throw MyException(
           "item id does not exist(unlikely) or status is not open.\n");
     }
-    bool res = R.begin()[0].is_null();
-    return !res;
+    bool res = !(R.begin()[0].is_null());
+    int truck_id = 0;
+    int w_id;
+    if (res == true) {
+      truck_id = R.begin()[0].as<int>();
+    }
+    if (R.begin()[1].is_null()) {
+      throw MyException(
+        "Do not have a valid warehouse id.\n");
+    } else {
+      w_id = R.begin()[1].as<int>();
+    }
+    return make_tuple(res, truck_id, w_id);
 }
 
 // change order status to delivering

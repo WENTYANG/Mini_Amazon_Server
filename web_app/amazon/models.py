@@ -56,3 +56,4 @@ class Item(models.Model):
   count = models.PositiveIntegerField()
   status = models.CharField(default='new', choices=ITEM_STATUS, max_length=12)
   ups_truckid = models.IntegerField(null=True, blank=True)
+  warehouse = models.ForeignKey(Warehouse, on_delete = models.SET_NULL, null=True, blank=True)
