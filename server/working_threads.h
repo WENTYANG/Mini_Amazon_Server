@@ -5,6 +5,8 @@
 #include "sql_functions.h"
 #include "warehouse.h"
 
+// readOrder() also use threadPool
+
 // for communication with world
 void sendAck_world(AResponses response);
 void purchase_more(APurchaseMore apm);
