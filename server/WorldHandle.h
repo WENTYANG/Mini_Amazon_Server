@@ -5,6 +5,6 @@
 #include "proto.h"
 
 void RecvFromWorld(proto_in* world_in);
-void sendToWorld();
+void SendToWorld(proto_out* world_out);
 
 #endif

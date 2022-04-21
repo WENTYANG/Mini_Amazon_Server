@@ -98,8 +98,8 @@ struct AUResponseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AUResponseDefaultTypeInternal _AUResponse_default_instance_;
 PROTOBUF_CONSTEXPR UTruckArrive::UTruckArrive(
     ::_pbi::ConstantInitialized)
-  : seqnum_()
-  , packageid_(int64_t{0})
+  : packageid_(int64_t{0})
+  , seqnum_(int64_t{0})
   , truckid_(0){}
 struct UTruckArriveDefaultTypeInternal {
   PROTOBUF_CONSTEXPR UTruckArriveDefaultTypeInternal()
@@ -232,8 +232,8 @@ const uint32_t TableStruct_AUprotocolV3_2eproto::offsets[] PROTOBUF_SECTION_VARI
   PROTOBUF_FIELD_OFFSET(::UTruckArrive, truckid_),
   PROTOBUF_FIELD_OFFSET(::UTruckArrive, seqnum_),
   0,
+  2,
   1,
-  ~0u,
   PROTOBUF_FIELD_OFFSET(::UDelivered, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::UDelivered, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -305,7 +305,7 @@ const char descriptor_table_protodef_AUprotocolV3_2eproto[] PROTOBUF_SECTION_VAR
   "livered\030\002 \003(\0132\013.UDelivered\022\014\n\004acks\030\003 \003(\003"
   "\022\023\n\005error\030\004 \003(\0132\004.Err\"B\n\014UTruckArrive\022\021\n"
   "\tpackageid\030\001 \002(\003\022\017\n\007truckid\030\002 \002(\005\022\016\n\006seq"
-  "num\030\003 \003(\003\"/\n\nUDelivered\022\021\n\tpackageid\030\001 \002"
+  "num\030\003 \002(\003\"/\n\nUDelivered\022\021\n\tpackageid\030\001 \002"
   "(\003\022\016\n\006seqnum\030\002 \002(\003\"m\n\tUACommand\022\035\n\006arriv"
   "e\030\001 \003(\0132\r.UTruckArrive\022\036\n\tdelivered\030\002 \003("
   "\0132\013.UDelivered\022\014\n\004acks\030\003 \003(\003\022\023\n\005error\030\004 "
@@ -1917,24 +1917,25 @@ class UTruckArrive::_Internal {
     (*has_bits)[0] |= 1u;
   }
   static void set_has_truckid(HasBits* has_bits) {
+    (*has_bits)[0] |= 4u;
+  }
+  static void set_has_seqnum(HasBits* has_bits) {
     (*has_bits)[0] |= 2u;
   }
   static bool MissingRequiredFields(const HasBits& has_bits) {
-    return ((has_bits[0] & 0x00000003) ^ 0x00000003) != 0;
+    return ((has_bits[0] & 0x00000007) ^ 0x00000007) != 0;
   }
 };
 
 UTruckArrive::UTruckArrive(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  seqnum_(arena) {
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor();
   // @@protoc_insertion_point(arena_constructor:UTruckArrive)
 }
 UTruckArrive::UTruckArrive(const UTruckArrive& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _has_bits_(from._has_bits_),
-      seqnum_(from.seqnum_) {
+      _has_bits_(from._has_bits_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&packageid_, &from.packageid_,
     static_cast<size_t>(reinterpret_cast<char*>(&truckid_) -
@@ -1972,9 +1973,8 @@ void UTruckArrive::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  seqnum_.Clear();
   cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
+  if (cached_has_bits & 0x00000007u) {
     ::memset(&packageid_, 0, static_cast<size_t>(
         reinterpret_cast<char*>(&truckid_) -
         reinterpret_cast<char*>(&packageid_)) + sizeof(truckid_));
@@ -2008,18 +2008,11 @@ const char* UTruckArrive::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
         } else
           goto handle_unusual;
         continue;
-      // repeated int64 seqnum = 3;
+      // required int64 seqnum = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            _internal_add_seqnum(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<24>(ptr));
-        } else if (static_cast<uint8_t>(tag) == 26) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedInt64Parser(_internal_mutable_seqnum(), ptr, ctx);
+          _Internal::set_has_seqnum(&has_bits);
+          seqnum_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2062,15 +2055,15 @@ uint8_t* UTruckArrive::_InternalSerialize(
   }
 
   // required int32 truckid = 2;
-  if (cached_has_bits & 0x00000002u) {
+  if (cached_has_bits & 0x00000004u) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteInt32ToArray(2, this->_internal_truckid(), target);
   }
 
-  // repeated int64 seqnum = 3;
-  for (int i = 0, n = this->_internal_seqnum_size(); i < n; i++) {
+  // required int64 seqnum = 3;
+  if (cached_has_bits & 0x00000002u) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt64ToArray(3, this->_internal_seqnum(i), target);
+    target = ::_pbi::WireFormatLite::WriteInt64ToArray(3, this->_internal_seqnum(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2090,6 +2083,11 @@ size_t UTruckArrive::RequiredFieldsByteSizeFallback() const {
     total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_packageid());
   }
 
+  if (_internal_has_seqnum()) {
+    // required int64 seqnum = 3;
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_seqnum());
+  }
+
   if (_internal_has_truckid()) {
     // required int32 truckid = 2;
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_truckid());
@@ -2101,9 +2099,12 @@ size_t UTruckArrive::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:UTruckArrive)
   size_t total_size = 0;
 
-  if (((_has_bits_[0] & 0x00000003) ^ 0x00000003) == 0) {  // All required fields are present.
+  if (((_has_bits_[0] & 0x00000007) ^ 0x00000007) == 0) {  // All required fields are present.
     // required int64 packageid = 1;
     total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_packageid());
+
+    // required int64 seqnum = 3;
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_seqnum());
 
     // required int32 truckid = 2;
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_truckid());
@@ -2114,15 +2115,6 @@ size_t UTruckArrive::ByteSizeLong() const {
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
-
-  // repeated int64 seqnum = 3;
-  {
-    size_t data_size = ::_pbi::WireFormatLite::
-      Int64Size(this->seqnum_);
-    total_size += 1 *
-                  ::_pbi::FromIntSize(this->_internal_seqnum_size());
-    total_size += data_size;
-  }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
@@ -2146,13 +2138,15 @@ void UTruckArrive::MergeFrom(const UTruckArrive& from) {
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  seqnum_.MergeFrom(from.seqnum_);
   cached_has_bits = from._has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
+  if (cached_has_bits & 0x00000007u) {
     if (cached_has_bits & 0x00000001u) {
       packageid_ = from.packageid_;
     }
     if (cached_has_bits & 0x00000002u) {
+      seqnum_ = from.seqnum_;
+    }
+    if (cached_has_bits & 0x00000004u) {
       truckid_ = from.truckid_;
     }
     _has_bits_[0] |= cached_has_bits;
@@ -2176,7 +2170,6 @@ void UTruckArrive::InternalSwap(UTruckArrive* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_has_bits_[0], other->_has_bits_[0]);
-  seqnum_.InternalSwap(&other->seqnum_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(UTruckArrive, truckid_)
       + sizeof(UTruckArrive::truckid_)

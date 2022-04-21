@@ -27,7 +27,7 @@ void checkOrder(int w_idx) {
     int w_id = s.whlist[w_idx]->w_id;
     int num_product = s.productList.size();
     vector<bool> isPurchasing(num_product, IS_PURCHASING);
-
+    cout << "Starting to checkOrder, w_idx=" << w_idx << endl;
     // Round Robin between every product in the warehouse
     while (1) {
         for (int i = 0; i < num_product; i++) {
@@ -41,6 +41,7 @@ void checkOrder(int w_idx) {
                 }
                 // Check inventory in DB
                 shared_ptr<SubOrder> order = q->front();
+                cout << "checkOrder is processing an order. o_id=" << order->o_id << endl;
                 if (checkInventory(w_id, p_id, order->purchase_amount)) {
                     // Sufficient, if just purchased, update ispurchasing flag
                     isPurchasing[p_id] = false;
@@ -79,6 +80,8 @@ void purchaseMore(int w_id, int p_id, string name, int amount) {
 
     // Send initialize Product command-->push into world queue
     s.world_output_queue.push(cmd);
+    cout << "Add an purchseMore command to world_output_queue. name=" << name << " amount=" 
+        << amount << " w_id=" << w_id << endl;
 }
 
 /*

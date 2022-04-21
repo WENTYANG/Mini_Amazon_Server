@@ -19,7 +19,7 @@ using namespace std;
 
 // use a global unordered_set to keep track of all seq_number we received
 // Guarantee an idiompotent behaviour
-unordered_set<int64_t> seq_nums;
+static unordered_set<int64_t> seq_nums;
 
 void RecvFromWorld(proto_in* world_in) {
     while (1) {
@@ -33,7 +33,7 @@ void RecvFromWorld(proto_in* world_in) {
             cout << "Received from world: " << response.DebugString()
                  << std::endl;
             Server& s = Server::get_instance();
-            s.threadPool->assign_task(bind(sendAck, response));
+            s.threadPool->assign_task(bind(sendAck_world, response));
             for (int i = 0; i < response.arrived_size(); ++i) {
                 // update database, add more inventory
                 const APurchaseMore& apm = response.arrived(i);
@@ -55,7 +55,7 @@ void RecvFromWorld(proto_in* world_in) {
                 } else {
                     seq_nums.insert(seq);
                 }
-                s.threadPool->assign_task(bind(load, aped));
+                s.threadPool->assign_task(bind(load_world, aped));
             }
             for (int i = 0; i < response.loaded_size(); ++i) {
                 // update database and spwan ready to deliver thread
@@ -102,10 +102,9 @@ void RecvFromWorld(proto_in* world_in) {
   Dedicated output thread to pop requests out of world queue and send to world
   Send at most SEND_BATCH requests in 1 ACommands at a time
 */
-void sendToWorld() {
+void SendToWorld(proto_out* world_out) {
     Server& s = Server::get_instance();
     ThreadSafe_queue<ACommands>& que = s.world_output_queue;
-    proto_out* world_out = s.world_out;
     while (1) {
         try {
             ACommands cToSend;
@@ -162,6 +161,9 @@ void sendToWorld() {
                         "ACommands "
                         "to World.");
                 }
+
+                cout << "Send to world: " << cToSend.DebugString()
+                    << std::endl;
             }
         } catch (const std::exception& e) {
             cerr << e.what() << endl;

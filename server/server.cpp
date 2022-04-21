@@ -91,6 +91,12 @@ void Server::run() {
         t_SendToWorld.detach();
         cout << "Thread SendToWorld detached\n";
 
+        // Spawn threads to send to ups and world
+        //thread t_SendToUps(SendToUps, ups_out);
+        //t_SendToUps.detach();
+        thread t_SendToWorld(SendToWorld, world_out);
+        t_SendToWorld.detach();
+
         // Spawn a thread for each warehouse to process incoming orders
         for (int i = 0; i < num_wh; i++) {
             cout << "the " << i << " warehouse of " << num_wh << endl;
@@ -149,8 +155,8 @@ void Server::connectWorld() {
 
     // Initialize warehouses
     if (withFrontEnd) {
-        AInitWarehouse* initWarehouse = acon.add_initwh();
         for (auto const& warehouse : whlist) {
+            AInitWarehouse* initWarehouse = acon.add_initwh();
             initWarehouse->set_id(warehouse.get()->w_id);
             initWarehouse->set_x(warehouse.get()->x);
             initWarehouse->set_y(warehouse.get()->y);
@@ -166,13 +172,14 @@ void Server::connectWorld() {
     if (sendMesgTo<AConnect>(acon, world_out) == false) {
         throw MyException("Send AConnect failed.");
     }
-
+    cout << "Sent AConnect Command: " << acon.DebugString() << endl;
     // Receive Aconnected Response
     AConnected aced;
     world_in = new proto_in(world_fd);
     if (recvMesgFrom<AConnected>(aced, world_in) == false) {
         throw MyException("Receive AConnected failed.");
     }
+    cout << "Received AConnected Command: " << aced.DebugString() << endl;
 
     // Verify Aconnected Response
     if (aced.result() != "connected!") {
@@ -201,7 +208,7 @@ connection* Server::connectDB() {
         new connection("host=127.0.0.1 port=5432 dbname=" + dbName +
                        " user=" + userName + " password=" + password);
     if (C->is_open()) {
-        cout << "Opened database successfully: " << C->dbname() << endl;
+        //cout << "Opened database successfully: " << C->dbname() << endl;
     } else {
         throw MyException("Can't open database.");
     }

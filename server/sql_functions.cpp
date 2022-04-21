@@ -57,7 +57,7 @@ void initFromDB() {
 bool checkInventory(int w_id, int p_id, int purchase_amount) {
     Server& s = Server::get_instance();
     unique_ptr<connection> C(s.connectDB());
-    cout << "connectDB success in checkInventory.\n";
+    //cout << "connectDB success in checkInventory.\n";
     work W(*C.get());
     stringstream sql;
 
@@ -100,6 +100,7 @@ void readOrder(int o_id) {
         << " AND " << ITEM << ".product_id=" << PRODUCT << "."
         << "p_id AND " << ORDER << ".o_id=" << o_id << ";";
     result order(N.exec(sql.str()));
+    N.commit();
 
     if (order.capacity() == 0) {
         throw MyException(
@@ -121,6 +122,21 @@ void readOrder(int o_id) {
         // the same wh
         if (wh_index == -1) {
             wh_index = selectWarehouse(loc_x, loc_y);
+            int whnum = s.whlist[wh_index]->w_id;
+            work W(*C.get());
+            sql.clear();
+            sql.str("");
+            sql << "UPDATE " << ITEM << " SET warehouse_id=" << whnum << " WHERE " << ITEM
+                << ".order_id=" << o_id << ";";
+            try {
+                W.exec(sql.str());
+                W.commit();
+            } catch (const pqxx::pqxx_exception& e) {
+                W.abort();
+                std::cerr << "Database Error in read_order while updating whnum: "
+                    << e.base().what() << std::endl;
+            }
+            s.disConnectDB(C.get());
         }
 
         // Construct SubOrder Object
@@ -129,24 +145,7 @@ void readOrder(int o_id) {
         // Push in queue
         pushInQueue(wh_index, order);
     }
-
-    int whnum = s.whlist[wh_index]->w_id;
-
-    work W(*C.get());
-    sql.clear();
-    sql.str("");
-    sql << "UPDATE " << ITEM << "," << WAREHOUSE << "," << ORDER << " SET "
-        << ITEM << ".warehouse_id=" << whnum << " WHERE " << ITEM
-        << ".order_id=" << o_id << ";";
-    try {
-        W.exec(sql.str());
-        W.commit();
-    } catch (const pqxx::pqxx_exception& e) {
-        W.abort();
-        std::cerr << "Database Error in read_order while updating whnum: "
-                  << e.base().what() << std::endl;
-    }
-    s.disConnectDB(C.get());
+    cout << "Finished readOrder.\n";
 }
 
 // add inventory to specific warehouse
@@ -217,10 +216,7 @@ void change_status_to_delivering(int i_id) {
     cout << "connectDB success in change_status_to_delivering.\n";
     work W(*C.get());
     stringstream sql;
-    sql << "UPDATE " << ITEM
-        << " SET status='delivering' WHAND status='packed' AND ups_truckid IS "
-           "NOT NULERE "
-        << ITEM << ".i_id=" << i_id
+    sql << "UPDATE " << ITEM << " SET status='delivering' WHERE " << ITEM << ".i_id=" << i_id 
         << " AND status='packed' AND ups_truckid IS NOT NULL;";
     result R;
     try {
@@ -236,5 +232,67 @@ void change_status_to_delivering(int i_id) {
         throw MyException(
             "item id does not exist(unlikely) or status is not packed or do "
             "not have ups_truckid.\n");
+    }
+}
+
+// update ups_truckid and check if status = packed
+// throw if already have ups_truckid or status != new & packed
+// pair< if_packed, whnum >
+pair<bool, int> arrived_and_check_if_packed(int i_id, int truck_id) {
+    Server& s = Server::get_instance();
+    unique_ptr<connection> C(s.connectDB());
+    cout << "connectDB success in arrived_and_check_if_packed.\n";
+    work W(*C.get());
+    stringstream sql;
+    sql << "UPDATE " << ITEM << " SET ups_truckid=" << truck_id << " WHERE " << ITEM << ".i_id=" << i_id
+        << " AND (status='new' OR status='packed') AND ups_truckid IS NULL RETURNING status, warehouse_id;";
+    result R;
+    try {
+      R = W.exec(sql.str());
+      W.commit();
+    }
+    catch (const pqxx::pqxx_exception & e) {
+      W.abort();
+      std::cerr << "Database Error in arrived_and_check_if_packed: " << e.base().what() << std::endl;
+    }
+    s.disConnectDB(C.get());
+    if (R.begin() == R.end()) {
+      throw MyException(
+          "item id does not exist(unlikely) or status is not open.\n");
+    }
+    bool res = (R.begin()[0].as<string>() == string("packed"));
+    int w_id;
+    if (R.begin()[1].is_null()) {
+      throw MyException(
+        "Do not have a valid warehouse id.\n");
+    } else {
+      w_id = R.begin()[1].as<int>();
+    }
+    return make_pair(res, w_id);
+}
+
+// update status to delivered
+// throw if status is not delivering
+void change_status_to_delivered(int i_id) {
+    Server& s = Server::get_instance();
+    unique_ptr<connection> C(s.connectDB());
+    cout << "connectDB success in change_status_to_delivered.\n";
+    work W(*C.get());
+    stringstream sql;
+    sql << "UPDATE " << ITEM << " SET status='delivered' WHERE " << ITEM << ".i_id=" << i_id
+        << " AND status='delivering';";
+    result R;
+    try {
+      R = W.exec(sql.str());
+      W.commit();
+    }
+    catch (const pqxx::pqxx_exception & e) {
+      W.abort();
+      std::cerr << "Database Error in change_status_to_delivered: " << e.base().what() << std::endl;
+    }
+    s.disConnectDB(C.get());
+    if (R.begin() == R.end()) {
+      throw MyException(
+          "item id does not exist(unlikely) or status is not delivering.\n");
     }
 }

@@ -21,8 +21,11 @@ using namespace pqxx;
 void initFromDB();
 bool checkInventory(int w_id, int p_id, int purchase_amount);
 void readOrder(int o_id);
+
 void add_inventory(int w_id, int p_id, int count);
 tuple<bool, int, int> packed_and_check_ups_truck(int i_id);
 void change_status_to_delivering(int i_id);
 
+pair<bool, int> arrived_and_check_if_packed(int i_id, int truck_id);
+void change_status_to_delivered(int i_id);
 #endif
