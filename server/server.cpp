@@ -177,22 +177,11 @@ void Server::connectWorld() {
     // Initialize Products
     ACommands acommand;
     for (auto const& warehouse : whlist) {
-        APurchaseMore* purchaseMore = acommand.add_buy();
-        purchaseMore->set_whnum(warehouse.get()->w_id);
-        purchaseMore->set_seqnum(getSeqNum());
         for (auto const& product : productList) {
-            AProduct* initProduct = purchaseMore->add_things();
-            initProduct->set_id(product.p_id);
-            initProduct->set_description(product.name);
-            initProduct->set_count(PRODUCT_INITIAL_AMOUNT);
+            purchaseMore(warehouse.get()->w_id, product.p_id, product.name,
+                         PRODUCT_INITIAL_AMOUNT);
         }
     }
-    // Send initialize Product command
-    if (sendMesgTo<ACommands>(acommand, world_out) == false) {
-        throw MyException("Send initialize product command failed.");
-    }
-
-    // Receive ack & arrived
 }
 
 /*

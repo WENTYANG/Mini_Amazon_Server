@@ -61,17 +61,18 @@ bool checkInventory(int w_id, int p_id, int purchase_amount) {
     work W(*C.get());
     stringstream sql;
 
-    sql << "UPDATE " << INVENTORY << " SET count=" << INVENTORY << ".count-" << purchase_amount
-        << " WHERE " << INVENTORY << ".product_id=" << p_id << " AND " << INVENTORY << ".warehouse_id=" << w_id
-        << " AND " << INVENTORY << ".count>=" << purchase_amount << ";";
+    sql << "UPDATE " << INVENTORY << " SET count=" << INVENTORY << ".count-"
+        << purchase_amount << " WHERE " << INVENTORY << ".product_id=" << p_id
+        << " AND " << INVENTORY << ".warehouse_id=" << w_id << " AND "
+        << INVENTORY << ".count>=" << purchase_amount << ";";
     result R;
     try {
-      R = W.exec(sql.str());
-      W.commit();
-    }
-    catch (const pqxx::pqxx_exception & e) {
-      W.abort();
-      std::cerr << "Database Error in check_inventory: " << e.base().what() << std::endl;
+        R = W.exec(sql.str());
+        W.commit();
+    } catch (const pqxx::pqxx_exception& e) {
+        W.abort();
+        std::cerr << "Database Error in check_inventory: " << e.base().what()
+                  << std::endl;
     }
     s.disConnectDB(C.get());
     result::size_type rows = R.affected_rows();
@@ -84,6 +85,7 @@ bool checkInventory(int w_id, int p_id, int purchase_amount) {
 /*
     Given an order id, read the order info from DB --> Separate to multiple
    items, then push them into the purchaseQueue
+   Update warehouse num of each item in DB
    single thread: no synchronization issues
 */
 void readOrder(int o_id) {
@@ -127,6 +129,24 @@ void readOrder(int o_id) {
         // Push in queue
         pushInQueue(wh_index, order);
     }
+
+    int whnum = s.whlist[wh_index]->w_id;
+
+    work W(*C.get());
+    sql.clear();
+    sql.str("");
+    sql << "UPDATE " << ITEM << "," << WAREHOUSE << "," << ORDER << " SET "
+        << ITEM << ".warehouse_id=" << whnum << " WHERE " << ITEM
+        << ".order_id=" << o_id << ";";
+    try {
+        W.exec(sql.str());
+        W.commit();
+    } catch (const pqxx::pqxx_exception& e) {
+        W.abort();
+        std::cerr << "Database Error in read_order while updating whnum: "
+                  << e.base().what() << std::endl;
+    }
+    s.disConnectDB(C.get());
 }
 
 // add inventory to specific warehouse
@@ -136,15 +156,16 @@ void add_inventory(int w_id, int p_id, int count) {
     cout << "connectDB success in add_inventory.\n";
     work W(*C.get());
     stringstream sql;
-    sql << "UPDATE " << INVENTORY << " SET count=" << INVENTORY << ".count+" << count
-            << " WHERE " << INVENTORY << ".product_id=" << p_id << " AND " << INVENTORY << ".warehouse_id=" << w_id << ";";
+    sql << "UPDATE " << INVENTORY << " SET count=" << INVENTORY << ".count+"
+        << count << " WHERE " << INVENTORY << ".product_id=" << p_id << " AND "
+        << INVENTORY << ".warehouse_id=" << w_id << ";";
     try {
         W.exec(sql.str());
         W.commit();
-    }
-    catch (const pqxx::pqxx_exception & e) {
+    } catch (const pqxx::pqxx_exception& e) {
         W.abort();
-        std::cerr << "Database Error in add_inventory: " << e.base().what() << std::endl;
+        std::cerr << "Database Error in add_inventory: " << e.base().what()
+                  << std::endl;
     }
     s.disConnectDB(C.get());
 }
@@ -157,33 +178,33 @@ tuple<bool, int, int> packed_and_check_ups_truck(int i_id) {
     cout << "connectDB success in packed_and_check_ups_truck.\n";
     work W(*C.get());
     stringstream sql;
-    sql << "UPDATE " << ITEM << " SET status='packed' WHERE " << ITEM << ".i_id=" << i_id 
+    sql << "UPDATE " << ITEM << " SET status='packed' WHERE " << ITEM
+        << ".i_id=" << i_id
         << " AND status='new' RETURNING ups_truckid, warehouse_id;";
     result R;
     try {
-      R = W.exec(sql.str());
-      W.commit();
-    }
-    catch (const pqxx::pqxx_exception & e) {
-      W.abort();
-      std::cerr << "Database Error in packed_and_check_ups_truck: " << e.base().what() << std::endl;
+        R = W.exec(sql.str());
+        W.commit();
+    } catch (const pqxx::pqxx_exception& e) {
+        W.abort();
+        std::cerr << "Database Error in packed_and_check_ups_truck: "
+                  << e.base().what() << std::endl;
     }
     s.disConnectDB(C.get());
     if (R.begin() == R.end()) {
-      throw MyException(
-          "item id does not exist(unlikely) or status is not open.\n");
+        throw MyException(
+            "item id does not exist(unlikely) or status is not open.\n");
     }
     bool res = !(R.begin()[0].is_null());
     int truck_id = 0;
     int w_id;
     if (res == true) {
-      truck_id = R.begin()[0].as<int>();
+        truck_id = R.begin()[0].as<int>();
     }
     if (R.begin()[1].is_null()) {
-      throw MyException(
-        "Do not have a valid warehouse id.\n");
+        throw MyException("Do not have a valid warehouse id.\n");
     } else {
-      w_id = R.begin()[1].as<int>();
+        w_id = R.begin()[1].as<int>();
     }
     return make_tuple(res, truck_id, w_id);
 }
@@ -200,17 +221,18 @@ void change_status_to_delivering(int i_id) {
         << " AND status='packed' AND ups_truckid IS NOT NULL;";
     result R;
     try {
-      R = W.exec(sql.str());
-      W.commit();
-    }
-    catch (const pqxx::pqxx_exception & e) {
-      W.abort();
-      std::cerr << "Database Error in change_status_to_delivering: " << e.base().what() << std::endl;
+        R = W.exec(sql.str());
+        W.commit();
+    } catch (const pqxx::pqxx_exception& e) {
+        W.abort();
+        std::cerr << "Database Error in change_status_to_delivering: "
+                  << e.base().what() << std::endl;
     }
     s.disConnectDB(C.get());
     if (R.begin() == R.end()) {
-      throw MyException(
-          "item id does not exist(unlikely) or status is not packed or do not have ups_truckid.\n");
+        throw MyException(
+            "item id does not exist(unlikely) or status is not packed or do "
+            "not have ups_truckid.\n");
     }
 }
 

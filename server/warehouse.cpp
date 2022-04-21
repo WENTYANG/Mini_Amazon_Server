@@ -2,6 +2,7 @@
 #include <cmath>
 #include "server.h"
 #include "sql_functions.h"
+#include "working_threads.h"
 
 #define QUANTUM 5
 #define IS_PURCHASING true
@@ -45,13 +46,12 @@ void checkOrder(int w_idx) {
                     isPurchasing[p_id] = false;
                     q->pop();
                     // Spawn a task to pack
-                    //  s.threadPool->assign_task(bind(pack, ...args));
+                    s.threadPool->assign_task(bind(pack, order, w_id));
                 } else {
                     // Insufficient
                     if (!isPurchasing[p_id]) {
                         // Send purchaseMore to world
-                        purchaseMore(w_id, p_id, string name,
-                                     order->purchase_amount);
+                        purchaseMore(w_id, p_id, name, order->purchase_amount);
                         isPurchasing[p_id] = true;
                     }
                     //库存不够，刚刚发送了purchase，去下一个queue
@@ -68,8 +68,8 @@ void checkOrder(int w_idx) {
 void purchaseMore(int w_id, int p_id, string name, int amount) {
     // Initialize Products
     Server& s = Server::get_instance();
-    ACommands acommand;
-    APurchaseMore* purchaseMore = acommand.add_buy();
+    ACommands cmd;
+    APurchaseMore* purchaseMore = cmd.add_buy();
     purchaseMore->set_whnum(w_id);
     purchaseMore->set_seqnum(s.getSeqNum());
     AProduct* initProduct = purchaseMore->add_things();
@@ -77,18 +77,9 @@ void purchaseMore(int w_id, int p_id, string name, int amount) {
     initProduct->set_description(name);
     initProduct->set_count(REGULAR_PURCHASE_AMOUNT);
 
-    // Send initialize Product command
-    lock_guard<std::mutex> world_out_lk(s.world_out_mtx);
-    if (sendMesgTo<ACommands>(acommand, s.world_out) == false) {
-        throw MyException("Send purchase product command failed.");
-    }
-    // receive ack & arrived response
+    // Send initialize Product command-->push into world queue
+    s.world_output_queue.push(cmd);
 }
-
-/*
-    For an order that is ready(enough inventory), send APack command to world
-*/
-void pack() {}
 
 /*
     Given a location of order, select the nearest warehouse, return the

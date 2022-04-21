@@ -14,11 +14,11 @@ template <typename T>
 class ThreadSafe_queue {
    private:
     queue<T> data_queue;
-    mutex mtx;
+    mutable mutex mtx;
     condition_variable cv;
 
    public:
-    ThreadSafe_queue();
+    ThreadSafe_queue(){};
 
     ThreadSafe_queue(ThreadSafe_queue const& other) {
         lock_guard<mutex> lock(other.mtx);
