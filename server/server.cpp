@@ -238,7 +238,7 @@ void Server::acceptOrder() {
             cout << "Received an incomming order from front end, o_id="
                  << order_id << endl;
             // handle
-            readOrder(order_id);
+            threadPool->assign_task(bind(readOrder, order_id));
         } catch (const std::exception& e) {
             std::cerr << e.what() << endl;
             continue;

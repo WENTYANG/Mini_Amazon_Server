@@ -13,7 +13,7 @@ Warehouse::Warehouse(int id, int x, int y) : w_id(id), x(x), y(y) {
     // Initialize product queues for every warehouse
     Server& s = Server::get_instance();
     for (auto& p : s.productList) {
-        purchaseQueue* q = new queue<shared_ptr<SubOrder>>();
+        purchaseQueue* q = new ThreadSafe_queue<shared_ptr<SubOrder>>();
         productMap[p.p_id] = q;
     }
 }
@@ -41,11 +41,12 @@ void checkOrder(int w_idx) {
                 }
                 // Check inventory in DB
                 shared_ptr<SubOrder> order = q->front();
-                cout << "checkOrder is processing an order. o_id=" << order->o_id << endl;
+                cout << "checkOrder is processing an order. o_id="
+                     << order->o_id << endl;
                 if (checkInventory(w_id, p_id, order->purchase_amount)) {
                     // Sufficient, if just purchased, update ispurchasing flag
                     isPurchasing[p_id] = false;
-                    q->pop();
+                    q->try_pop(order);
                     // Spawn a task to pack
                     s.threadPool->assign_task(bind(pack, order, w_id));
                 } else {
@@ -80,8 +81,8 @@ void purchaseMore(int w_id, int p_id, string name, int amount) {
 
     // Send initialize Product command-->push into world queue
     s.world_output_queue.push(cmd);
-    cout << "Add an purchseMore command to world_output_queue. name=" << name << " amount=" 
-        << amount << " w_id=" << w_id << endl;
+    cout << "Add an purchseMore command to world_output_queue. name=" << name
+         << " amount=" << amount << " w_id=" << w_id << endl;
 }
 
 /*

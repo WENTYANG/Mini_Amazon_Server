@@ -5,12 +5,13 @@
 #include <queue>
 #include <unordered_map>
 #include <vector>
+#include "ThreadSafe_queue.h"
 #include "sql_functions.h"
 
 class SubOrder;
 using namespace std;
 class SubOrder;
-typedef queue<shared_ptr<SubOrder>> purchaseQueue;
+typedef ThreadSafe_queue<shared_ptr<SubOrder>> purchaseQueue;
 typedef int p_id_t;
 
 /*

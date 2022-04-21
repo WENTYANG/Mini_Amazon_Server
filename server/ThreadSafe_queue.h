@@ -65,6 +65,11 @@ class ThreadSafe_queue {
         lock_guard<mutex> lock(mtx);
         return data_queue.size();
     }
+
+    T& front() {
+        lock_guard<mutex> lock(mtx);
+        return data_queue.front();
+    }
 };
 
 #endif
