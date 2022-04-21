@@ -57,7 +57,7 @@ void initFromDB() {
 bool checkInventory(int w_id, int p_id, int purchase_amount) {
     Server& s = Server::get_instance();
     unique_ptr<connection> C(s.connectDB());
-    cout << "connectDB success in checkInventory.\n";
+    //cout << "connectDB success in checkInventory.\n";
     work W(*C.get());
     stringstream sql;
 
@@ -100,6 +100,7 @@ void readOrder(int o_id) {
         << " AND " << ITEM << ".product_id=" << PRODUCT << "."
         << "p_id AND " << ORDER << ".o_id=" << o_id << ";";
     result order(N.exec(sql.str()));
+    N.commit();
 
     if (order.capacity() == 0) {
         throw MyException(
@@ -121,6 +122,21 @@ void readOrder(int o_id) {
         // the same wh
         if (wh_index == -1) {
             wh_index = selectWarehouse(loc_x, loc_y);
+            int whnum = s.whlist[wh_index]->w_id;
+            work W(*C.get());
+            sql.clear();
+            sql.str("");
+            sql << "UPDATE " << ITEM << " SET warehouse_id=" << whnum << " WHERE " << ITEM
+                << ".order_id=" << o_id << ";";
+            try {
+                W.exec(sql.str());
+                W.commit();
+            } catch (const pqxx::pqxx_exception& e) {
+                W.abort();
+                std::cerr << "Database Error in read_order while updating whnum: "
+                    << e.base().what() << std::endl;
+            }
+            s.disConnectDB(C.get());
         }
 
         // Construct SubOrder Object
@@ -129,24 +145,7 @@ void readOrder(int o_id) {
         // Push in queue
         pushInQueue(wh_index, order);
     }
-
-    int whnum = s.whlist[wh_index]->w_id;
-
-    work W(*C.get());
-    sql.clear();
-    sql.str("");
-    sql << "UPDATE " << ITEM << "," << WAREHOUSE << "," << ORDER << " SET "
-        << ITEM << ".warehouse_id=" << whnum << " WHERE " << ITEM
-        << ".order_id=" << o_id << ";";
-    try {
-        W.exec(sql.str());
-        W.commit();
-    } catch (const pqxx::pqxx_exception& e) {
-        W.abort();
-        std::cerr << "Database Error in read_order while updating whnum: "
-                  << e.base().what() << std::endl;
-    }
-    s.disConnectDB(C.get());
+    cout << "Finished readOrder.\n";
 }
 
 // add inventory to specific warehouse

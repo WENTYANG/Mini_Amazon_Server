@@ -5,6 +5,6 @@
 #include "proto.h"
 
 void RecvFromUps(proto_in* ups_in);
-void sendToUps();
+void SendToUps(proto_out* ups_out);
 
 #endif

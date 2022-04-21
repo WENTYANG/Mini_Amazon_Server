@@ -3,7 +3,6 @@
 
 using namespace std;
 
-// be ware of lifetime of lock
 void sendAck_world(AResponses response) {
     ACommands cmd;
     for (int i = 0; i < response.arrived_size(); ++i) {

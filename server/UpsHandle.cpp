@@ -65,10 +65,9 @@ void RecvFromUps(proto_in* ups_in) {
   Dedicated output thread to pop requests out of ups queue and send to ups
   Send at most SEND_BATCH requests in 1 AUCommand at a time
 */
-void sendToUps() {
+void SendToUps(proto_out* ups_out) {
     Server& s = Server::get_instance();
     ThreadSafe_queue<AUCommand>& que = s.ups_output_queue;
-    proto_out* ups_out = s.ups_out;
     while (1) {
         try {
             AUCommand cToSend;
@@ -110,6 +109,8 @@ void sendToUps() {
                         "AUCommand "
                         "to UPS.");
                 }
+                cout << "Send to ups: " << cToSend.DebugString()
+                    << std::endl;
             }
         } catch (const std::exception& e) {
             cerr << e.what() << endl;

@@ -102,10 +102,9 @@ void RecvFromWorld(proto_in* world_in) {
   Dedicated output thread to pop requests out of world queue and send to world
   Send at most SEND_BATCH requests in 1 ACommands at a time
 */
-void sendToWorld() {
+void SendToWorld(proto_out* world_out) {
     Server& s = Server::get_instance();
     ThreadSafe_queue<ACommands>& que = s.world_output_queue;
-    proto_out* world_out = s.world_out;
     while (1) {
         try {
             ACommands cToSend;
@@ -162,6 +161,9 @@ void sendToWorld() {
                         "ACommands "
                         "to World.");
                 }
+
+                cout << "Send to world: " << cToSend.DebugString()
+                    << std::endl;
             }
         } catch (const std::exception& e) {
             cerr << e.what() << endl;
