@@ -55,7 +55,7 @@ void RecvFromWorld(proto_in* world_in) {
                 } else {
                     seq_nums.insert(seq);
                 }
-                s.threadPool->assign_task(bind(load, aped));
+                s.threadPool->assign_task(bind(load_world, aped));
             }
             for (int i = 0; i < response.loaded_size(); ++i) {
                 // update database and spwan ready to deliver thread
