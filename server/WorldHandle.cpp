@@ -17,7 +17,7 @@ using namespace std;
 
 // use a global unordered_set to keep track of all seq_number we received
 // Guarantee an idiompotent behaviour
-unordered_set<int64_t> seq_nums;
+static unordered_set<int64_t> seq_nums;
 
 // send an ack for every message with an seqnum
 
@@ -32,7 +32,7 @@ void RecvFromWorld(proto_in* world_in) {
             // Parse AResponses and handle
             cout << "Received from world: " << response.DebugString() << std::endl;
             Server& s = Server::get_instance();
-            s.threadPool->assign_task(bind(sendAck, response));
+            s.threadPool->assign_task(bind(sendAck_world, response));
             for (int i = 0; i < response.arrived_size(); ++i) {
               // update database, add more inventory
               const APurchaseMore& apm = response.arrived(i);
@@ -53,7 +53,7 @@ void RecvFromWorld(proto_in* world_in) {
               } else {
                 seq_nums.insert(seq);
               }
-              s.threadPool->assign_task(bind(load, aped));
+              s.threadPool->assign_task(bind(load_world, aped));
             }
             for (int i = 0; i < response.loaded_size(); ++i) {
               // update database and spwan ready to deliver thread

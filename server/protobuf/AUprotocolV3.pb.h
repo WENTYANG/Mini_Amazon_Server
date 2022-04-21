@@ -1291,32 +1291,10 @@ class UTruckArrive final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kSeqnumFieldNumber = 3,
     kPackageidFieldNumber = 1,
+    kSeqnumFieldNumber = 3,
     kTruckidFieldNumber = 2,
   };
-  // repeated int64 seqnum = 3;
-  int seqnum_size() const;
-  private:
-  int _internal_seqnum_size() const;
-  public:
-  void clear_seqnum();
-  private:
-  int64_t _internal_seqnum(int index) const;
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >&
-      _internal_seqnum() const;
-  void _internal_add_seqnum(int64_t value);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
-      _internal_mutable_seqnum();
-  public:
-  int64_t seqnum(int index) const;
-  void set_seqnum(int index, int64_t value);
-  void add_seqnum(int64_t value);
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >&
-      seqnum() const;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
-      mutable_seqnum();
-
   // required int64 packageid = 1;
   bool has_packageid() const;
   private:
@@ -1328,6 +1306,19 @@ class UTruckArrive final :
   private:
   int64_t _internal_packageid() const;
   void _internal_set_packageid(int64_t value);
+  public:
+
+  // required int64 seqnum = 3;
+  bool has_seqnum() const;
+  private:
+  bool _internal_has_seqnum() const;
+  public:
+  void clear_seqnum();
+  int64_t seqnum() const;
+  void set_seqnum(int64_t value);
+  private:
+  int64_t _internal_seqnum() const;
+  void _internal_set_seqnum(int64_t value);
   public:
 
   // required int32 truckid = 2;
@@ -1355,8 +1346,8 @@ class UTruckArrive final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t > seqnum_;
   int64_t packageid_;
+  int64_t seqnum_;
   int32_t truckid_;
   friend struct ::TableStruct_AUprotocolV3_2eproto;
 };
@@ -2818,7 +2809,7 @@ inline void UTruckArrive::set_packageid(int64_t value) {
 
 // required int32 truckid = 2;
 inline bool UTruckArrive::_internal_has_truckid() const {
-  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
   return value;
 }
 inline bool UTruckArrive::has_truckid() const {
@@ -2826,7 +2817,7 @@ inline bool UTruckArrive::has_truckid() const {
 }
 inline void UTruckArrive::clear_truckid() {
   truckid_ = 0;
-  _has_bits_[0] &= ~0x00000002u;
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline int32_t UTruckArrive::_internal_truckid() const {
   return truckid_;
@@ -2836,7 +2827,7 @@ inline int32_t UTruckArrive::truckid() const {
   return _internal_truckid();
 }
 inline void UTruckArrive::_internal_set_truckid(int32_t value) {
-  _has_bits_[0] |= 0x00000002u;
+  _has_bits_[0] |= 0x00000004u;
   truckid_ = value;
 }
 inline void UTruckArrive::set_truckid(int32_t value) {
@@ -2844,51 +2835,32 @@ inline void UTruckArrive::set_truckid(int32_t value) {
   // @@protoc_insertion_point(field_set:UTruckArrive.truckid)
 }
 
-// repeated int64 seqnum = 3;
-inline int UTruckArrive::_internal_seqnum_size() const {
-  return seqnum_.size();
+// required int64 seqnum = 3;
+inline bool UTruckArrive::_internal_has_seqnum() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
 }
-inline int UTruckArrive::seqnum_size() const {
-  return _internal_seqnum_size();
+inline bool UTruckArrive::has_seqnum() const {
+  return _internal_has_seqnum();
 }
 inline void UTruckArrive::clear_seqnum() {
-  seqnum_.Clear();
+  seqnum_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000002u;
 }
-inline int64_t UTruckArrive::_internal_seqnum(int index) const {
-  return seqnum_.Get(index);
-}
-inline int64_t UTruckArrive::seqnum(int index) const {
-  // @@protoc_insertion_point(field_get:UTruckArrive.seqnum)
-  return _internal_seqnum(index);
-}
-inline void UTruckArrive::set_seqnum(int index, int64_t value) {
-  seqnum_.Set(index, value);
-  // @@protoc_insertion_point(field_set:UTruckArrive.seqnum)
-}
-inline void UTruckArrive::_internal_add_seqnum(int64_t value) {
-  seqnum_.Add(value);
-}
-inline void UTruckArrive::add_seqnum(int64_t value) {
-  _internal_add_seqnum(value);
-  // @@protoc_insertion_point(field_add:UTruckArrive.seqnum)
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >&
-UTruckArrive::_internal_seqnum() const {
+inline int64_t UTruckArrive::_internal_seqnum() const {
   return seqnum_;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >&
-UTruckArrive::seqnum() const {
-  // @@protoc_insertion_point(field_list:UTruckArrive.seqnum)
+inline int64_t UTruckArrive::seqnum() const {
+  // @@protoc_insertion_point(field_get:UTruckArrive.seqnum)
   return _internal_seqnum();
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
-UTruckArrive::_internal_mutable_seqnum() {
-  return &seqnum_;
+inline void UTruckArrive::_internal_set_seqnum(int64_t value) {
+  _has_bits_[0] |= 0x00000002u;
+  seqnum_ = value;
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
-UTruckArrive::mutable_seqnum() {
-  // @@protoc_insertion_point(field_mutable_list:UTruckArrive.seqnum)
-  return _internal_mutable_seqnum();
+inline void UTruckArrive::set_seqnum(int64_t value) {
+  _internal_set_seqnum(value);
+  // @@protoc_insertion_point(field_set:UTruckArrive.seqnum)
 }
 
 // -------------------------------------------------------------------

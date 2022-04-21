@@ -55,7 +55,7 @@ void load(APacked aped) {
       load->set_whnum(get<2>(info));
       load->set_truckid(get<1>(info));
       load->set_shipid(i_id);
-      load->set_seqnum(s.getSeqNum());
+      load->set_seqnum(0);
       s.world_output_queue.push(cmd); 
     }
 }
@@ -72,6 +72,57 @@ void ready_to_deliver(ALoaded aled) {
     AUCommand cmd;
     auto deliver = cmd.add_deliver();
     deliver->set_packageid(i_id);
-    deliver->set_seqnum(s.getSeqNum());
+    deliver->set_seqnum(0);
     s.ups_output_queue.push(cmd);
+}
+
+void sendAck(UACommand response) {
+  AUCommand cmd;
+  for (int i = 0; i < response.arrive_size(); ++i) {
+    int64_t seq = response.arrive(i).seqnum();
+    cmd.add_acks(seq);
+  }
+  for (int i = 0; i < response.delivered_size(); ++i) {
+    int64_t seq = response.delivered(i).seqnum();
+    cmd.add_acks(seq);
+  }
+  for (int i = 0; i < response.error_size(); ++i) {
+    int64_t seq = response.error(i).seqnum();
+    cmd.add_acks(seq);
+  }
+  Server& s = Server::get_instance();
+  s.ups_output_queue.push(cmd);
+}
+
+void load(UTruckArrive uta) {
+  // pair< if_packed, whnum >
+  pair<bool, int> info;
+  try {
+    info = arrived_and_check_if_packed(uta.packageid(), uta.truckid());
+  } catch (MyException& e) {
+    cout << e.what() << endl;
+    return;
+  }
+  if (info.first) {
+    Server& s = Server::get_instance();
+    int i_id = uta.packageid();
+    ACommands cmd;
+    auto load = cmd.add_load();
+    load->set_whnum(info.second);
+    load->set_truckid(uta.truckid());
+    load->set_shipid(i_id);
+    load->set_seqnum(0);
+    s.world_output_queue.push(cmd);
+  }
+  
+}
+
+void delivered(UDelivered uded) {
+  try {
+    change_status_to_delivered(uded.packageid());
+  } catch (MyException& e) {
+    cout << e.what() << endl;
+    return;
+  }
+  // TODO: possibaly send email to user
 }

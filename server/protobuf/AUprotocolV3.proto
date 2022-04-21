@@ -40,7 +40,7 @@ message AUResponse{
 message UTruckArrive{
 	required int64 packageid  = 1;
 	required int32 truckid  = 2;
-	repeated int64 seqnum = 3;
+	required int64 seqnum = 3;
 }
 
 message UDelivered{
