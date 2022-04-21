@@ -2,6 +2,7 @@
 #include <cmath>
 #include "server.h"
 #include "sql_functions.h"
+#include "working_threads.h"
 
 #define QUANTUM 5
 #define IS_PURCHASING true
@@ -45,7 +46,7 @@ void checkOrder(int w_idx) {
                     isPurchasing[p_id] = false;
                     q->pop();
                     // Spawn a task to pack
-                    //  s.threadPool->assign_task(bind(pack, ...args));
+                    s.threadPool->assign_task(bind(pack, order, w_id));
                 } else {
                     // Insufficient
                     if (!isPurchasing[p_id]) {

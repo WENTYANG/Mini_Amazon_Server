@@ -75,3 +75,20 @@ void ready_to_deliver(ALoaded aled) {
     deliver->set_seqnum(s.getSeqNum());
     s.ups_output_queue.push(cmd);
 }
+
+void pack(shared_ptr<SubOrder> order, int w_id) {
+    ACommands cmd;
+    auto pack = cmd.add_topack();
+    pack->set_whnum(w_id);
+
+    auto product = pack->add_things();
+    product->set_id(order.get()->product.p_id);
+    product->set_description(order.get()->product.name);
+    product->set_count(order.get()->purchase_amount);
+
+    pack->set_shipid(order.get()->o_id);
+
+    // Push into world queue
+    Server& s = Server::get_instance();
+    s.world_output_queue.push(cmd);
+}

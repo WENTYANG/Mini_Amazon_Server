@@ -118,26 +118,26 @@ void sendToWorld() {
                 que.try_pop(request);
                 // parse & add seqnum & append to commandToSend
                 for (int i = 0; i < request.buy_size(); ++i) {
-                    const APurchaseMore& currBuy = request.buy(i);
-                    APurchaseMore* buy = cToSend.add_buy();
+                    const auto& currBuy = request.buy(i);
+                    auto buy = cToSend.add_buy();
                     buy->CopyFrom(currBuy);
                     buy->set_seqnum(s.getSeqNum());
                 }
                 for (int i = 0; i < request.topack_size(); ++i) {
-                    const APack& currPack = request.topack(i);
-                    APack* topack = cToSend.add_topack();
+                    const auto& currPack = request.topack(i);
+                    auto topack = cToSend.add_topack();
                     topack->CopyFrom(currPack);
                     topack->set_seqnum(s.getSeqNum());
                 }
                 for (int i = 0; i < request.load_size(); ++i) {
-                    const APutOnTruck& currLoad = request.load(i);
-                    APutOnTruck* load = cToSend.add_load();
+                    const auto& currLoad = request.load(i);
+                    auto load = cToSend.add_load();
                     load->CopyFrom(currLoad);
                     load->set_seqnum(s.getSeqNum());
                 }
                 for (int i = 0; i < request.queries_size(); ++i) {
-                    const AQuery& currQuery = request.queries(i);
-                    AQuery* queries = cToSend.add_queries();
+                    const auto& currQuery = request.queries(i);
+                    auto queries = cToSend.add_queries();
                     queries->CopyFrom(currQuery);
                     queries->set_seqnum(s.getSeqNum());
                 }

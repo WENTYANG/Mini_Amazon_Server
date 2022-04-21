@@ -47,14 +47,14 @@ void sendToUps() {
                 que.try_pop(request);
                 // parse & add seqnum & append to commandToSend
                 for (int i = 0; i < request.deliver_size(); i++) {
-                    const AStartDeliver& currDeliver = request.deliver(i);
-                    AStartDeliver* deliver = cToSend.add_deliver();
+                    const auto& currDeliver = request.deliver(i);
+                    auto deliver = cToSend.add_deliver();
                     deliver->CopyFrom(currDeliver);
                     deliver->set_seqnum(s.getSeqNum());
                 }
                 for (int i = 0; i < request.order_size(); i++) {
-                    const AOrderATruck& currOrder = request.order(i);
-                    AOrderATruck* order = cToSend.add_order();
+                    const auto& currOrder = request.order(i);
+                    auto order = cToSend.add_order();
                     order->CopyFrom(currOrder);
                     order->set_seqnum(s.getSeqNum());
                 }
@@ -63,7 +63,7 @@ void sendToUps() {
                 }
                 for (int i = 0; i < request.error_size(); i++) {
                     const Err& currErr = request.error(i);
-                    Err* err = cToSend.add_error();
+                    auto err = cToSend.add_error();
                     err->CopyFrom(currErr);
                     err->set_seqnum(s.getSeqNum());
                 }
