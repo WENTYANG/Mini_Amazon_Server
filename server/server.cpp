@@ -74,13 +74,22 @@ void Server::run() {
         // new world
         connectWorld();
         cout << "World connected\n";
+
         // Spawn threads to receive responses from ups and world
         // thread t_RecvFromUps(RecvFromUps, ups_in);
+        // thread t_SendToUps(sendToUps);
+
         thread t_RecvFromWorld(RecvFromWorld, world_in);
         cout << "Thread RecvFromWorld created\n";
+        thread t_SendToWorld(sendToWorld);
+        cout << "Thread SendToWorld created\n";
+
         // t_RecvFromUps.detach();
+        // t_SendToUps.detach();
         t_RecvFromWorld.detach();
         cout << "Thread RecvFromWorld detached\n";
+        t_SendToWorld.detach();
+        cout << "Thread SendToWorld detached\n";
 
         // Spawn a thread for each warehouse to process incoming orders
         for (int i = 0; i < num_wh; i++) {
