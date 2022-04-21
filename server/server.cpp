@@ -81,7 +81,7 @@ void Server::run() {
 
         thread t_RecvFromWorld(RecvFromWorld, world_in);
         cout << "Thread RecvFromWorld created\n";
-        thread t_SendToWorld(sendToWorld);
+        thread t_SendToWorld(SendToWorld, world_out);
         cout << "Thread SendToWorld created\n";
 
         // t_RecvFromUps.detach();
@@ -92,10 +92,8 @@ void Server::run() {
         cout << "Thread SendToWorld detached\n";
 
         // Spawn threads to send to ups and world
-        //thread t_SendToUps(SendToUps, ups_out);
-        //t_SendToUps.detach();
-        thread t_SendToWorld(SendToWorld, world_out);
-        t_SendToWorld.detach();
+        // thread t_SendToUps(SendToUps, ups_out);
+        // t_SendToUps.detach();
 
         // Spawn a thread for each warehouse to process incoming orders
         for (int i = 0; i < num_wh; i++) {
@@ -208,7 +206,7 @@ connection* Server::connectDB() {
         new connection("host=127.0.0.1 port=5432 dbname=" + dbName +
                        " user=" + userName + " password=" + password);
     if (C->is_open()) {
-        //cout << "Opened database successfully: " << C->dbname() << endl;
+        // cout << "Opened database successfully: " << C->dbname() << endl;
     } else {
         throw MyException("Can't open database.");
     }

@@ -1,7 +1,7 @@
 #ifndef _WORKING_THREADS_H
 #define _WORKING_THREADS_H
+#include "./protobuf/AUprotocolV4.pb.h"
 #include "./protobuf/world_amazon.pb.h"
-#include "./protobuf/AUprotocolV3.pb.h"
 #include "sql_functions.h"
 #include "warehouse.h"
 

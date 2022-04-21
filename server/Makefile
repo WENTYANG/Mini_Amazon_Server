@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-g
-PROTO_CC = ./protobuf/world_amazon.pb.cc ./protobuf/AUprotocolV3.pb.cc
-PROTO_H = ./protobuf/world_amazon.pb.h ./protobuf/AUprotocolV3.pb.h
+PROTO_CC = ./protobuf/world_amazon.pb.cc ./protobuf/AUprotocolV4.pb.cc
+PROTO_H = ./protobuf/world_amazon.pb.h ./protobuf/AUprotocolV4.pb.h
 GPB = `pkg-config --cflags --libs protobuf`
 VERSION = -std=c++11
 THREAD = -pthread

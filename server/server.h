@@ -10,7 +10,7 @@
 #include <vector>
 
 #include <mutex>
-#include "./protobuf/AUprotocolV3.pb.h"
+#include "./protobuf/AUprotocolV4.pb.h"
 #include "./protobuf/world_amazon.pb.h"
 #include "ThreadSafe_queue.h"
 #include "exception.h"

@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-#include "./protobuf/AUprotocolV3.pb.h"
+#include "./protobuf/AUprotocolV4.pb.h"
 #include "./protobuf/world_amazon.pb.h"
 #include "ThreadSafe_queue.h"
 #include "exception.h"
@@ -162,8 +162,7 @@ void SendToWorld(proto_out* world_out) {
                         "to World.");
                 }
 
-                cout << "Send to world: " << cToSend.DebugString()
-                    << std::endl;
+                cout << "Send to world: " << cToSend.DebugString() << std::endl;
             }
         } catch (const std::exception& e) {
             cerr << e.what() << endl;
