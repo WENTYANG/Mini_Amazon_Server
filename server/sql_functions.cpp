@@ -228,7 +228,7 @@ void change_status_to_delivering(int i_id) {
                   << e.base().what() << std::endl;
     }
     s.disConnectDB(C.get());
-    if (R.begin() == R.end()) {
+    if (R.affected_rows() == 0) {
         throw MyException(
             "item id does not exist(unlikely) or status is not packed or do "
             "not have ups_truckid.\n");
@@ -291,7 +291,7 @@ void change_status_to_delivered(int i_id) {
       std::cerr << "Database Error in change_status_to_delivered: " << e.base().what() << std::endl;
     }
     s.disConnectDB(C.get());
-    if (R.begin() == R.end()) {
+    if (R.affected_rows() == 0) {
       throw MyException(
           "item id does not exist(unlikely) or status is not delivering.\n");
     }
