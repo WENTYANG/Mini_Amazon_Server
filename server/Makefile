@@ -3,7 +3,8 @@ CFLAGS=-g
 PROTO_CC = ./protobuf/world_amazon.pb.cc ./protobuf/AUprotocolV4.pb.cc
 PROTO_H = ./protobuf/world_amazon.pb.h ./protobuf/AUprotocolV4.pb.h
 GPB = `pkg-config --cflags --libs protobuf`
-PRORO_LIB_DIR = ./proto/lib
+PRORO_LIB_DIR = ./protobuf/lib
+PRORO_HEADER_DIR = ./protobuf/include
 POCO_H = ./Poco/include/Poco/Thread.h ./Poco/include/Poco/Timer.h
 POCO_LIB_DIR = ./Poco/lib
 POCO_HEADER_DIR = ./Poco/include
@@ -18,7 +19,7 @@ HEADER_MORE = warehouse.h working_threads.h timer_handle.h
 all: server
 
 server:  $(HEADERS) $(PROTO_H) $(POCO_H) $(CPPFILES) $(CPP_MORE) $(HEADER_MORE)
-	$(CC) $(CFLAGS)  $(CPPFILES) $(CPP_MORE) $(PROTO_CC) -o server -L$(POCO_LIB_DIR) -lprotobuf -I$(POCO_HEADER_DIR) -L$(POCO_LIB_DIR) -lPocoNet -lPocoNetSSL -lPocoUtil -lPocoFoundation $(PQXX) $(THREAD) $(VERSION)
+	$(CC) $(CFLAGS)  $(CPPFILES) $(CPP_MORE) $(PROTO_CC) -o server -I$(PROTO_HEADER_DIR) -L$(POCO_LIB_DIR) -lprotobuf -I$(POCO_HEADER_DIR) -L$(POCO_LIB_DIR) -lPocoNet -lPocoNetSSL -lPocoUtil -lPocoFoundation $(PQXX) $(THREAD) $(VERSION)
 
 .PHONY:
 	clean

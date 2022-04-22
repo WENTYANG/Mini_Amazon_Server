@@ -1,0 +1,4 @@
+google/protobuf/io/protobuf_test-io_win32_unittest.o: \
+ google/protobuf/io/io_win32_unittest.cc /usr/include/stdc-predef.h
+
+/usr/include/stdc-predef.h:
