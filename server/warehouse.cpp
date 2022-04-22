@@ -75,7 +75,7 @@ void purchaseMore(int w_id, int p_id, string name, int amount) {
     ACommands cmd;
     APurchaseMore* purchaseMore = cmd.add_buy();
     purchaseMore->set_whnum(w_id);
-    purchaseMore->set_seqnum(s.getSeqNum());
+    purchaseMore->set_seqnum(0);
     AProduct* initProduct = purchaseMore->add_things();
     initProduct->set_id(p_id);
     initProduct->set_description(name);

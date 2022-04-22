@@ -51,6 +51,7 @@ void RecvFromUps(proto_in* ups_in) {
             for (int i = 0; i < response.acks_size(); ++i) {
                 int64_t ack = response.acks(i);
                 // TODO: update ack, Timer map
+                s.UPS_sent.erase(ack);
             }
             for (int i = 0; i < response.error_size(); ++i) {
                 const Err& err = response.error(i);
@@ -85,13 +86,31 @@ void SendToUps(proto_out* ups_out) {
                     const auto& currDeliver = request.deliver(i);
                     auto deliver = cToSend.add_deliver();
                     deliver->CopyFrom(currDeliver);
-                    deliver->set_seqnum(s.getSeqNum());
+                    if (currDeliver.seqnum() == 0) {
+                      deliver->set_seqnum(s.getSeqNum());
+                      int64_t seq = deliver->seqnum();
+                      AUCommand cmd;
+                      auto cmd_deliver = cmd.add_deliver();
+                      cmd_deliver->CopyFrom(*deliver);
+                      unique_ptr<TimerResendUps> ptr(new TimerResendUps(cmd));
+                      ptr->start();
+                      s.UPS_sent[seq] = move(ptr);
+                    }
                 }
                 for (int i = 0; i < request.order_size(); i++) {
                     const auto& currOrder = request.order(i);
                     auto order = cToSend.add_order();
                     order->CopyFrom(currOrder);
-                    order->set_seqnum(s.getSeqNum());
+                    if (currOrder.seqnum() == 0) {
+                      order->set_seqnum(s.getSeqNum());
+                      int64_t seq = order->seqnum();
+                      AUCommand cmd;
+                      auto cmd_order = cmd.add_order();
+                      cmd_order->CopyFrom(*order);
+                      unique_ptr<TimerResendUps> ptr(new TimerResendUps(cmd));
+                      ptr->start();
+                      s.UPS_sent[seq] = move(ptr);
+                    }
                 }
                 for (int i = 0; i < request.acks_size(); i++) {
                     cToSend.add_acks(request.acks(i));
@@ -100,7 +119,16 @@ void SendToUps(proto_out* ups_out) {
                     const Err& currErr = request.error(i);
                     auto err = cToSend.add_error();
                     err->CopyFrom(currErr);
-                    err->set_seqnum(s.getSeqNum());
+                    if (currErr.seqnum() == 0) {
+                      err->set_seqnum(s.getSeqNum());
+                      int64_t seq = err->seqnum();
+                      AUCommand cmd;
+                      auto cmd_err = cmd.add_error();
+                      cmd_err->CopyFrom(*err);
+                      unique_ptr<TimerResendUps> ptr(new TimerResendUps(cmd));
+                      ptr->start();
+                      s.UPS_sent[seq] = move(ptr);
+                    }
                 }
             }
             if (cToSend.deliver_size() > 0 || cToSend.order_size() > 0 ||

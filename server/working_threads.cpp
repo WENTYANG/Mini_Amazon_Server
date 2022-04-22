@@ -54,7 +54,7 @@ void load_world(APacked aped) {
         load->set_whnum(get<2>(info));
         load->set_truckid(get<1>(info));
         load->set_shipid(i_id);
-        load->set_seqnum(s.getSeqNum());
+        load->set_seqnum(0);
         s.world_output_queue.push(cmd);
     }
 }

@@ -18,9 +18,14 @@
 #include "sql_functions.h"
 #include "threadpool.h"
 #include "warehouse.h"
+#include "timer_handle.h"
+#include "Poco/Timer.h"
+#include "Poco/Thread.h"
 
 using namespace std;
 using namespace pqxx;
+using Poco::Timer;
+using Poco::TimerCallback;
 
 class Server {
    private:
@@ -63,10 +68,11 @@ class Server {
     bool withUPS;
     bool withFrontEnd;
 
-    /*To do:
-        A map of sequence number and timer(and info of package?) to handle ack
-       and resend
-    */
+    // A map of sequence number and timer(and info of package?) to handle ack
+    // and resend
+    // unordered_map<seq_num, timer>, timer is used to resend req
+    unordered_map<int64_t, unique_ptr<TimerResendWorld>> World_sent;
+    unordered_map<int64_t, unique_ptr<TimerResendUps>> UPS_sent;
 
    private:
     Server();

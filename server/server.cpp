@@ -6,6 +6,7 @@
 #include "proto.h"
 #include "socket.h"
 
+
 #define PRODUCT_INITIAL_AMOUNT 10
 
 using namespace std;
