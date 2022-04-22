@@ -13,6 +13,7 @@
 #include "server.h"
 #include "sql_functions.h"
 #include "working_threads.h"
+#include "timer_handle.h"
 
 using namespace std;
 #define SEND_BATCH 3
@@ -83,6 +84,7 @@ void RecvFromWorld(proto_in* world_in) {
             for (int i = 0; i < response.acks_size(); ++i) {
                 int64_t ack = response.acks(i);
                 // TODO: update ack, Timer map
+                s.World_sent.erase(ack);
             }
             for (int i = 0; i < response.packagestatus_size(); ++i) {
                 // TODO:Currently just printing out info
@@ -121,25 +123,65 @@ void SendToWorld(proto_out* world_out) {
                     const auto& currBuy = request.buy(i);
                     auto buy = cToSend.add_buy();
                     buy->CopyFrom(currBuy);
-                    buy->set_seqnum(s.getSeqNum());
+                    // new cmds, does not come from timer resend
+                    if (currBuy.seqnum() == 0) {
+                      buy->set_seqnum(s.getSeqNum());
+                      // add new cmds to timer map
+                      // do not need to add old cmds to timer map again since they will be called periodically
+                      int64_t seq = buy->seqnum();
+                      ACommands cmd;
+                      auto cmd_buy = cmd.add_buy();
+                      cmd_buy->CopyFrom(*buy);
+                      unique_ptr<TimerResendWorld> ptr(new TimerResendWorld(cmd));
+                      ptr->start();
+                      s.World_sent[seq] = move(ptr);
+                    }
+
                 }
                 for (int i = 0; i < request.topack_size(); ++i) {
                     const auto& currPack = request.topack(i);
                     auto topack = cToSend.add_topack();
                     topack->CopyFrom(currPack);
-                    topack->set_seqnum(s.getSeqNum());
+                    if (currPack.seqnum() == 0) {
+                      topack->set_seqnum(s.getSeqNum());
+                      int64_t seq = topack->seqnum();
+                      ACommands cmd;
+                      auto cmd_pack = cmd.add_topack();
+                      cmd_pack->CopyFrom(*topack);
+                      unique_ptr<TimerResendWorld> ptr(new TimerResendWorld(cmd));
+                      ptr->start();
+                      s.World_sent[seq] = move(ptr);
+                    }
                 }
                 for (int i = 0; i < request.load_size(); ++i) {
                     const auto& currLoad = request.load(i);
                     auto load = cToSend.add_load();
                     load->CopyFrom(currLoad);
-                    load->set_seqnum(s.getSeqNum());
+                    if (currLoad.seqnum() == 0) {
+                      load->set_seqnum(s.getSeqNum());
+                      int64_t seq = load->seqnum();
+                      ACommands cmd;
+                      auto cmd_load = cmd.add_load();
+                      cmd_load->CopyFrom(*load);
+                      unique_ptr<TimerResendWorld> ptr(new TimerResendWorld(cmd));
+                      ptr->start();
+                      s.World_sent[seq] = move(ptr);
+                    }
                 }
                 for (int i = 0; i < request.queries_size(); ++i) {
                     const auto& currQuery = request.queries(i);
                     auto queries = cToSend.add_queries();
                     queries->CopyFrom(currQuery);
-                    queries->set_seqnum(s.getSeqNum());
+                    if (currQuery.seqnum() == 0) {
+                      queries->set_seqnum(s.getSeqNum());
+                      int64_t seq = queries->seqnum();
+                      ACommands cmd;
+                      auto cmd_queries = cmd.add_queries();
+                      cmd_queries->CopyFrom(*queries);
+                      unique_ptr<TimerResendWorld> ptr(new TimerResendWorld(cmd));
+                      ptr->start();
+                      s.World_sent[seq] = move(ptr);
+                    }
                 }
                 for (int i = 0; i < request.acks_size(); ++i) {
                     cToSend.add_acks(request.acks(i));
