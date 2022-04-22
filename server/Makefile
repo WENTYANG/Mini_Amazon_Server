@@ -5,9 +5,9 @@ PROTO_H = ./protobuf/world_amazon.pb.h ./protobuf/AUprotocolV4.pb.h
 GPB = `pkg-config --cflags --libs protobuf`
 PROTO_LIB_DIR = ./protobuf/lib
 PROTO_HEADER_DIR = ./protobuf/include
-POCO_H = ./Poco/include/Poco/Thread.h ./Poco/include/Poco/Timer.h
+POCO_H = ./Poco/Foundation/include/Poco/Thread.h ./Poco/Foundation/include/Poco/Timer.h
 POCO_LIB_DIR = ./Poco/lib
-POCO_HEADER_DIR = ./Poco/include
+POCO_HEADER_DIR = ./Poco/Foundation/include
 VERSION = -std=c++11
 THREAD = -pthread
 PQXX = -lpqxx -lpq
