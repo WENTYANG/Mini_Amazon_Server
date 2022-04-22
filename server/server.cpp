@@ -14,15 +14,15 @@ using namespace std;
 Server::Server()
     : frontHostName("0.0.0.0"),
       frontPortNum("2104"),
-      worldHostName("vcm-24273.vm.duke.edu"),
-      worldPortNum("12345"),
-      upsHostName("0.0.0.0"),
+      worldHostName("vcm-24717.vm.duke.edu"),
+      worldPortNum("23456"),
+      upsHostName("vcm-24717.vm.duke.edu"),
       upsPortNum("8888"),
       seqNum(0),
       dbName("MINI_AMAZON"),
       userName("postgres"),
       password("passw0rd"),
-      withUPS(false),
+      withUPS(true),
       withFrontEnd(true) {
     cout << "Initializing server configuration...." << endl;
 
@@ -68,7 +68,7 @@ void Server::run() {
             num_wh = 5;
         }
         // Connect to UPS, receive world ID
-        // connectUPS();
+        connectUPS();
 
         // Connect to world, when developing, set withUPS=false to initialize a
         // new world
@@ -76,24 +76,22 @@ void Server::run() {
         cout << "World connected\n";
 
         // Spawn threads to receive responses from ups and world
-        // thread t_RecvFromUps(RecvFromUps, ups_in);
-        // thread t_SendToUps(sendToUps);
+        thread t_RecvFromUps(RecvFromUps, ups_in);
+        cout << "Thread RecvFromUps created\n";
+        thread t_SendToUps(SendToUps, ups_out);
+        cout << "Thread SendToUps created\n";
 
         thread t_RecvFromWorld(RecvFromWorld, world_in);
         cout << "Thread RecvFromWorld created\n";
         thread t_SendToWorld(SendToWorld, world_out);
         cout << "Thread SendToWorld created\n";
 
-        // t_RecvFromUps.detach();
-        // t_SendToUps.detach();
+        t_RecvFromUps.detach();
+        t_SendToUps.detach();
         t_RecvFromWorld.detach();
         cout << "Thread RecvFromWorld detached\n";
         t_SendToWorld.detach();
         cout << "Thread SendToWorld detached\n";
-
-        // Spawn threads to send to ups and world
-        // thread t_SendToUps(SendToUps, ups_out);
-        // t_SendToUps.detach();
 
         // Spawn a thread for each warehouse to process incoming orders
         for (int i = 0; i < num_wh; i++) {

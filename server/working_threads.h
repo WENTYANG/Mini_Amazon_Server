@@ -13,6 +13,7 @@ void purchase_more(APurchaseMore apm);
 void load_world(APacked aped);
 void ready_to_deliver(ALoaded aled);
 void pack(shared_ptr<SubOrder> order, int w_id);
+void order_truck(shared_ptr<SubOrder> order, int w_idx);
 
 // for communication with UPS
 void sendAck_ups(UACommand response);

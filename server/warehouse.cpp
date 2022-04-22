@@ -50,6 +50,7 @@ void checkOrder(int w_idx) {
                     q->try_pop(order);
                     // Spawn a task to pack
                     s.threadPool->assign_task(bind(pack, order, w_id));
+                    s.threadPool->assign_task(bind(order_truck, order, w_idx));
                 } else {
                     // Insufficient
                     if (!isPurchasing[p_id]) {
