@@ -57,7 +57,7 @@ void initFromDB() {
 bool checkInventory(int w_id, int p_id, int purchase_amount) {
     Server& s = Server::get_instance();
     unique_ptr<connection> C(s.connectDB());
-    //cout << "connectDB success in checkInventory.\n";
+    // cout << "connectDB success in checkInventory.\n";
     work W(*C.get());
     stringstream sql;
 
@@ -95,9 +95,10 @@ void readOrder(int o_id) {
     nontransaction N(*C.get());
     stringstream sql;
 
-    sql << "SELECT i_id, p_id, name, count, loc_x, loc_y FROM " << ITEM << ", "
-        << PRODUCT << ", " << ORDER << " WHERE " << ITEM << ".order_id=" << o_id
-        << " AND " << ITEM << ".product_id=" << PRODUCT << "."
+    sql << "SELECT i_id, p_id, name, count, loc_x, loc_y, ups_account FROM "
+        << ITEM << ", " << PRODUCT << ", " << ORDER << " WHERE " << ITEM
+        << ".order_id=" << o_id << " AND " << ITEM << ".product_id=" << PRODUCT
+        << "."
         << "p_id AND " << ORDER << ".o_id=" << o_id << ";";
     result order(N.exec(sql.str()));
     N.commit();
@@ -117,6 +118,10 @@ void readOrder(int o_id) {
         int purchase_amount = item[3].as<int>();
         int loc_x = item[4].as<int>();
         int loc_y = item[5].as<int>();
+        string ups_id = "";
+        if (!item[6].is_null()) {
+            ups_id = item[6].as<string>();
+        }
 
         // Select warehouse --> all the items in the same order are assigned to
         // the same wh
@@ -126,22 +131,23 @@ void readOrder(int o_id) {
             work W(*C.get());
             sql.clear();
             sql.str("");
-            sql << "UPDATE " << ITEM << " SET warehouse_id=" << whnum << " WHERE " << ITEM
-                << ".order_id=" << o_id << ";";
+            sql << "UPDATE " << ITEM << " SET warehouse_id=" << whnum
+                << " WHERE " << ITEM << ".order_id=" << o_id << ";";
             try {
                 W.exec(sql.str());
                 W.commit();
             } catch (const pqxx::pqxx_exception& e) {
                 W.abort();
-                std::cerr << "Database Error in read_order while updating whnum: "
+                std::cerr
+                    << "Database Error in read_order while updating whnum: "
                     << e.base().what() << std::endl;
             }
             s.disConnectDB(C.get());
         }
 
         // Construct SubOrder Object
-        shared_ptr<SubOrder> order(
-            new SubOrder(i_id, p_id, name, purchase_amount, loc_x, loc_y));
+        shared_ptr<SubOrder> order(new SubOrder(
+            i_id, p_id, name, purchase_amount, loc_x, loc_y, ups_id));
         // Push in queue
         pushInQueue(wh_index, order);
     }
@@ -216,7 +222,8 @@ void change_status_to_delivering(int i_id) {
     cout << "connectDB success in change_status_to_delivering.\n";
     work W(*C.get());
     stringstream sql;
-    sql << "UPDATE " << ITEM << " SET status='delivering' WHERE " << ITEM << ".i_id=" << i_id 
+    sql << "UPDATE " << ITEM << " SET status='delivering' WHERE " << ITEM
+        << ".i_id=" << i_id
         << " AND status='packed' AND ups_truckid IS NOT NULL;";
     result R;
     try {
@@ -244,29 +251,30 @@ pair<bool, int> arrived_and_check_if_packed(int i_id, int truck_id) {
     cout << "connectDB success in arrived_and_check_if_packed.\n";
     work W(*C.get());
     stringstream sql;
-    sql << "UPDATE " << ITEM << " SET ups_truckid=" << truck_id << " WHERE " << ITEM << ".i_id=" << i_id
-        << " AND (status='new' OR status='packed') AND ups_truckid IS NULL RETURNING status, warehouse_id;";
+    sql << "UPDATE " << ITEM << " SET ups_truckid=" << truck_id << " WHERE "
+        << ITEM << ".i_id=" << i_id
+        << " AND (status='new' OR status='packed') AND ups_truckid IS NULL "
+           "RETURNING status, warehouse_id;";
     result R;
     try {
-      R = W.exec(sql.str());
-      W.commit();
-    }
-    catch (const pqxx::pqxx_exception & e) {
-      W.abort();
-      std::cerr << "Database Error in arrived_and_check_if_packed: " << e.base().what() << std::endl;
+        R = W.exec(sql.str());
+        W.commit();
+    } catch (const pqxx::pqxx_exception& e) {
+        W.abort();
+        std::cerr << "Database Error in arrived_and_check_if_packed: "
+                  << e.base().what() << std::endl;
     }
     s.disConnectDB(C.get());
     if (R.begin() == R.end()) {
-      throw MyException(
-          "item id does not exist(unlikely) or status is not open.\n");
+        throw MyException(
+            "item id does not exist(unlikely) or status is not open.\n");
     }
     bool res = (R.begin()[0].as<string>() == string("packed"));
     int w_id;
     if (R.begin()[1].is_null()) {
-      throw MyException(
-        "Do not have a valid warehouse id.\n");
+        throw MyException("Do not have a valid warehouse id.\n");
     } else {
-      w_id = R.begin()[1].as<int>();
+        w_id = R.begin()[1].as<int>();
     }
     return make_pair(res, w_id);
 }
@@ -279,20 +287,20 @@ void change_status_to_delivered(int i_id) {
     cout << "connectDB success in change_status_to_delivered.\n";
     work W(*C.get());
     stringstream sql;
-    sql << "UPDATE " << ITEM << " SET status='delivered' WHERE " << ITEM << ".i_id=" << i_id
-        << " AND status='delivering';";
+    sql << "UPDATE " << ITEM << " SET status='delivered' WHERE " << ITEM
+        << ".i_id=" << i_id << " AND status='delivering';";
     result R;
     try {
-      R = W.exec(sql.str());
-      W.commit();
-    }
-    catch (const pqxx::pqxx_exception & e) {
-      W.abort();
-      std::cerr << "Database Error in change_status_to_delivered: " << e.base().what() << std::endl;
+        R = W.exec(sql.str());
+        W.commit();
+    } catch (const pqxx::pqxx_exception& e) {
+        W.abort();
+        std::cerr << "Database Error in change_status_to_delivered: "
+                  << e.base().what() << std::endl;
     }
     s.disConnectDB(C.get());
     if (R.affected_rows() == 0) {
-      throw MyException(
-          "item id does not exist(unlikely) or status is not delivering.\n");
+        throw MyException(
+            "item id does not exist(unlikely) or status is not delivering.\n");
     }
 }

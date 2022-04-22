@@ -38,15 +38,23 @@ class SubOrder {
     int purchase_amount;
     int loc_x;
     int loc_y;
+    string ups_id;
 
    public:
     SubOrder() {}
-    SubOrder(int o_id, int p_id, string name, int purchase_amount, int x, int y)
+    SubOrder(int o_id,
+             int p_id,
+             string name,
+             int purchase_amount,
+             int x,
+             int y,
+             string ups_id)
         : o_id(o_id),
           product(Product(p_id, name)),
           purchase_amount(purchase_amount),
           loc_x(x),
-          loc_y(y) {}
+          loc_y(y),
+          ups_id(ups_id) {}
     ~SubOrder() {}
 };
 
