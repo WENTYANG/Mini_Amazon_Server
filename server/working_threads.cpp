@@ -135,10 +135,22 @@ void pack(shared_ptr<SubOrder> order, int w_id) {
     product->set_id(order.get()->product.p_id);
     product->set_description(order.get()->product.name);
     product->set_count(order.get()->purchase_amount);
-
+    pack->set_seqnum(0);
     pack->set_shipid(order.get()->o_id);
 
     // Push into world queue
     Server& s = Server::get_instance();
     s.world_output_queue.push(cmd);
+
+    AUCommand u_cmd;
+    auto order_truck = u_cmd.add_order();
+    order_truck->set_packageid(order.get()->o_id);
+    order_truck->set_warehouselocationx(0);
+    order_truck->set_warehouselocationy(0);
+    order_truck->set_warehouseid(w_id);
+    order_truck->set_destinationx(order.get()->loc_x);
+    order_truck->set_destinationy(order.get()->loc_y);
+    order_truck->set_seqnum(0);
+    //order_truck->add_upsid(2134);
+    s.ups_output_queue.push(u_cmd);
 }
