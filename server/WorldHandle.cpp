@@ -19,6 +19,7 @@ using namespace std;
 
 // use a global unordered_set to keep track of all seq_number we received
 // Guarantee an idiompotent behaviour
+// no synchronization needed since we only have one RecvFromWorld thread
 static unordered_set<int64_t> seq_nums;
 
 void RecvFromWorld(proto_in* world_in) {
