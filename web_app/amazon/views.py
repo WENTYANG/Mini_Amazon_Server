@@ -56,7 +56,28 @@ def goto_cart(request):
 @login_required
 def view_order(request):
   orders=Order.objects.filter(customer=request.user.customer, status='closed').order_by('-date_time')
-  return render(request, 'amazon/view_order.html', {'orders': orders})
+  return render(request, 'amazon/view_order.html', {'orders': orders, 'date': True})
+
+@login_required
+def view_order_price_hl(request):
+  orders=Order.objects.filter(customer=request.user.customer, status='closed').order_by('-total')
+  return render(request, 'amazon/view_order.html', {'orders': orders, 'hl': True})
+  
+@login_required
+def view_order_price_lh(request):
+  orders=Order.objects.filter(customer=request.user.customer, status='closed').order_by('total')
+  return render(request, 'amazon/view_order.html', {'orders': orders, 'lh': True})
+
+@login_required
+def search_order(request):
+  if request.method == "GET":
+    return render(request, 'amazon/search_order.html')
+  else:
+    p_name = request.POST['p_name']
+    products = Product.objects.filter(name__contains=p_name).values('p_id')
+    orders = Order.objects.filter(customer=request.user.customer, status='closed')\
+        .filter(items__product_id__in=products).order_by('-date_time')
+    return render(request, 'amazon/search_order.html', {'orders': orders})
 
 @login_required
 def view_product(request, p_id):
@@ -162,4 +183,30 @@ def view_order_detail(request, o_id):
   for i in items:
     total += i.product.price * i.count
   return render(request, 'amazon/view_order_detail.html', {'order': order, 'items': items, 'total': total})
-  
+ 
+@login_required
+def search_product(request):
+  if request.method == "GET":
+    return render(request, 'amazon/search_product.html')
+  else:
+    p_name = request.POST['p_name']
+    products_p = Product.objects.filter(name__contains=p_name)
+    categories = Category.objects.filter(name__contains=p_name).values('c_id')
+    products_c = Product.objects.filter(category_id__in=categories)
+    products = products_p.union(products_c)
+    return render(request, 'amazon/search_product.html', {'products': products})
+
+@login_required
+def buy_again(request, o_id):
+  try:
+    old_order=Order.objects.get(o_id=o_id, customer=request.user.customer)
+  except Order.DoesNotExist:
+    return HttpResponse('This order does not exist!')
+  items=old_order.items.all();
+  order = Order.objects.create(customer=request.user.customer, loc_x=request.user.customer.loc_x,\
+      loc_y=request.user.customer.loc_y, card_number=request.user.customer.card_number,
+      ups_account=request.user.customer.ups_account, status='one_time')
+  for i in items:
+    Item.objects.create(order=order, product=i.product, count=i.count)
+  return redirect('amazon:checkout', o_id=order.o_id)
+
