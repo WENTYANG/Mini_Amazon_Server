@@ -1,13 +1,15 @@
 #include "server.h"
 #include <cmath>
-#include <thread>
 #include <cstdlib>
+#include <thread>
 #include "UpsHandle.h"
 #include "WorldHandle.h"
 #include "proto.h"
 #include "socket.h"
 
 #define PRODUCT_INITIAL_AMOUNT 10
+#define fzq_host "vcm-24717.vm.duke.edu"
+#define my_host "vcm-24273.vm.duke.edu"
 
 using namespace std;
 
@@ -15,7 +17,7 @@ using namespace std;
 Server::Server()
     : frontHostName("0.0.0.0"),
       frontPortNum("2104"),
-      //worldHostName("vcm-24717.vm.duke.edu"),
+      // worldHostName("vcm-24717.vm.duke.edu"),
       worldPortNum("23456"),
       // upsHostName("vcm-24717.vm.duke.edu"),
       upsPortNum("8888"),
@@ -27,7 +29,7 @@ Server::Server()
       withFrontEnd(true) {
     cout << "Initializing server configuration...." << endl;
     // get worldHostName and upsHostName from env variable
-    char *pathvar;
+    char* pathvar;
     pathvar = getenv("UPS_HOST_ADDR");
     if (pathvar == NULL) {
       std::cout << "Can not get env variable UPS_HOST_ADDR" << endl;
@@ -129,6 +131,7 @@ void Server::connectUPS() {
     ups_fd = clientRequestConnection(upsHostName, upsPortNum);
     string world_id = socketRecvMsg(ups_fd);
 
+    cout << "Receiving: " << world_id << endl;
     worldID = stoi(world_id);
     cout << "Receiving world id = " << worldID << " from UPS" << endl;
 

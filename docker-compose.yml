@@ -1,0 +1,52 @@
+version: '2'
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: passw0rd
+      POSTGRES_USER: postgres
+      POSTGRES_DB: MINI_AMAZON
+    restart: always
+    ports:
+      - 5432:5432
+  web-init:
+    build: ./web_app
+    command: bash -c "./initserver.sh"
+    volumes:
+      - ./web_app:/code
+    depends_on:
+      - db
+  web:
+    build: ./web_app
+    user: nobody
+    command: /code/runserver.sh
+    volumes:
+      - ./web_app:/code
+    expose:
+      - "8000"
+    depends_on:
+      - web-init
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./nginx/config:/etc/nginx/conf.d
+    depends_on:
+      - web
+  server:
+    build: ./server
+    user: root
+    volumes:
+      - ./server:/code
+    command: bash -c "./run.sh"
+    ports:
+      - "23456:23456"
+    expose:
+      - "23456"
+    depends_on:
+      - web
+
+volumes:
+  data-volume:
