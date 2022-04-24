@@ -47,8 +47,12 @@ RAII
     hashset of received sequence numbers.
 
 ------------------Front End------------------
-security
-不能访问不是自己的东西
+1. For front end, we sanitized all user input using Django ORM. User can not proceed with invalid inputs.
+
+2. The login and logout functions are handle by django directly, which guarentees the security of user information.
+
+3. The user can not access other users orders or add/remove products to other users cart by entering specific url.
+    If they tries to do so, they will receive an error message instead.
 
 ---------- Some Problems that we met---------
 1. 
