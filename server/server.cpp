@@ -28,15 +28,6 @@ Server::Server()
       withUPS(true),
       withFrontEnd(true) {
     cout << "Initializing server configuration...." << endl;
-    // get worldHostName and upsHostName from env variable
-    char* pathvar;
-    pathvar = getenv("UPS_HOST_ADDR");
-    if (pathvar == NULL) {
-      std::cout << "Can not get env variable UPS_HOST_ADDR" << endl;
-      exit(EXIT_FAILURE);
-    }
-    worldHostName = string(pathvar);
-    upsHostName = string(pathvar);
 
     // Initialize threadpool
     threadPool = threadPoolObj.get_pool();
@@ -58,7 +49,7 @@ Server::~Server() {
 }
 
 /*-----------------------------Server run-----------------------------------*/
-void Server::run() {
+void Server::run(string ups_host) {
     try {
         // init from DB
         if (withFrontEnd) {
@@ -80,6 +71,9 @@ void Server::run() {
             num_wh = 5;
         }
 
+        // get worldHostName and upsHostName from env variable
+        worldHostName = ups_host;
+        upsHostName = ups_host;
         // Connect to UPS, receive world ID
         connectUPS();
 

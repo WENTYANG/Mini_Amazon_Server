@@ -86,7 +86,7 @@ class Server {
         return instance;
     }
 
-    void run();
+    void run(string ups_host);
     void connectWorld();
     void connectUPS();
     void acceptOrder();

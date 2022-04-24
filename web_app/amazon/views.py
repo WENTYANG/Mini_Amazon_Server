@@ -22,7 +22,12 @@ def send_signal(o_id):
 @login_required
 def home(request):
   products=Product.objects.all()
-  return render(request, 'amazon/home.html', {'products': products});
+  orders=Order.objects.all().filter(customer=request.user.customer, status='closed').order_by('-date_time')
+  if orders.count() > 0:
+    order = orders[0]
+    return render(request, 'amazon/home.html', {'products': products, 'order': order});
+  else:
+    return render(request, 'amazon/home.html', {'products': products});
 
 @login_required
 def search_by_cat(request):
