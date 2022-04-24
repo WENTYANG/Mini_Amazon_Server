@@ -8,7 +8,11 @@ make
 
 echo "get ups host addr"
 echo $UPS_HOST_ADDR
-./server $UPS_HOST_ADDR
+while true
+do
+    ./server $UPS_HOST_ADDR
+    sleep 2
+done
 
 # while true
 # do
