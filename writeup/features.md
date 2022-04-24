@@ -1,5 +1,6 @@
 # Extra Features 
 1. A full-featured shopping cart
+  * you could add items into shopping cart and purchase them later
   * view all items that you put into the shopping cart
   * change the amount of items
   * delete items you do not need anymore
