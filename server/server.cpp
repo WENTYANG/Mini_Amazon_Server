@@ -25,7 +25,7 @@ Server::Server()
       dbName("MINI_AMAZON"),
       userName("postgres"),
       password("passw0rd"),
-      withUPS(false),
+      withUPS(true),
       withFrontEnd(true) {
     cout << "Initializing server configuration...." << endl;
 
