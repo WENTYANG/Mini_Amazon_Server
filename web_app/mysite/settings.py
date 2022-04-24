@@ -131,3 +131,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/home'
 LOGIN_URL = '/login'
 LOGOUT_REDIRECT_URL = '/'
+
+# Email setting
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp-mail.outlook.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'amazingMiniAmz@outlook.com'
+EMAIL_HOST_PASSWORD = 'Mini_amazon'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

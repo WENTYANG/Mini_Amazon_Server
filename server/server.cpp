@@ -6,7 +6,6 @@
 #include "proto.h"
 #include "socket.h"
 
-
 #define PRODUCT_INITIAL_AMOUNT 10
 
 using namespace std;
@@ -68,6 +67,7 @@ void Server::run() {
         } else {
             num_wh = 5;
         }
+
         // Connect to UPS, receive world ID
         connectUPS();
 

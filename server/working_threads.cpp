@@ -1,5 +1,6 @@
 #include "working_threads.h"
 #include "server.h"
+#include "util.h"
 
 using namespace std;
 
@@ -123,6 +124,8 @@ void delivered(UDelivered uded) {
         return;
     }
     // TODO: possibaly send email to user
+    string email = get_email_addr(uded.packageid());
+    send_email(email, "Item delivered" ,"One item in your order has been delivered. Thank you 🧡");
 }
 
 /*

@@ -48,6 +48,7 @@ class Order(models.Model):
   card_number = models.DecimalField(max_digits=16, decimal_places=0, blank=True, null=True)
   status = models.CharField(default='open', choices=ORDER_STATUS, max_length=10)
   date_time = models.DateTimeField(auto_now=True)
+  total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
 class Item(models.Model):
   i_id = models.AutoField(primary_key=True)
