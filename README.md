@@ -23,3 +23,14 @@ To change the hostname of UPS and world, modify the docker-compose.yml file, cha
 
 ### 5. If meet with problem: Failed to bind tcp 0.0.0.0:5432 address already in use
 Refer to https://stackoverflow.com/questions/38249434/docker-postgres-failed-to-bind-tcp-0-0-0-05432-address-already-in-use
+
+### 6. Deleting docker containers and images after each run
+In order for the database to be consistent, we need to drop the previous database before running docker each time. Run these commands before build:
+
+$ sudo docker kill $(sudo docker ps -q) # stop all containers
+$ sudo docker rm $(sudo docker ps -a -q) # remove all containers 
+$ sudo docker rmi $(sudo docker images -q) # remove all images
+$ sudo docker network prune # remove all networks
+$ sudo docker volume prune # remove all volumes 
+
+When running without docker, try python3 manage.py flush under the web_app directory.
