@@ -6,7 +6,6 @@
 #include "proto.h"
 #include "socket.h"
 
-
 #define PRODUCT_INITIAL_AMOUNT 10
 
 using namespace std;
@@ -15,9 +14,9 @@ using namespace std;
 Server::Server()
     : frontHostName("0.0.0.0"),
       frontPortNum("2104"),
-      worldHostName("vcm-24717.vm.duke.edu"),
+      worldHostName("vcm-25947.vm.duke.edu"),
       worldPortNum("23456"),
-      upsHostName("vcm-24717.vm.duke.edu"),
+      upsHostName("vcm-25947.vm.duke.edu"),
       upsPortNum("8888"),
       seqNum(0),
       dbName("MINI_AMAZON"),
@@ -119,6 +118,7 @@ void Server::connectUPS() {
     ups_fd = clientRequestConnection(upsHostName, upsPortNum);
     string world_id = socketRecvMsg(ups_fd);
 
+    cout << "Receiving: " << world_id << endl;
     worldID = stoi(world_id);
     cout << "Receiving world id = " << worldID << " from UPS" << endl;
 
