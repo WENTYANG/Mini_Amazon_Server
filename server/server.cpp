@@ -1,5 +1,6 @@
 #include "server.h"
 #include <cmath>
+#include <cstdlib>
 #include <thread>
 #include "UpsHandle.h"
 #include "WorldHandle.h"
@@ -7,6 +8,8 @@
 #include "socket.h"
 
 #define PRODUCT_INITIAL_AMOUNT 10
+#define fzq_host "vcm-24717.vm.duke.edu"
+#define my_host "vcm-24273.vm.duke.edu"
 
 using namespace std;
 
@@ -14,9 +17,9 @@ using namespace std;
 Server::Server()
     : frontHostName("0.0.0.0"),
       frontPortNum("2104"),
-      worldHostName("vcm-25947.vm.duke.edu"),
+      // worldHostName("vcm-24717.vm.duke.edu"),
       worldPortNum("23456"),
-      upsHostName("vcm-25947.vm.duke.edu"),
+      // upsHostName("vcm-24717.vm.duke.edu"),
       upsPortNum("8888"),
       seqNum(0),
       dbName("MINI_AMAZON"),
@@ -25,6 +28,15 @@ Server::Server()
       withUPS(true),
       withFrontEnd(true) {
     cout << "Initializing server configuration...." << endl;
+    // get worldHostName and upsHostName from env variable
+    char* pathvar;
+    pathvar = getenv("UPS_HOST_ADDR");
+    if (pathvar == NULL) {
+        std::cerr << "Can not get env variable UPS_HOST_ADDR" << endl;
+        exit(EXIT_FAILURE);
+    }
+    worldHostName = string(pathvar);
+    upsHostName = string(pathvar);
 
     // Initialize threadpool
     threadPool = threadPoolObj.get_pool();
