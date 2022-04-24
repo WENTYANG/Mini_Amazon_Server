@@ -49,8 +49,12 @@ services:
     # command: "./server vcm-24273.vm.duke.edu"
     ports:
       - "23456:23456"
+      - "2104:2104" #front end
+      - "8888:8888" #ups
     expose:
       - "23456"
+      - "2104"
+      - "8888"
     depends_on:
       - web
 
