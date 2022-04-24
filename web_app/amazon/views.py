@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from amazon.models import Category, Product, Order, Item
 from .forms import OrderInfoForm, ItemAmountForm 
+from django.core.mail import send_mail
 
 import socket
 
@@ -105,9 +106,16 @@ def checkout(request, o_id):
     form = OrderInfoForm(request.POST, instance=order)
     if form.is_valid():
       form.save()
+      order.total=total
       order.status='closed'
       order.save()
       send_signal(order.o_id)
+      send_mail(
+        'Order Received',
+        'Your order has been received. Thank you 🧡',
+        'amazingMiniAmz@outlook.com',
+        [request.user.email],
+      )
       return render(request, 'amazon/success.html')
     else:
       return render(request, 'amazon/checkout.html', {'invalid': True, 'order': order, 'items': items, 'form': form, 'total': tatal})

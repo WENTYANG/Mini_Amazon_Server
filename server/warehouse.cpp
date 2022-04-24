@@ -45,6 +45,7 @@ void checkOrder(int w_idx) {
                 cout << "checkOrder is processing an order. o_id="
                      << order->o_id << endl;
                 if (checkInventory(w_id, p_id, order->purchase_amount)) {
+                    cout << "Inventory sufficient for p_id:"<<p_id<<" o_id:"<<order.get()->o_id<<endl;
                     // Sufficient, if just purchased, update ispurchasing flag
                     isPurchasing[p_id] = false;
                     q->try_pop(order);
@@ -53,8 +54,10 @@ void checkOrder(int w_idx) {
                     s.threadPool->assign_task(bind(order_truck, order, w_idx));
                 } else {
                     // Insufficient
+                    cout << "Inventory insufficient for p_id:"<<p_id<<" o_id:"<<order.get()->o_id<<endl;
                     if (!isPurchasing[p_id]) {
                         // Send purchaseMore to world
+                        cout << "Sending purchaseMore to world for"<<" o_id:"<<order.get()->o_id<<endl;
                         purchaseMore(w_id, p_id, name, order->purchase_amount);
                         isPurchasing[p_id] = true;
                     }

@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['vcm-25358.vm.duke.edu', 'vcm-24502.vm.duke.edu', '127.0.0.0', "127.0.0.1"]
 
+CSRF_TRUSTED_ORIGINS = ['http://*.vcm-25358.vm.duke.edu:8000', 'http://*.vcm-24502.vm.duke.edu:8000','http://*.127.0.0.1:8000']
 # Application definition
 
 INSTALLED_APPS = [
@@ -131,3 +132,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/home'
 LOGIN_URL = '/login'
 LOGOUT_REDIRECT_URL = '/'
+
+# Email setting
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp-mail.outlook.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'amazingMiniAmz@outlook.com'
+EMAIL_HOST_PASSWORD = 'Mini_amazon'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

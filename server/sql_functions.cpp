@@ -60,7 +60,7 @@ bool checkInventory(int w_id, int p_id, int purchase_amount) {
     // cout << "connectDB success in checkInventory.\n";
     work W(*C.get());
     stringstream sql;
-
+    cout << "Chekcing inventory: wid="<<w_id << " pid=" << p_id << " amout=" << purchase_amount <<endl; 
     sql << "UPDATE " << INVENTORY << " SET count=" << INVENTORY << ".count-"
         << purchase_amount << " WHERE " << INVENTORY << ".product_id=" << p_id
         << " AND " << INVENTORY << ".warehouse_id=" << w_id << " AND "
@@ -303,4 +303,28 @@ void change_status_to_delivered(int i_id) {
         throw MyException(
             "item id does not exist(unlikely) or status is not delivering.\n");
     }
+}
+
+string get_email_addr(int i_id) {
+  Server& s = Server::get_instance();
+  unique_ptr<connection> C(s.connectDB());
+  cout << "connectDB success in get_email_addr.\n";
+  nontransaction N(*C.get());
+  stringstream sql;
+  sql << "SELECT email FROM " << USER << ", " << CUSTOMER << ", " << ORDER << ", " << ITEM  
+      << " WHERE i_id=" << i_id << " AND " << CUSTOMER << ".user_id=" << USER << ".id AND "
+      << CUSTOMER << ".id=" << ORDER << ".customer_id AND " << ORDER << ".o_id=" << ITEM << ".order_id;";
+  result R;
+  try {
+    R = N.exec(sql.str());
+  } catch (const pqxx::pqxx_exception& e) {
+    std::cerr << "Database Error in get_email_addr: "
+        << e.base().what() << std::endl;
+  }
+  s.disConnectDB(C.get());
+  if (R.empty()) {
+    throw MyException("Do not have a email addr.\n");
+  }
+  string email = R.begin()[0].as<string>();
+  return email;
 }

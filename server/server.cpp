@@ -67,6 +67,7 @@ void Server::run() {
         } else {
             num_wh = 5;
         }
+
         // Connect to UPS, receive world ID
         connectUPS();
 

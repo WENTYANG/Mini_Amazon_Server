@@ -14,28 +14,34 @@
         border:solid 1px;
         padding:3px 25px;
       }
+      .no_border table, .no_border tr, .no_border th {
+        border: hidden;
+      }
     </style>
   </head>
   <body>
     <h1>All Orders</h1>
-      <table border=solid cellspacing=10>
-      <tr>
-        <th>Items</th>
-        <th>Date</th>
-        <th></th>
-      </tr>
       {% for o in orders %}
-        <tr>
-          <th width="200px">
-            {% for i in o.items.all %}
-              {{ i.product.name }} &nbsp;&nbsp;
-            {% endfor %}
-          </th>
-          <th>{{ o.date_time.date }}</th>
-          <th><a href="{% url 'amazon:view_order_detail' o.o_id %}">details</th>
-        </tr>
-      {% endfor %}
+      <h3>{{ o.date_time.date }}</h3>
+      <table border=solid cellspacing=10>
+        <th width="200px">
+          {% for i in o.items.all %}
+            <div width="200px">
+              <table class="no_border">
+                <td>
+                <img src="/static/img/{{ i.product.name }}.png">
+                </td>
+                <td>
+                <p> &nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'amazon:view_product' i.product.p_id %}"> {{ i.product.name }} </a></p>
+                </td>
+              </table>
+            </div>
+          {% endfor %}
+        </th>
+        <th> $ {{o.total}} </th>
+        <th><a href="{% url 'amazon:view_order_detail' o.o_id %}">details</th>
       </table></br>
+      {% endfor %}
 
     <a href="{% url 'amazon:home' %}">back</a></p>
   </body>
