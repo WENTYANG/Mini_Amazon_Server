@@ -6,7 +6,7 @@ RAII
     2) Order objects
     3) Database connections
     4) Timer handling objects
-    Ensuring the least memory leak.
+    Ensuring no memory leak.
 
 2. Exception Handling: No throw guarantee
     Ensuring a no-throw guarantee for all the first-level functions. The server
