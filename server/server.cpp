@@ -74,8 +74,9 @@ void Server::run(string ups_host) {
         // get worldHostName and upsHostName from env variable
         worldHostName = ups_host;
         upsHostName = ups_host;
+        cout << "ups host=" << ups_host << endl;
         // Connect to UPS, receive world ID
-        connectUPS();
+        // connectUPS();
 
         // Connect to world, when developing, set withUPS=false to initialize a
         // new world
@@ -207,7 +208,7 @@ void Server::connectWorld() {
 */
 connection* Server::connectDB() {
     connection* C =
-        new connection("host=127.0.0.1 port=5432 dbname=" + dbName +
+        new connection("host=db port=5432 dbname=" + dbName +
                        " user=" + userName + " password=" + password);
     if (C->is_open()) {
         // cout << "Opened database successfully: " << C->dbname() << endl;

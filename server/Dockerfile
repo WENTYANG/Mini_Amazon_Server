@@ -2,6 +2,8 @@ FROM ubuntu:20.04
 RUN mkdir /code
 ADD . /code/
 WORKDIR /code
+ARG HOST_UPS
+ENV UPS_HOST_ADDR=$HOST_UPS
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
