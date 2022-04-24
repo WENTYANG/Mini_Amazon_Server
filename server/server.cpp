@@ -30,7 +30,7 @@ Server::Server()
     char *pathvar;
     pathvar = getenv("UPS_HOST_ADDR");
     if (pathvar == NULL) {
-      std::cerr << "Can not get env variable UPS_HOST_ADDR" << endl;
+      std::cout << "Can not get env variable UPS_HOST_ADDR" << endl;
       exit(EXIT_FAILURE);
     }
     worldHostName = string(pathvar);
