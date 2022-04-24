@@ -25,7 +25,7 @@ Server::Server()
       dbName("MINI_AMAZON"),
       userName("postgres"),
       password("passw0rd"),
-      withUPS(true),
+      withUPS(false),
       withFrontEnd(true) {
     cout << "Initializing server configuration...." << endl;
 
@@ -76,26 +76,26 @@ void Server::run(string ups_host) {
         upsHostName = ups_host;
         cout << "ups host=" << ups_host << endl;
         // Connect to UPS, receive world ID
-        // connectUPS();
-
+        if (withUPS) {
+            connectUPS();
+            // Spawn threads to receive responses from ups and world
+            thread t_RecvFromUps(RecvFromUps, ups_in);
+            cout << "Thread RecvFromUps created\n";
+            thread t_SendToUps(SendToUps, ups_out);
+            cout << "Thread SendToUps created\n";
+            t_RecvFromUps.detach();
+            t_SendToUps.detach();
+        }
         // Connect to world, when developing, set withUPS=false to initialize a
         // new world
         connectWorld();
         cout << "World connected\n";
-
-        // Spawn threads to receive responses from ups and world
-        thread t_RecvFromUps(RecvFromUps, ups_in);
-        cout << "Thread RecvFromUps created\n";
-        thread t_SendToUps(SendToUps, ups_out);
-        cout << "Thread SendToUps created\n";
 
         thread t_RecvFromWorld(RecvFromWorld, world_in);
         cout << "Thread RecvFromWorld created\n";
         thread t_SendToWorld(SendToWorld, world_out);
         cout << "Thread SendToWorld created\n";
 
-        t_RecvFromUps.detach();
-        t_SendToUps.detach();
         t_RecvFromWorld.detach();
         cout << "Thread RecvFromWorld detached\n";
         t_SendToWorld.detach();
@@ -153,7 +153,6 @@ void Server::connectWorld() {
     if (withUPS) {
         acon.set_worldid(worldID);
     } else {
-        acon.set_worldid(1);
     }
 
     // Initialize warehouses
