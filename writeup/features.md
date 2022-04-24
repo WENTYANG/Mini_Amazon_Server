@@ -24,5 +24,5 @@
 9. warehouse dynamic allocation
    * We will dynamiclly sent your package from the nearest warehouse to your address, so you can receive your order as soon as possible.
 10. save ups account and credict card num
-   * You can view and edit your personal information(including credit card num and ups account) anytime.
-   * If you have saved your personal information, they will be auto filled when you submit an order. No need to enter them again!
+  * You can view and edit your personal information(including credit card num and ups account) anytime.
+  * If you have saved your personal information, they will be auto filled when you submit an order. No need to enter them again!
