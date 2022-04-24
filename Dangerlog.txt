@@ -1,9 +1,54 @@
 ------------------Back End------------------
 RAII
-No throw
-lock thread safe queue
-thread pool: working threads
+1. Use RAII to automatically manage allocated resources, 
+    Using unique_ptr for the allocated:
+    1) Warehouse objects
+    2) Order objects
+    3) Database connections
+    4) Timer handling objects
+    Ensuring the least memory leak.
+
+2. Exception Handling: No throw guarantee
+    Ensuring a no-throw guarantee for all the first-level functions. The server
+    will not quit abruptly during processing an order due to any database or socket
+    or order handling errors. We use try and catch blocks and define different exception
+    types to handle errors in a customized way.
+
+    1) For socket connections, if any exception is thrown while connecting to a server or
+    accepting a connection from a client, the error message would be printed and logged,
+    the program would try to reconnect.
+
+    2) For database errors, the error message gets printed and the transaction will get aborted,
+    automatically rollback to previous status.
+
+    3) While processing incoming responses from the world/UPS, if the server has received an
+    invalid message, the error would be logged, and the server would send out an error.
+
+3. lock thread safe queue
+    When implementing multi-thread handling of the requests, we use dedicated threads to send message
+    to & receive message from world and UPS, we use a global thread-safe queue to store all the messages.
+    The working threads would push the messages they want to send into the output queue.The thread-safe
+    queue uses mutex lock to ensure that multiple producers & multiple consumers can work synchronously
+    without produciing conflicts.
+    
+4. thread pool & pipeline design: event driven
+    We use a thread pool to manage our working threads. Our working threads are event-driven, they
+    are invoked after I/O threads have received an incoming message, and they exit after finishing 
+    the work of one phase(pack, order a truck, load, deliver).
+
+5. At least once ACK handling: Timer
+    To ensure the at least once property of our server, we use the Timer module in Poco library to
+    handle ack and resend. We use a global hash map to store the mapping of sequence numbers to the
+    corresponding timers. When an ack is received, the request is removed from the map; if ack is not
+    received after time-out (3s), Timer would handle the resend process automatically.
+
+6. At most once guarantee
+    When receiving repeated messages, the server guarantees "at most once" feature using a global
+    hashset of received sequence numbers.
+
 ------------------Front End------------------
 security
 不能访问不是自己的东西
+
 ---------- Some Problems that we met---------
+1. 
