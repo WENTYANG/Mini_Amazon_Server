@@ -20,30 +20,7 @@
     </style>
   </head>
   <body>
-  <h3> &nbsp; Search Orders</h3></br>
-  <form action={% url 'amazon:search_order' %} method="post">
-    {% csrf_token %}
-    &nbsp;&nbsp; <input type="text" name="p_name" required>
-    <input type="submit" value="Search">
-  </form>
-  </br>
-  {% if date %}
-    <p> sort by : <font color="red"><a href="{%url 'amazon:view_order' %}"> purchase date </a></font> &nbsp; | &nbsp;
-    <a href="{%url 'amazon:view_order_hl' %}"> price: high to low </a> &nbsp; | &nbsp;
-    <a href="{%url 'amazon:view_order_lh' %}"> price: low to high </a></p>
-  {% endif %}
-  {% if hl %}
-    <p> sort by : <a href="{%url 'amazon:view_order' %}"> purchase date </a> &nbsp; | &nbsp;
-    <font color="red"><a href="{%url 'amazon:view_order_hl' %}"> price: high to low </a></font> &nbsp; | &nbsp;
-    <a href="{%url 'amazon:view_order_lh' %}"> price: low to high </a></p>
-  {% endif %}
-  {% if lh %}
-    <p> sort by : <a href="{%url 'amazon:view_order' %}"> purchase date </a> &nbsp; | &nbsp;
-    <a href="{%url 'amazon:view_order_hl' %}"> price: high to low </a> &nbsp; | &nbsp;
-    <font color="red"><a href="{%url 'amazon:view_order_lh' %}"> price: low to high </a></font></p>
-  {% endif %}
-    
-    <h1>All Orders</h1>
+    <h1>Orders</h1>
       {% for o in orders %}
       <h3>{{ o.date_time.date }}</h3>
       <table border=solid cellspacing=10>
@@ -67,6 +44,6 @@
       </table></br>
       {% endfor %}
 
-    <a href="{% url 'amazon:home' %}">back</a></p>
+    <a href="{% url 'amazon:view_order' %}">back</a></p>
   </body>
 </html>

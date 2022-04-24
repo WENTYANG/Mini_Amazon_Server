@@ -37,6 +37,13 @@
         </div>
         {% endif %}
         </br></br>
+      <h3> &nbsp; Search Products</h3></br>
+      <form action={% url 'amazon:search_product' %} method="post">
+        {% csrf_token %}
+        &nbsp;&nbsp; <input type="text" name="p_name" required>
+        <input type="submit" value="Search">
+      </form>
+      </br></br>
       <h3> &nbsp; All Products </h3></br>
       <div class="container">
         <div class="row align-items-start">
