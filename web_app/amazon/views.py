@@ -25,14 +25,14 @@ def home(request):
   orders=Order.objects.all().filter(customer=request.user.customer, status='closed').order_by('-date_time')
   if orders.count() > 0:
     order = orders[0]
-    return render(request, 'amazon/home.html', {'products': products, 'order': order});
+    return render(request, 'amazon/home.html', {'products': products, 'order': order})
   else:
-    return render(request, 'amazon/home.html', {'products': products});
+    return render(request, 'amazon/home.html', {'products': products})
 
 @login_required
 def search_by_cat(request):
   cats = Category.objects.all() 
-  return render(request, 'amazon/search_by_cat.html', {'cats': cats});
+  return render(request, 'amazon/search_by_cat.html', {'cats': cats})
 
 @login_required
 def view_cat(request, c_id):
@@ -41,7 +41,7 @@ def view_cat(request, c_id):
   except Category.DoesNotExist:
     return HttpResponse('This category does not exist!')
   products=Product.objects.filter(category=cat)
-  return render(request, 'amazon/view_cat.html', {'cat': cat, 'products': products});
+  return render(request, 'amazon/view_cat.html', {'cat': cat, 'products': products})
 
 @login_required
 def goto_cart(request):
@@ -85,7 +85,13 @@ def view_product(request, p_id):
     product=Product.objects.get(p_id=p_id)
   except Product.DoesNotExist:
     return HttpResponse('This product does not exist!')
+  favorite = product.favorite
   if request.method == "POST":
+    if 'liked' in request.POST:
+      favorite = request.POST['liked']
+      product.favorite = favorite
+      product.save()
+      return render(request, 'amazon/view_product.html', {'product': product, 'favorite': favorite})
     if 'add_to_cart' in request.POST:
       try:
         order = Order.objects.get(customer=request.user.customer, status='open')
@@ -114,7 +120,7 @@ def view_product(request, p_id):
       return redirect('amazon:checkout', o_id=order.o_id)
     return HttpResponseRedirect(reverse('amazon:home'))
   else:
-    return render(request, 'amazon/view_product.html', {'product': product})
+    return render(request, 'amazon/view_product.html', {'product': product, 'favorite': str(favorite)})
 
 @login_required
 def checkout(request, o_id):
@@ -210,3 +216,7 @@ def buy_again(request, o_id):
     Item.objects.create(order=order, product=i.product, count=i.count)
   return redirect('amazon:checkout', o_id=order.o_id)
 
+@login_required
+def view_favorite(request):
+  products = Product.objects.filter(favorite=True)
+  return render(request, 'amazon/view_favorite.html', {'products': products})

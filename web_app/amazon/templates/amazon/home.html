@@ -60,10 +60,11 @@
       </div>
      </br>
      <h3> &nbsp; Options</h3>
-      <a href="{% url 'amazon:search_by_cat'%}"> &nbsp;&nbsp;&nbsp; Search by category </a></br>
-      <a href="{% url 'amazon:goto_cart'%}"> &nbsp;&nbsp;&nbsp; Checkout </a></br>
-      <a href="{% url 'amazon:view_order'%}"> &nbsp;&nbsp;&nbsp; Orders </a></br>
-      <a href="{% url 'user:show_info'%}"> &nbsp;&nbsp;&nbsp; View your info </a></br>
-      <a href="{% url 'user:logout'%}"> &nbsp;&nbsp;&nbsp; log out </a></br>
+      &nbsp;&nbsp;&nbsp;<a href="{% url 'amazon:search_by_cat'%}"> Search by category </a></br>
+      &nbsp;&nbsp;&nbsp;<a href="{% url 'amazon:view_favorite'%}"> View my favorites </a></br>
+      &nbsp;&nbsp;&nbsp;<a href="{% url 'amazon:goto_cart'%}"> Checkout </a></br>
+      &nbsp;&nbsp;&nbsp;<a href="{% url 'amazon:view_order'%}"> Orders </a></br>
+      &nbsp;&nbsp;&nbsp;<a href="{% url 'user:show_info'%}"> View your info </a></br>
+      &nbsp;&nbsp;&nbsp;<a href="{% url 'user:logout'%}"> log out </a></br>
   </body>
 </html>
