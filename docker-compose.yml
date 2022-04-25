@@ -40,10 +40,10 @@ services:
     build:
       context: ./server
       args:
-        - HOST_UPS=vcm-24273.vm.duke.edu
+        - HOST_UPS=vcm-25947.vm.duke.edu
     user: root
     environment:
-      - UPS_HOST_NAME=vcm-24273.vm.duke.edu
+      - UPS_HOST_NAME=vcm-25947.vm.duke.edu
     volumes:
       - ./server:/code
     command: "./run.sh"
