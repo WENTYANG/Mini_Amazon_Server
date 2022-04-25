@@ -125,7 +125,7 @@ void delivered(UDelivered uded) {
     }
     // TODO: possibaly send email to user
     string email = get_email_addr(uded.packageid());
-    send_email(email, "Item delivered" ,"One item in your order has been delivered. Thank you 🧡");
+    send_email(email, "Item delivered" ,"One item in your order has been delivered. Thank you!");
 }
 
 /*

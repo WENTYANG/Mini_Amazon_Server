@@ -147,6 +147,7 @@ def checkout(request, o_id):
         'Your order has been received. Thank you 🧡',
         'amazingMiniAmz@outlook.com',
         [request.user.email],
+        fail_silently=True
       )
       return render(request, 'amazon/success.html')
     else:
