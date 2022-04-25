@@ -20,6 +20,7 @@ services:
   web:
     build: ./web_app
     user: nobody
+    # command: ./wait-for-it.sh db:5432
     command: /code/runserver.sh
     volumes:
       - ./web_app:/code
