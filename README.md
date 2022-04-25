@@ -37,3 +37,5 @@ Refer to https://stackoverflow.com/questions/38249434/docker-postgres-failed-to-
 2.3 In web_app -> amazon -> views.py, in function send_signal, change the HOST to be "server"<br>
 ![Untitled](https://user-images.githubusercontent.com/49318361/164996218-32bc3728-e6fa-4485-b15f-99719e42814d.png)
 
+### 8. Environment variables
+To run without docker, need to run the following commands <br> LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/{username}/Mini_amazon/server/Poco/lib:/home/{username}/Mini_amazon/server/protobuf/lib
