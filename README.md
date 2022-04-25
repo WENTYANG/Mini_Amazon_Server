@@ -33,4 +33,5 @@ $ sudo docker rmi $(sudo docker images -q) # remove all images <br>
 $ sudo docker network prune # remove all networks <br>
 $ sudo docker volume prune # remove all volumes  <br>
  <br>
+ $ sudo docker-compose down <br>
 When running without docker, try python3 manage.py flush under the web_app directory.
