@@ -30,6 +30,7 @@ When running without docker, try python3 manage.py flush under the web_app direc
 
 ### 6. If meet with problem: Failed to bind tcp 0.0.0.0:5432 address already in use
 Refer to https://stackoverflow.com/questions/38249434/docker-postgres-failed-to-bind-tcp-0-0-0-05432-address-already-in-use
+sudo service postgresql stop
 
 ### 7. Modifications in hostnames when running in docker
 2.1 In web_app -> mysite -> settings.py, change the 'host' under DATABASES to be 'db'<br>
