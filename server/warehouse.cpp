@@ -6,8 +6,8 @@
 
 #define QUANTUM 5
 #define IS_PURCHASING true
-#define REGULAR_PURCHASE_AMOUNT 10
-//#define REGULAR_PURCHASE_AMOUNT 10000
+//#define REGULAR_PURCHASE_AMOUNT 10
+#define REGULAR_PURCHASE_AMOUNT 10000
 using namespace std;
 
 Warehouse::Warehouse(int id, int x, int y) : w_id(id), x(x), y(y) {
