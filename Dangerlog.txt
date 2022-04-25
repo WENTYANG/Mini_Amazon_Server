@@ -55,4 +55,14 @@ RAII
     If they tries to do so, they will receive an error message instead.
 
 ---------- Some Problems that we met---------
-1. 
+1. Our warehouse object has a field which is a queue of requests, there is a thread for every warehouse to regularly
+check the order requests in the queues in a round robin fashion. At first we just pass the Warehouse objects as
+parameters into functions without making a deep copy(not writing explicit copy constructors to do so), and this
+produces dangling pointers in the queue, and later on caused double free problems. Then we detected the problem,
+and decided that instead of copying around Warehouse objects, we use RAII and pass unique pointers of Warehouses
+as parameters. RAII solved the dangling pointer problem, and also avoids explicit delete and prevent our server
+from leaking memory.
+
+2. While using the Timer object to keep track of ack and handle resend, we tried to push the Timer objects into
+a queue, which did not work. Afterwards we used unique pointers and moved them instead of making copies, which
+solved the problem.
