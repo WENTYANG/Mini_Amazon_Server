@@ -19,19 +19,19 @@ $ sudo docker volume prune # remove all volumes  <br>
  $ sudo docker-compose down <br>
 When running without docker, try python3 manage.py flush under the web_app directory.
 
-### sudo docker-compose build before sudo docker-compose up !!!
+### 3. sudo docker-compose build before sudo docker-compose up !!!
 
-### 3. Runtime settings
+### 4. Runtime settings
 3.1 Initialize product amount: In server -> server.cpp, change the PRODUCT_INITIAL_AMOUNT to be the desired initial amount for every product<br>
 3.2 Run without UPS: In server -> server.cpp, change the withUPS value in server constructor to be false, the server will send an AConnect command to world to initialize a world first, and will run without UPS<br>
 
-### 4. Change permission
+### 5. Change permission
 4.1 Before running docker-compose up --build, run chmod -R +x server/run.sh
 
-### 5. If meet with problem: Failed to bind tcp 0.0.0.0:5432 address already in use
+### 6. If meet with problem: Failed to bind tcp 0.0.0.0:5432 address already in use
 Refer to https://stackoverflow.com/questions/38249434/docker-postgres-failed-to-bind-tcp-0-0-0-05432-address-already-in-use
 
-### 6. Modifications in Django
+### 7. Modifications in Django when running in docker
 2.1 In web_app -> mysite -> settings.py, change the 'host' under DATABASES to be 'db'<br>
 2.2 In web_app -> mysite -> settings.py, add 'web' to ALLOWED_HOSTS<br>
 2.3 In web_app -> amazon -> views.py, in function send_signal, change the HOST to be "server"<br>
