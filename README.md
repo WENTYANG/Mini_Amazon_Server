@@ -31,11 +31,12 @@ When running without docker, try python3 manage.py flush under the web_app direc
 ### 6. If meet with problem: Failed to bind tcp 0.0.0.0:5432 address already in use
 Refer to https://stackoverflow.com/questions/38249434/docker-postgres-failed-to-bind-tcp-0-0-0-05432-address-already-in-use
 
-### 7. Modifications in Django when running in docker
+### 7. Modifications in hostnames when running in docker
 2.1 In web_app -> mysite -> settings.py, change the 'host' under DATABASES to be 'db'<br>
 2.2 In web_app -> mysite -> settings.py, add 'web' to ALLOWED_HOSTS<br>
 2.3 In web_app -> amazon -> views.py, in function send_signal, change the HOST to be "server"<br>
-![Untitled](https://user-images.githubusercontent.com/49318361/164996218-32bc3728-e6fa-4485-b15f-99719e42814d.png)
+![Untitled](https://user-images.githubusercontent.com/49318361/164996218-32bc3728-e6fa-4485-b15f-99719e42814d.png) <br>
+2.4 In server -> server.cpp -> Server::connectDB, change the hostname of db to be 'db'
 
 ### 8. Environment variables
 To run without docker, need to run the following commands <br> LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/{username}/Mini_amazon/server/Poco/lib:/home/{username}/Mini_amazon/server/protobuf/lib
